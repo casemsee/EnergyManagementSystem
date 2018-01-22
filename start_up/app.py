@@ -9,9 +9,9 @@ from utils import Logger
 from database_management.database_functions import db_session
 from configuration.configuration_database import scheduling_plan,scheduling_plan_local
 
-class StartUpEms():
+class StartUpUEms():
     """
-    Start up of universal energy management system
+    Start up class of universal energy management system
     """
     def __init__(self,socket):
         self.t0 = time.time()
@@ -68,8 +68,6 @@ class StartUpEms():
         return Session
 
 
-
-
 class StartUpLems():
     """
     Start up of local energy management system
@@ -124,5 +122,4 @@ class StartUpLems():
         :return: Session class
         """
         Session = db_session(scheduling_plan_local)
-
         return Session

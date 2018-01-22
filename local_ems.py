@@ -1,5 +1,5 @@
 # The main entrance of local energy management system (UEMS)
-# Date: 4/Sep/2017
+# Date: 21/Jan/2018
 # Authors: Tianyang Zhao
 # Mail: zhaoty@ntu.edu.sg
 from apscheduler.schedulers.blocking import BlockingScheduler  # Time scheduler
@@ -19,7 +19,7 @@ logger = Logger("local_ems")
 
 class Main():
     """
-    The main class of local energy management system
+    Main class of local energy management system
     """
     def __init__(self,socket):
         """
@@ -28,15 +28,16 @@ class Main():
         from start_up import app
         self.socket = socket
         self.logger = Logger("local ems start up")
-        ems_main = app.start_up_lems(socket)
+        ems_main = app.StartUpLems(socket)
         self.Operation_mode = ems_main.run()
-
+        # database start-up operation
+        self.Session = ems_main.database_start_up()
         self.microgrid = start_up_lems.start_up() # Generate local ems models
-
-        if self.Operation_mode == default_operation_mode["UEMS"]:
+        self.logger.info("Database has been started up!")
+        # operation mode
+        if self.Operation_mode == default_operation_mode["UEMS"]:# Local EMS work as the slave of UEMS.
             self.status = ems_main.information_send(self.microgrid, static_info)
 
-        self.Session = ems_main.database_start_up()
 
 
 def run():

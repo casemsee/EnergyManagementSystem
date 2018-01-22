@@ -1,8 +1,9 @@
 ## Main entrance for the universal energy management (UEMS).
-# Documentation for the UMES.
+# Documentation for the local EMS.
 # \author: Tianyang Zhao
 # \mail: zhaoty@ntu.edu.sg
-# \date: 20 November 2017
+# \date: 22/Jan/2018
+#
 
 # The following packages are required to deploy UEMS
 # 1) Python 3.6+
@@ -36,7 +37,7 @@ class Main():
         :param socket: connection socket between local ems and universal ems
         """
         from start_up import app
-        ems_main = app.start_up_ems(socket)
+        ems_main = app.StartUpLems(socket)# Start up the local EMS
 
         self.socket = socket
         self.Operation_mode = ems_main.run()
