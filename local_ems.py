@@ -101,9 +101,6 @@ def run():
 
 
 
-
-
-
 if __name__ == "__main__":
-    ## Start the main process of local energy management system
+    # Start the main process of local energy management system
     run()
