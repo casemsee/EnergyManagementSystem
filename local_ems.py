@@ -37,6 +37,16 @@ class Main():
         # operation mode
         if self.Operation_mode == default_operation_mode["UEMS"]:# Local EMS work as the slave of UEMS.
             self.status = ems_main.information_send(self.microgrid, static_info)
+    def local_ems(self):# Local ems
+        microgrid = self.microgrid # Obtain the information model
+        # 1) real-time simulation
+
+        # 2) short-term operation
+
+        # 3) middle-term operation
+
+        # 4) long-term operation
+
 
 
 
