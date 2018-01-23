@@ -19,9 +19,9 @@ from middle_term_operation.output_check import OutputCheck
 from middle_term_operation.middle2short import Middle2Short
 from middle_term_operation.set_points_tracing import set_points_tracing_ed
 from database_management.database_management import database_storage_operation
-
+from modelling.database.database_format import db_short_term
 def middle_term_operation_uems(*args):
-    # Short term forecasting for the middle term operation in universal energy management system.
+    # Middle term forecasting for the middle term operation in universal energy management system.
     from middle_term_operation.problem_formulation import ProblemFormulation
     from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
     from middle_term_operation.problem_solving import SolvingThread
@@ -115,7 +115,7 @@ def middle_term_operation_uems(*args):
     database_operation__uems.join()
 
 def middle_term_operation_lems(*args):
-    # Short term operation for local ems
+    # Middle term operation for local ems
     # The following operation sequence
     # 1) Information collection
     # 2) Short-term forecasting
@@ -162,6 +162,80 @@ def middle_term_operation_lems(*args):
     Middle2Short.run(Target_time, session, local_models)
 
     database_storage_operation.database_record(session, local_models, Target_time, "ED")
+
+def middle_term_operation(microgrid,session,logger):
+    """
+    Middle-term operation for standalone ems
+    :param local_mg:Middle-term energy management system models
+    :param session:local database
+    :param logger:
+    :return: nothing
+    The following operation sequence
+    1) Middle-term forecasting
+    2) Set-point tracing check
+    3) Status update
+    4) Input check
+    5) Problem formulation
+    6) Problem solving
+    7) Output check
+    8) Database operation
+    """
+    from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
+    from middle_term_operation.problem_formulation import ProblemFormulation
+    from middle_term_operation.problem_solving import SolvingThread
+    from configuration.configuration_time_line import default_dead_line_time
+
+    microgrid = deepcopy(microgrid)  # Local energy management system models
+
+    Target_time = time.time()
+    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
+
+    # Step 1: Short-term forecasting
+    thread_forecasting = ForecastingThread(session, Target_time, microgrid)  # The forecasting thread
+    thread_forecasting.start()
+    thread_forecasting.join()
+    microgrid = thread_forecasting.models
+    # Step 2: Set-point tracing check
+    microgrid = set_points_tracing_ed(Target_time, session, microgrid)
+    # Step 3: Status update
+    microgrid = status_update(microgrid, session, Target_time)
+    # Step 4: Input check
+    microgrid = InputCheckMiddleTerm.model_local_check(microgrid)
+    # Step 5: Problem formulation
+    if microgrid["COMMAND_TYPE"] == 1 :
+        logger.info("ED is under set-points tracing mode!")
+        mathematical_model = ProblemFormulationTracing.problem_formulation_local(microgrid)
+        mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_local_recovery(microgrid)
+    else:
+        logger.info("ED is under idle mode!")
+        mathematical_model = ProblemFormulationTracing.problem_formulation_local(microgrid)
+        mathematical_model_recovery = ProblemFormulation.problem_formulation_local_recovery(microgrid)
+        microgrid["COMMAND_TYPE"] = 0
+        microgrid["COMMAND_TYPE"] = 0
+    # Step 6: Problem solving
+    res = SolvingThread(mathematical_model)
+    res_recovery = SolvingThread(mathematical_model_recovery)
+    res.daemon = True
+    res_recovery.daemon = True
+
+    res.start()
+    res_recovery.start()
+
+    res.join(default_dead_line_time["Gate_closure_ed"])
+    res_recovery.join(default_dead_line_time["Gate_closure_ed"])
+
+    if res.value["success"] is True:
+        microgrid = update(res.value, microgrid, "Feasible")
+    else:
+        microgrid = update(res_recovery.value, microgrid,"Infeasible")
+
+    # Step 7: Output check
+    microgrid = OutputCheck.output_local_check(microgrid)
+
+    # Step 8: Database operation
+    Middle2Short.run(Target_time, session, microgrid)
+    database_storage_operation.database_record(session, microgrid, Target_time, "ED")
+
 
 def result_update(*args):
     ## Result update for local ems and universal ems models
@@ -299,3 +373,23 @@ def update(*args):
         model["success"] = False
 
     return model
+
+def status_update(microgrid,session,Target_time):
+    """
+    Update Battery SOC, generation status, load status, bic status etc
+    :param microgrid: information model of
+    :param session: inquery the real time operation database
+    :param Target_time: scheduling time of short time operation
+    :return: microgrid model
+    1) check the database of resource manager, if not exist, 2); if exist, update the soc, available information, go to 3)
+    2) check the short term operation database, if not exist, go to 3); if exist, update the soc and available information.
+    3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
+    Note: This function serves as the closed loop between the scheduling and information.
+    """
+    row = session.query(db_short_term).filter( db_short_term.TIME_STAMP < Target_time).first()
+
+    microgrid["ESS"]["SOC"] = row.BAT_SOC
+    microgrid["DG"]["STATUS"] = row.DG_STATUS
+    microgrid["UG"]["STATUS"] = row.UG_STATUS
+
+    return microgrid
