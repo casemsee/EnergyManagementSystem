@@ -40,7 +40,7 @@ class Main():
     def local_ems(self):# Local ems
         from real_time_operation.app import RealTimeSimulation
         microgrid = self.microgrid # Obtain the information model
-        session = self.Session
+        session = self.Session()
         real_time_simulation = RealTimeSimulation()
         # 1) real-time simulation
         for i in range(10):

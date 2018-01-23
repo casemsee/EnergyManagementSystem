@@ -215,6 +215,54 @@ class db_short_term(Base):
     # Cost
     COST = Column(FLOAT)
 
+class db_real_time(Base):
+    # The database format of optimal power flow.
+    __tablename__ = 'real_time_operation'
+
+    TIME_STAMP = Column(INTEGER, primary_key=True)  # The primary and unique key in the database.
+    # Forecasting results group.
+    # Load group.
+    AC_PD = Column(INTEGER)
+    AC_QD = Column(INTEGER)
+    NAC_PD = Column(INTEGER)
+    NAC_QD = Column(INTEGER)
+    DC_PD = Column(INTEGER)
+    NDC_PD = Column(INTEGER)
+    # Renewable energy group.
+    PV_PG = Column(INTEGER)
+    WP_PG = Column(INTEGER)
+    # Schedulable sources group.
+    # AC side
+    # Generations
+    DG_STATUS = Column(INTEGER)
+    DG_PG = Column(INTEGER)
+    DG_QG = Column(INTEGER)
+    # Utility grid.
+    UG_STATUS = Column(INTEGER)
+    UG_PG = Column(INTEGER)
+    UG_QG = Column(INTEGER)
+    # BIC
+    BIC_PG = Column(INTEGER)
+    BIC_QG = Column(INTEGER)
+    # DC side
+    # Battery.
+    BAT_PG = Column(INTEGER)
+    BAT_SOC = Column(FLOAT)
+    # The universal energy management settings. If it is a local version, these parameters will not be generated.
+    PMG = Column(INTEGER)
+    V_DC = Column(FLOAT)
+    # Emergency operation
+    # Renewable energy curtailment.
+    PV_CURT = Column(INTEGER)
+    WP_CURT = Column(INTEGER)
+    # Load shedding.
+    AC_SHED = Column(INTEGER)
+    NAC_SHED = Column(INTEGER)
+    DC_SHED = Column(INTEGER)
+    NDC_SHED = Column(INTEGER)
+    # Cost
+    COST = Column(FLOAT)
+
 class db_load_profile(Base):
     # Load profile format
     __tablename__ = 'USA_FL_NASA'

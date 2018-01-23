@@ -7,7 +7,7 @@ The real time operation will be triggered every 5 seconds
 3) The status of
 """
 
-from modelling.database.database_format import resource_management, one_minute_history_data,db_short_term
+from modelling.database.database_format import resource_management, one_minute_history_data,db_short_term,db_real_time
 import random
 from configuration.configuration_database import history_data
 from sqlalchemy import create_engine, and_  # Import database
@@ -33,14 +33,14 @@ def measurement_data(model, session, t0):
     t0 = int(t0 - t0 % default_time["Time_step_rtc"])
     Target_time = int((t0 - default_time["Base_time"]) / default_time["Time_step_opf"])
 
-    if session.query(resource_management).filter(TIME_STAMP=t0).count() == 0:
+    if session.query(resource_management).filter(resource_management.TIME_STAMP==t0).count() == 0:
         blank_row = blank_history_result(t0)
         session.add(blank_row)
         session.commit()
 
     row = session.query(resource_management).filter_by(TIME_STAMP=t0).first()
 
-    row_source = session_source.query(one_minute_history_data).filter_by(TIME_STAMP=Target_time).first()
+    row_source = session_source.query(one_minute_history_data).filter_by(TIME_STAMP=Target_time).first()# By using the default data to test the system
     # The disturbance of
     row.AC_PD = int(row_source.AC_PD * model["Load_ac"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
     row.NAC_PD = int(row_source.NAC_PD * model["Load_nac"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
@@ -92,7 +92,13 @@ def real_time_simulation(model, session, t0, logger):
     :return: updated model and store the result in RTC database
     """
     Target_time = int(t0 - t0 % default_time["Time_step_rtc"])
-    row = session(db_short_term).filter(TIME_STAMP = Target_time).first()
+
+    if session.query(db_real_time).filter(db_real_time.TIME_STAMP==Target_time).count() == 0:
+        blank_row = blank_real_time_result(Target_time)
+        session.add(blank_row)
+        session.commit()
+    row = session.query(db_real_time).filter(db_real_time.TIME_STAMP == Target_time).first()
+
     row.UG_PG = model["UG"]["COMMAND_PG"]
     row.UG_QG = model["UG"]["COMMAND_QG"]
     row.DG_PG = model["DG"]["COMMAND_PG"]
@@ -124,7 +130,7 @@ def scheduling_data(model, session, t0):
     :return:
     """
     Target_time = int(t0 - t0%default_time["Time_step_rtc"])
-    if session.query(db_short_term).filter(TIME_STAMP = Target_time).count() != 0: # If the scheduling plan exists!
+    if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() != 0: # If the scheduling plan exists!
         row = session(db_short_term).filter(TIME_STAMP = Target_time).first()
         if row.DG_STATUS>0 and model["DG"]["STATUS"]>0:
             model["DG"]["STATUS"] = 1
@@ -206,6 +212,47 @@ def blank_history_result(Target_time):
             # Coordination group
             PMG=0,
             V_DC=0
+        )
+
+    return default_result
+
+def blank_real_time_result(Target_time):
+    """
+    Default resource management database
+    :param Target_time:
+    :return: all zeros
+    """
+    default_result = db_real_time \
+        (
+            TIME_STAMP=Target_time,
+            AC_PD=0,
+            AC_QD=0,
+            NAC_PD=0,
+            NAC_QD=0,
+            DC_PD=0,
+            NDC_PD=0,
+            # Renewable energy group.
+            PV_PG=0,
+            WP_PG=0,
+            # DG group
+            DG_STATUS=0,
+            DG_PG=0,
+            DG_QG=0,
+            # UG group
+            UG_STATUS=0,
+            UG_PG=0,
+            UG_QG=0,
+            # BIC group
+            BIC_PG=0,
+            BIC_QG=0,
+            # Battery group
+            BAT_PG=0,
+            BAT_SOC=0,
+            # Coordination group
+            PMG=0,
+            V_DC=0,
+            # Operational cost
+            COST=0,
         )
 
     return default_result
