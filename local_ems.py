@@ -44,7 +44,7 @@ class Main():
         real_time_simulation = RealTimeSimulation()
         # 1) real-time simulation
         for i in range(10):
-            real_time_simulation.run(microgrid,session,session)
+            real_time_simulation.run(microgrid,session,session)# Real-time simulation has pasted test!
         # 2) short-term operation
 
         # 3) middle-term operation

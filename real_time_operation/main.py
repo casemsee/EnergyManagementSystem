@@ -22,7 +22,7 @@ Session = sessionmaker(bind=engine)
 session_source = Session()
 
 
-def measurement_data(model, session, t0):
+def measurement_data(microgrid, session, t0):
     """
     History database query function for real time simulation
     :param history data:
@@ -42,47 +42,54 @@ def measurement_data(model, session, t0):
 
     row_source = session_source.query(one_minute_history_data).filter_by(TIME_STAMP=Target_time).first()# By using the default data to test the system
     # The disturbance of
-    row.AC_PD = int(row_source.AC_PD * model["Load_ac"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
-    row.NAC_PD = int(row_source.NAC_PD * model["Load_nac"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
-    row.DC_PD = int(row_source.DC_PD * model["Load_dc"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
-    row.NDC_PD = int(row_source.NDC_PD * model["Load_ndc"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
-    row.PV_PG = int(row_source.PV_PG * model["PV"]["PMAX"]  * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
-    row.WP_PG = int(row_source.WP_PG * model["WP"]["PMAX"]  * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
+    row.AC_PD = int(row_source.AC_PD * microgrid["Load_ac"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
+    row.NAC_PD = int(row_source.NAC_PD * microgrid["Load_nac"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
+    row.DC_PD = int(row_source.DC_PD * microgrid["Load_dc"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
+    row.NDC_PD = int(row_source.NDC_PD * microgrid["Load_ndc"]["PMAX"] * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
+    row.PV_PG = int(row_source.PV_PG * microgrid["PV"]["PMAX"]  * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
+    row.WP_PG = int(row_source.WP_PG * microgrid["WP"]["PMAX"]  * (1 - default_stochastic["INJECTION"] + 2 * default_stochastic["INJECTION"]*random.random()))
 
-    row.BAT_SOC = model["ESS"]["SOC"]
+    # update SOC according to the operation data or the previous data
+    # if the operation data exits
+
+    if session.query(db_real_time).filter(db_real_time.TIME_STAMP == t0 - default_time["Time_step_rtc"]).count() != 0:
+        row_target = session.query(db_real_time).filter_by( TIME_STAMP = t0 - default_time["Time_step_rtc"]).first()
+        row.BAT_SOC = row_target.BAT_SOC
+    else:
+        row.BAT_SOC = microgrid["ESS"]["SOC"]
     # Random generation of generator status
     if random.random() > 0.01:
         row.DG_STATUS = 1
-        model["DG"]["STATUS"] = 1
+        microgrid["DG"]["STATUS"] = 1
     else:
         row.DG_STATUS = 0
-        model["DG"]["STATUS"] = 0
+        microgrid["DG"]["STATUS"] = 0
 
     if random.random() > 0.01:
         row.UG_STATUS = 1
-        model["UG"]["STATUS"] = 1
+        microgrid["UG"]["STATUS"] = 1
     else:
         row.UG_STATUS = 0
-        model["UG"]["STATUS"] = 0
+        microgrid["UG"]["STATUS"] = 0
 
     session.commit()
 
-    model["Load_ac"]["PD"] = int(row_source.AC_PD * model["Load_ac"]["PMAX"])
-    model["Load_nac"]["PD"] = int(row_source.NAC_PD * model["Load_ac"]["PMAX"])
-    model["Load_dc"]["PD"] = int(row_source.DC_PD * model["Load_ac"]["PMAX"])
-    model["Load_ndc"]["PD"] = int(row_source.NDC_PD * model["Load_ac"]["PMAX"])
-    model["PV"]["PG"] = int(row_source.PV_PG * model["Load_ac"]["PMAX"])
-    model["WP"]["PG"] = int(row_source.WP_PG * model["Load_ac"]["PMAX"])
-    model["ESS"]["SOC"] = row.BAT_SOC
+    microgrid["Load_ac"]["PD"] = int(row_source.AC_PD * microgrid["Load_ac"]["PMAX"])
+    microgrid["Load_nac"]["PD"] = int(row_source.NAC_PD * microgrid["Load_ac"]["PMAX"])
+    microgrid["Load_dc"]["PD"] = int(row_source.DC_PD * microgrid["Load_ac"]["PMAX"])
+    microgrid["Load_ndc"]["PD"] = int(row_source.NDC_PD * microgrid["Load_ac"]["PMAX"])
+    microgrid["PV"]["PG"] = int(row_source.PV_PG * microgrid["Load_ac"]["PMAX"])
+    microgrid["WP"]["PG"] = int(row_source.WP_PG * microgrid["Load_ac"]["PMAX"])
+    microgrid["ESS"]["SOC"] = row.BAT_SOC
 
     # Further information might be updated.
     # 1) Battery status
     # 2) BIC status
 
-    return model
+    return microgrid
 
 
-def real_time_simulation(model, session, t0, logger):
+def real_time_simulation(microgrid, session, t0, logger):
     """
     Real time simulation for the
     :param model:
@@ -99,38 +106,38 @@ def real_time_simulation(model, session, t0, logger):
         session.commit()
     row = session.query(db_real_time).filter(db_real_time.TIME_STAMP == Target_time).first()
     # record the measurement information
-    row.AC_PD = model["Load_ac"]["PD"]
-    row.NAC_PD = model["Load_nac"]["PD"]
-    row.DC_PD = model["Load_dc"]["PD"]
-    row.NDC_PD = model["Load_ndc"]["PD"]
-    row.PV_PG = model["PV"]["PG"]
-    row.WP_PG = model["WP"]["PG"]
+    row.AC_PD = microgrid["Load_ac"]["PD"]
+    row.NAC_PD = microgrid["Load_nac"]["PD"]
+    row.DC_PD = microgrid["Load_dc"]["PD"]
+    row.NDC_PD = microgrid["Load_ndc"]["PD"]
+    row.PV_PG = microgrid["PV"]["PG"]
+    row.WP_PG = microgrid["WP"]["PG"]
     # record the scheduling plan
-    row.UG_PG = model["UG"]["COMMAND_PG"]
-    row.UG_QG = model["UG"]["COMMAND_QG"]
-    row.DG_PG = model["DG"]["COMMAND_PG"]
-    row.DG_QG = model["DG"]["COMMAND_QG"]
-    row.PMG = model["PMG"]
+    row.UG_PG = microgrid["UG"]["COMMAND_PG"]
+    row.UG_QG = microgrid["UG"]["COMMAND_QG"]
+    row.DG_PG = microgrid["DG"]["COMMAND_PG"]
+    row.DG_QG = microgrid["DG"]["COMMAND_QG"]
+    row.PMG = microgrid["PMG"]
     row.BIC_PG = row.AC_PD + row.NAC_PD - row.UG_PG - row.DG_PG
 
-    if row.BIC_PG > model["BIC"]["SMAX"] or row.BIC_PG < -model["BIC"]["SMAX"]:
+    if row.BIC_PG > microgrid["BIC"]["SMAX"] or row.BIC_PG < -microgrid["BIC"]["SMAX"]:
         logger.error("BIC is over current")
     row.BIC_QG = row.AC_QD + row.NAC_QD - row.UG_QG - row.DG_QG
 
     row.BAT_PG = row.DC_PD + row.NDC_PD - row.PMG + row.BIC_PG - row.PV_PG - row.WP_PG
 
-    if row.BAT_PG > model["ESS"]["PMAX_DIS"] or row.BAT_PG < -model["ESS"]["PMAX_CH"]:
+    if row.BAT_PG > microgrid["ESS"]["PMAX_DIS"] or row.BAT_PG < - microgrid["ESS"]["PMAX_CH"]:
         logger.error("ESS is over current")
 
     if row.BAT_PG > 0:
-        row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_rtc"] / model["ESS"]["EFF_DIS"]/model["ESS"]["CAP"]/3600
+        row.BAT_SOC = microgrid["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_rtc"] / microgrid["ESS"]["EFF_DIS"]/microgrid["ESS"]["CAP"]/3600
     else:
-        row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time["Time_step_rtc"]/model["ESS"]["CAP"]/3600
+        row.BAT_SOC = microgrid["ESS"]["SOC"] - row.BAT_PG * microgrid["ESS"]["EFF_CH"] * default_time["Time_step_rtc"]/microgrid["ESS"]["CAP"]/3600
 
     session.commit()
 
 
-def scheduling_data(model, session, t0):
+def scheduling_data(microgrid, session, t0):
     """
     Operation database result inquiry
     This function will inquiry the optimal power flow database
@@ -140,50 +147,50 @@ def scheduling_data(model, session, t0):
     Target_time = int(t0 - t0%default_time["Time_step_rtc"])
     if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() != 0: # If the scheduling plan exists!
         row = session(db_short_term).filter(TIME_STAMP = Target_time).first()
-        if row.DG_STATUS>0 and model["DG"]["STATUS"]>0:
-            model["DG"]["STATUS"] = 1
-            model["DG"]["COMMAND_PG"] = row.DG_PG
-            model["DG"]["COMMAND_QG"] = row.DG_QG
+        if row.DG_STATUS>0 and microgrid["DG"]["STATUS"]>0:
+            microgrid["DG"]["STATUS"] = 1
+            microgrid["DG"]["COMMAND_PG"] = row.DG_PG
+            microgrid["DG"]["COMMAND_QG"] = row.DG_QG
         else:
-            model["DG"]["STATUS"] = 0
-            model["DG"]["COMMAND_PG"] = 0
-            model["DG"]["COMMAND_QG"] = 0
-        if row.UG_STATUS>0 and  model["UG"]["STATUS"]>0:
-            model["UG"]["STATUS"] = 1
-            model["UG"]["COMMAND_PG"] = row.UG_PG
-            model["UG"]["COMMAND_QG"] = row.UG_QG
+            microgrid["DG"]["STATUS"] = 0
+            microgrid["DG"]["COMMAND_PG"] = 0
+            microgrid["DG"]["COMMAND_QG"] = 0
+        if row.UG_STATUS>0 and  microgrid["UG"]["STATUS"]>0:
+            microgrid["UG"]["STATUS"] = 1
+            microgrid["UG"]["COMMAND_PG"] = row.UG_PG
+            microgrid["UG"]["COMMAND_QG"] = row.UG_QG
         else:
-            model["UG"]["STATUS"] = 0
-            model["UG"]["COMMAND_PG"] = 0
-            model["UG"]["COMMAND_QG"] = 0
+            microgrid["UG"]["STATUS"] = 0
+            microgrid["UG"]["COMMAND_PG"] = 0
+            microgrid["UG"]["COMMAND_QG"] = 0
 
         if row.BIC_PG>0:
-            model["BIC"]["COMMAND_AC2DC"] = row.BIC_PG
+            microgrid["BIC"]["COMMAND_AC2DC"] = row.BIC_PG
         else:
-            model["BIC"]["COMMAND_DC2AC"] = -row.BIC_PG
+            microgrid["BIC"]["COMMAND_DC2AC"] = -row.BIC_PG
 
-        model["BIC"]["COMMAND_Q"] = row.BIC_QG
-        model["ESS"]["COMMAND_PG"] = row.BAT_PG
+        microgrid["BIC"]["COMMAND_Q"] = row.BIC_QG
+        microgrid["ESS"]["COMMAND_PG"] = row.BAT_PG
 
-        model["PMG"] = row.PMG
-        model["V_DC"] = row.V_DC
-
-        if row.PV_CURT > 0:
-            model["PV"]["PG"] -= row.PV_CURT
+        microgrid["PMG"] = row.PMG
+        microgrid["V_DC"] = row.V_DC
 
         if row.PV_CURT > 0:
-            model["WP"]["PG"] -= row.WP_CURT
+            microgrid["PV"]["PG"] -= row.PV_CURT
+
+        if row.PV_CURT > 0:
+            microgrid["WP"]["PG"] -= row.WP_CURT
 
         if row.AC_SHED >0 :
-            model["Load_ac"]["PD"] = 0
+            microgrid["Load_ac"]["PD"] = 0
         if row.NAC_SHED > 0:
-            model["Load_nac"]["PD"] = 0
+            microgrid["Load_nac"]["PD"] = 0
         if row.DC_SHED >0:
-            model["Load_dc"]["PD"] = 0
+            microgrid["Load_dc"]["PD"] = 0
         if row.NDC_SHED >0:
-            model["Load_ndc"]["PD"] = 0
+            microgrid["Load_ndc"]["PD"] = 0
 
-    return model
+    return microgrid
 
 def blank_history_result(Target_time):
     """
