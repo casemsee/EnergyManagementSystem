@@ -98,26 +98,34 @@ def real_time_simulation(model, session, t0, logger):
         session.add(blank_row)
         session.commit()
     row = session.query(db_real_time).filter(db_real_time.TIME_STAMP == Target_time).first()
-
+    # record the measurement information
+    row.AC_PD = model["Load_ac"]["PD"]
+    row.NAC_PD = model["Load_nac"]["PD"]
+    row.DC_PD = model["Load_dc"]["PD"]
+    row.NDC_PD = model["Load_ndc"]["PD"]
+    row.PV_PG = model["PV"]["PG"]
+    row.WP_PG = model["WP"]["PG"]
+    # record the scheduling plan
     row.UG_PG = model["UG"]["COMMAND_PG"]
     row.UG_QG = model["UG"]["COMMAND_QG"]
     row.DG_PG = model["DG"]["COMMAND_PG"]
     row.DG_QG = model["DG"]["COMMAND_QG"]
+    row.PMG = model["PMG"]
+    row.BIC_PG = row.AC_PD + row.NAC_PD - row.UG_PG - row.DG_PG
 
-    row.BIC_PG = row.AC_PD + row.NAC_PD - model["UG"]["COMMAND_PG"] - model["DG"]["COMMAND_PG"]
     if row.BIC_PG > model["BIC"]["SMAX"] or row.BIC_PG < -model["BIC"]["SMAX"]:
         logger.error("BIC is over current")
-    row.BIC_QG = row.AC_QD + row.NAC_QD - model["UG"]["COMMAND_QG"] - model["UG"]["COMMAND_QG"]
+    row.BIC_QG = row.AC_QD + row.NAC_QD - row.UG_QG - row.DG_QG
 
-    row.BAT_PG = row.DC_PD + row.NDC_PD - model["PMG"] - row.BIC_PG - model["PV"]["PG"] - model["WP"]["PG"]
+    row.BAT_PG = row.DC_PD + row.NDC_PD - row.PMG + row.BIC_PG - row.PV_PG - row.WP_PG
 
     if row.BAT_PG > model["ESS"]["PMAX_DIS"] or row.BAT_PG < -model["ESS"]["PMAX_CH"]:
         logger.error("ESS is over current")
 
     if row.BAT_PG > 0:
-        row.BAT_SOC = row.BAT_SOC - row.BAT_PG * default_time["Time_step_rtc"] / model["ESS"]["EFF_DIS"]
+        row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_rtc"] / model["ESS"]["EFF_DIS"]/model["ESS"]["CAP"]/3600
     else:
-        row.BAT_SOC = row.BAT_SOC - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time["Time_step_rtc"]
+        row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time["Time_step_rtc"]/model["ESS"]["CAP"]/3600
 
     session.commit()
 
