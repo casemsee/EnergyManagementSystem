@@ -378,15 +378,18 @@ def status_update(microgrid,session,Target_time):
     """
     Update Battery SOC, generation status, load status, bic status etc
     :param microgrid: information model of
-    :param session: inquery the real time operation database
-    :param Target_time: scheduling time of short time operation
+    :param session: inquery the short_term operation database
+    :param Target_time: scheduling time of middle time operation
     :return: microgrid model
     1) check the database of resource manager, if not exist, 2); if exist, update the soc, available information, go to 3)
     2) check the short term operation database, if not exist, go to 3); if exist, update the soc and available information.
     3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
     Note: This function serves as the closed loop between the scheduling and information.
     """
-    row = session.query(db_short_term).filter( db_short_term.TIME_STAMP < Target_time).first()
+    try:
+        row = session.query(db_short_term).filter( db_short_term.TIME_STAMP == Target_time).first()
+    except:
+        row = session.query(db_short_term).filter(db_short_term.TIME_STAMP <= Target_time).first()
 
     microgrid["ESS"]["SOC"] = row.BAT_SOC
     microgrid["DG"]["STATUS"] = row.DG_STATUS
