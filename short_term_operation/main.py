@@ -87,7 +87,7 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
         (local_mg, universal_mg) = result_update(res.value, local_mg, universal_mg, "Feasible",mathematical_model)
     else:
         (local_mg, universal_mg) = result_update(res_recovery.value, local_mg, universal_mg, "Infeasible",mathematical_model_recovery)
-    # The output check the result
+    # Output check the result
     local_mg = output_local_check(local_mg)
     universal_mg = output_local_check(universal_mg)
 
