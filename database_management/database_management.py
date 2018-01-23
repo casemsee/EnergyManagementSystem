@@ -120,6 +120,7 @@ class database_storage_operation():
                 session.commit()
 
         if function == "OPF":
+            from configuration.configuration_time_line import default_time
             row = session.query(database_target[function]).filter(database_target[function].TIME_STAMP == Target_time).first()
             row.AC_PD = model["Load_ac"]["PD"]
             row.AC_QD = model["Load_ac"]["QD"]
@@ -138,7 +139,13 @@ class database_storage_operation():
             row.BIC_PG = model["BIC"]["COMMAND_AC2DC"] - model["BIC"]["COMMAND_DC2AC"]
             row.BIC_QG = model["BIC"]["COMMAND_Q"]
             row.BAT_PG = model["ESS"]["COMMAND_PG"]
-            row.BAT_SOC = model["ESS"]["SOC"]
+            # Update the SOC record information
+            if row.BAT_PG > 0:
+                row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_opf"] / model["ESS"][
+                    "EFF_DIS"] / model["ESS"]["CAP"] / 3600
+            else:
+                row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time[
+                    "Time_step_opf"] / model["ESS"]["CAP"] / 3600
             row.PMG = model["PMG"]
             row.V_DC = model["V_DC"]
             row.PV_CURT = model["PV"]["COMMAND_CURT"]
