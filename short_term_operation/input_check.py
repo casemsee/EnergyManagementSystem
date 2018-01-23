@@ -17,7 +17,7 @@ from utils import Logger
 logger = Logger("Short_term_dispatch_input_check")
 from configuration import configuration_default_generators,configuration_default_load,configuration_convertors,configuration_default_lines
 
-class InputCheckShorterm():
+class InputCheckShortTerm():
     def model_local_check(*args):
         model = deepcopy(args[0]) # The input model
         T_short = default_look_ahead_time_step["Look_ahead_time_opf_time_step"] # The look ahead time step for short term operation

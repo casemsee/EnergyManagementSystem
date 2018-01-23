@@ -10,7 +10,7 @@ from numpy import array, vstack, zeros
 import numpy
 # The data structure is imported from numpy.
 
-class problem_formulation():
+class ProblemFormulation():
     ## Reformulte the information model to system level
     def problem_formulation_local(*args):
         from configuration import configuration_time_line

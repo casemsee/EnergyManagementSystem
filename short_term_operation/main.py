@@ -11,8 +11,8 @@ from short_term_operation.set_ponits_tracing import set_points_tracing_opf
 from configuration.configuration_time_line import default_look_ahead_time_step
 from copy import deepcopy
 
-from short_term_operation.input_check import InputCheckShorterm
-from short_term_operation.output_check import output_local_check
+from short_term_operation.input_check import InputCheckShortTerm
+from short_term_operation.output_check import OutputCheck
 from database_management.database_management import database_storage_operation
 from information_management.informulation_formulation_update import single_period_information_update
 from configuration.configuration_global import default_operation_mode
@@ -30,9 +30,9 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
     :param logger: logger system
     :return: nothing to return
     """
-    from short_term_operation.problem_formulation import problem_formulation
-    from short_term_operation.problem_formulation_set_ponits_tracing import problem_formulation_set_points_tracing
-    from short_term_operation.problem_solving import Solving_Thread
+    from short_term_operation.problem_formulation import ProblemFormulation
+    from short_term_operation.problem_formulation_set_ponits_tracing import ProblemFormulationSetPointsTracing
+    from short_term_operation.problem_solving import SolvingThread
     # Short term operation
     # General procedure for short-term operation
     # 1)Information collection
@@ -56,24 +56,24 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
     local_mg = thread_info_ex.microgrid
     universal_mg = set_points_tracing_opf(Target_time, session,universal_mg)  # There are some bugs in this function
     # Solve the optimal power flow problem
-    local_mg = InputCheckShorterm.model_local_check(local_mg)
-    universal_mg = InputCheckShorterm.model_universal_check(universal_mg)
+    local_mg = InputCheckShortTerm.model_local_check(local_mg)
+    universal_mg = InputCheckShortTerm.model_universal_check(universal_mg)
 
     # Two threads will be created, one for feasible problem, the other for infeasible problem
     if local_mg["COMMAND_TYPE"] == 1 and universal_mg["COMMAND_TYPE"] == 1:
         logger.info("OPF is under set-points tracing mode!")
-        mathematical_model = problem_formulation_set_points_tracing.problem_formulation_universal(local_mg,universal_mg,"Feasible")
-        mathematical_model_recovery = problem_formulation_set_points_tracing.problem_formulation_universal(local_mg,universal_mg,"Infeasible")
+        mathematical_model = ProblemFormulationSetPointsTracing.problem_formulation_universal(local_mg,universal_mg,"Feasible")
+        mathematical_model_recovery = ProblemFormulationSetPointsTracing.problem_formulation_universal(local_mg,universal_mg,"Infeasible")
     else:
         logger.info("OPF is under idle mode!")
-        mathematical_model = problem_formulation.problem_formulation_universal(local_mg, universal_mg,"Feasible")
-        mathematical_model_recovery = problem_formulation.problem_formulation_universal(local_mg, universal_mg,"Infeasible")
+        mathematical_model = ProblemFormulation.problem_formulation_universal(local_mg, universal_mg,"Feasible")
+        mathematical_model_recovery = ProblemFormulation.problem_formulation_universal(local_mg, universal_mg,"Infeasible")
         local_mg["COMMAND_TYPE"] = 0
         universal_mg["COMMAND_TYPE"] = 0
 
     # Solving procedure
-    res = Solving_Thread(mathematical_model)
-    res_recovery = Solving_Thread(mathematical_model_recovery)
+    res = SolvingThread(mathematical_model)
+    res_recovery = SolvingThread(mathematical_model_recovery)
     res.daemon = True
     res_recovery.daemon = True
 
@@ -88,8 +88,8 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
     else:
         (local_mg, universal_mg) = result_update(res_recovery.value, local_mg, universal_mg, "Infeasible",mathematical_model_recovery)
     # Output check the result
-    local_mg = output_local_check(local_mg)
-    universal_mg = output_local_check(universal_mg)
+    local_mg = OutputCheck.output_local_check(local_mg)
+    universal_mg = OutputCheck.output_local_check(universal_mg)
 
     # Return command to the local ems
     dynamic_model = single_period_information_formulation(local_mg, info, Target_time)
@@ -138,7 +138,7 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
     local_mg = thread_forecasting.microgrid
 
     # Update the dynamic model
-    local_mg = InputCheckShorterm.model_local_check(local_mg) # Check the data format of local ems
+    local_mg = InputCheckShortTerm.model_local_check(local_mg) # Check the data format of local ems
     local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the
 
     dynamic_model = single_period_information_formulation(local_mg, info, Target_time)
@@ -170,9 +170,9 @@ def short_term_operation(local_mg,session,logger):
     :param logger:
     :return:
     """
-    from short_term_operation.problem_formulation import problem_formulation
-    from short_term_operation.problem_formulation_set_ponits_tracing import problem_formulation_set_points_tracing
-    from short_term_operation.problem_solving import Solving_Thread
+    from short_term_operation.problem_formulation import ProblemFormulation
+    from short_term_operation.problem_formulation_set_ponits_tracing import ProblemFormulationSetPointsTracing
+    from short_term_operation.problem_solving import SolvingThread
 
     local_mg = deepcopy(local_mg)
 
@@ -189,24 +189,24 @@ def short_term_operation(local_mg,session,logger):
     # Step 2: update resource status
     local_mg = status_update(local_mg, session, Target_time)
     # Update the dynamic model
-    local_mg = InputCheckShorterm.model_local_check(local_mg) # Check the data format of local ems
+    local_mg = InputCheckShortTerm.model_local_check(local_mg) # Check the data format of local ems
 
     local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the operation mode of local ems
 
     if local_mg["COMMAND_TYPE"] == 1:
         logger.info("OPF is under set-points tracing mode!")
-        mathematical_model = problem_formulation_set_points_tracing.problem_formulation_local(local_mg)
-        mathematical_model_recovery = problem_formulation_set_points_tracing.problem_formulation_local_recovery(local_mg)
+        mathematical_model = ProblemFormulationSetPointsTracing.problem_formulation_local(local_mg)
+        mathematical_model_recovery = ProblemFormulationSetPointsTracing.problem_formulation_local_recovery(local_mg)
     else:
         logger.info("OPF is under idle mode!")
-        mathematical_model = problem_formulation.problem_formulation_local(local_mg)
-        mathematical_model_recovery = problem_formulation.problem_formulation_local_recovery(local_mg)
+        mathematical_model = ProblemFormulation.problem_formulation_local(local_mg)
+        mathematical_model_recovery = ProblemFormulation.problem_formulation_local_recovery(local_mg)
         local_mg["COMMAND_TYPE"] = 0
 
     # Step2: Backup operation, which indicates the universal ems is down
     # Solving procedure
-    res = Solving_Thread(mathematical_model)
-    res_recovery = Solving_Thread(mathematical_model_recovery)
+    res = SolvingThread(mathematical_model)
+    res_recovery = SolvingThread(mathematical_model_recovery)
     res.daemon = True
     res_recovery.daemon = True
 
@@ -220,9 +220,10 @@ def short_term_operation(local_mg,session,logger):
     else:
         local_mg = result_update_local(res_recovery.value, local_mg, "Infeasible",mathematical_model_recovery)
 
-        local_mg = output_local_check(local_mg)
+        local_mg = OutputCheck.output_local_check(local_mg)
+
     #Check the output of optimal power flow
-    local_mg = output_local_check(local_mg)
+    local_mg = OutputCheck.output_local_check(local_mg)
     # Record the result in local database
     database_storage_operation.database_record(session, local_mg, Target_time, "OPF")
 

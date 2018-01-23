@@ -3,7 +3,7 @@ import threading  # Thread management (timeout and return value)
 from scipy import optimize  # linear programming solver
 from solvers.mixed_integer_solvers_gurobi import mixed_integer_linear_programming
 
-class Solving_Thread(threading.Thread):
+class SolvingThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, parameter):
         threading.Thread.__init__(self)

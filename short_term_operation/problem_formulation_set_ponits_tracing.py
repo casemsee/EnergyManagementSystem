@@ -13,7 +13,7 @@ from configuration.configuration_global import default_eps
 
 # The data structure is imported from numpy.
 # The relaxation is to relax the boundary variables
-class problem_formulation_set_points_tracing():
+class ProblemFormulationSetPointsTracing():
     ## Reformulte the information model to system level
     def problem_formulation_local(*args):
         from configuration import configuration_time_line
