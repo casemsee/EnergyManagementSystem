@@ -42,6 +42,7 @@ def set_points_tracing_opf(*args):
         model["Load_nac"]["COMMAND_SHED"] = 0
         model["Load_dc"]["COMMAND_SHED"] = 0
         model["Load_ndc"]["COMMAND_SHED"] = 0
+
     else:
         model["DG"]["GEN_STATUS"] = [0] * T
         model["DG"]["COMMAND_PG"] = [0] * T

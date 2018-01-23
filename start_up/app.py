@@ -9,6 +9,7 @@ from utils import Logger
 from database_management.database_functions import db_session
 from configuration.configuration_database import scheduling_plan,scheduling_plan_local
 import threading
+
 class StartUpUEms():
     """
     Start up class of universal energy management system

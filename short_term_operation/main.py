@@ -160,7 +160,7 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
 
 def short_term_operation(local_mg,session,logger):
     """
-    Short term operation for isolated microgrid
+    Short term operation for stand alone microgrid
     The following operation sequence
     1) Short-term forecasting
     2) Information upload and database store
@@ -179,7 +179,6 @@ def short_term_operation(local_mg,session,logger):
     Target_time = time.time()
     Target_time = round((Target_time - Target_time % default_time["Time_step_opf"] + default_time["Time_step_opf"]))
 
-    local_mg["AREA"] = default_operation_mode["ID"] + 1
     local_mg["TIME_STAMP"] = Target_time
     local_mg["COST"] = 0
     # Step 1: Short-term forecasting
@@ -187,9 +186,11 @@ def short_term_operation(local_mg,session,logger):
     thread_forecasting.start()
     thread_forecasting.join()
     local_mg = thread_forecasting.microgrid
-
+    # Step 2: update resource status
+    local_mg = status_update(local_mg, session, Target_time)
     # Update the dynamic model
     local_mg = InputCheckShorterm.model_local_check(local_mg) # Check the data format of local ems
+
     local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the operation mode of local ems
 
     if local_mg["COMMAND_TYPE"] == 1:
@@ -222,6 +223,7 @@ def short_term_operation(local_mg,session,logger):
         local_mg = output_local_check(local_mg)
     #Check the output of optimal power flow
     local_mg = output_local_check(local_mg)
+    # Record the result in local database
     database_storage_operation.database_record(session, local_mg, Target_time, "OPF")
 
 def result_update(res, local_model, universal_model, type, mathematical_model):
@@ -358,8 +360,7 @@ def status_update(microgrid,session,Target_time):
     3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
     Note: This function serves as the closed loop between the scheduling and information.
     """
-
-    row = session.query(resource_management).filter_by(resource_management.TIME_STAMP <= Target_time).fisrt()
+    row = session.query(resource_management).filter( resource_management.TIME_STAMP < Target_time).first()
     microgrid["ESS"]["SOC"] = row.BAT_SOC
     microgrid["DG"]["STATUS"] = row.DG_STATUS
     microgrid["UG"]["STATUS"] = row.UG_STATUS

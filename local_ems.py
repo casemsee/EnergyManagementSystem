@@ -27,7 +27,7 @@ class Main():
         """
         from start_up import app
         self.socket = socket
-        self.logger = Logger("local ems start up")
+        self.logger = Logger("local_ems_start_up")
         ems_main = app.StartUpLems(socket)
         self.Operation_mode = ems_main.run()
         # database start-up operation
@@ -37,15 +37,20 @@ class Main():
         # operation mode
         if self.Operation_mode == default_operation_mode["UEMS"]:# Local EMS work as the slave of UEMS.
             self.status = ems_main.information_send(self.microgrid, static_info)
+
     def local_ems(self):# Local ems
         from real_time_operation.app import RealTimeSimulation
+        from short_term_operation.app import ShortTermOperation
         microgrid = self.microgrid # Obtain the information model
         session = self.Session()
         real_time_simulation = RealTimeSimulation()
-        # 1) real-time simulation
-        for i in range(10):
+        short_term_operation = ShortTermOperation()
+        for i in range(1):
+            # 1) real-time simulation
             real_time_simulation.run(microgrid,session,session)# Real-time simulation has pasted test!
-        # 2) short-term operation
+            short_term_operation.run(microgrid,session)# Short-term operation has pasted test!
+            # 2) short-term operation
+
 
         # 3) middle-term operation
 

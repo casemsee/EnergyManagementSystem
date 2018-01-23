@@ -194,7 +194,7 @@ def scheduling_data(microgrid, session, t0):
 
 def database_management(session, t0):
     # Manage the resource manager database and real-time-operation database
-    session.query(db_real_time).filter(default_time.TIME_STAMP < t0 - 3600).delete()
+    session.query(db_real_time).filter(db_real_time.TIME_STAMP < t0 - 3600).delete()
     session.query(resource_management).filter(resource_management.TIME_STAMP < t0 - 3600).delete()
     session.commit()
 
