@@ -9,7 +9,7 @@ Based on this method, the shadow price can also be calculated as well.
 import threading
 import time
 from configuration.configuration_time_line import default_time, default_look_ahead_time_step
-from information_management.app import MultiplePeriodsInformationUpdateThread,MultiplePeriodsInformationFormulationThread
+from information_management.app import MultiplePeriodsInformationUpdateThread, MultiplePeriodsInformationFormulationThread
 from information_management import information_send_receive
 from middle_term_operation.mid_term_forecasting import ForecastingThread
 from utils import Logger
@@ -22,9 +22,9 @@ from database_management.database_management import database_storage_operation
 
 def middle_term_operation_uems(*args):
     # Short term forecasting for the middle term operation in universal energy management system.
-    from economic_dispatch.problem_formulation import problem_formulation
-    from economic_dispatch.problem_formulation_set_points_tracing import problem_formulation_tracing
-    from economic_dispatch.problem_solving import Solving_Thread
+    from middle_term_operation.problem_formulation import problem_formulation
+    from middle_term_operation.problem_formulation_set_points_tracing import problem_formulation_tracing
+    from middle_term_operation.problem_solving import Solving_Thread
     from configuration.configuration_time_line import default_dead_line_time
     # Short term operation
     # General procedure for middle-term operation
@@ -45,8 +45,7 @@ def middle_term_operation_uems(*args):
     # Update the universal parameter by using the database engine
     # Two threads are created to obtain the information simultaneously.
     thread_forecasting = ForecastingThread(session, Target_time, universal_models)
-    thread_info_ex = Information_Collection_Thread(socket_upload, info, local_models,
-                                                   default_look_ahead_time_step["Look_ahead_time_ed_time_step"])
+    thread_info_ex = Information_Collection_Thread(socket_upload, info, local_models,default_look_ahead_time_step["Look_ahead_time_ed_time_step"])
 
     thread_forecasting.start()
     thread_info_ex.start()

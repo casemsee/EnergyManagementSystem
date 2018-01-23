@@ -18,11 +18,9 @@ from utils import Logger
 logger = Logger("Middle_term_dispatch_input_check")
 from configuration import configuration_default_generators, configuration_default_load, configuration_convertors
 
-
-class input_check_middle_term():
+class InputCheckMiddleTerm():
     def model_local_check(*args):
         model = deepcopy(args[0])  # The input model
-
         T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]  # The look ahead time step for short term operation
         # 1) The input check of utility grid
         if len(model["UG"]["GEN_STATUS"]) != T:

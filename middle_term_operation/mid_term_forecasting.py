@@ -13,6 +13,7 @@ In this version, the Tensorflow based time series forecasting is used
 from forecasting.mid_term_forecasting import middle_term_forecasting_pv_history, middle_term_forecasting_wp_history, \
     middle_term_forecasting_load_ac_history, middle_term_forecasting_load_dc_history, middle_term_forecasting_load_uac_history, \
     middle_term_forecasting_load_udc_history
+
 from configuration.configuration_time_line import default_look_ahead_time_step
 
 import threading
