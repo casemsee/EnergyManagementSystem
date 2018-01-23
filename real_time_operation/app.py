@@ -1,5 +1,5 @@
 from utils import Logger
-from real_time_operation.main import measurement_data,scheduling_data,real_time_simulation
+from real_time_operation.main import measurement_data,scheduling_data,real_time_simulation,database_management
 import time
 
 class RealTimeSimulation():
@@ -23,3 +23,5 @@ class RealTimeSimulation():
         microgrid = scheduling_data(microgrid, session_scheduling, t0)
         # run the real-time simulation (real-time-operation)
         real_time_simulation(microgrid, session_rtc, t0, self.logger)
+        # maintance the database, only keep record the most recent one hour data
+        database_management(session_rtc,t0)
