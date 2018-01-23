@@ -10,21 +10,21 @@ import threading
 import time
 from configuration.configuration_time_line import default_time, default_look_ahead_time_step
 from information_management.app import MultiplePeriodsInformationUpdateThread, MultiplePeriodsInformationFormulationThread
-from information_management import information_send_receive
+from information_management.app import InformationSendReceive
 from middle_term_operation.mid_term_forecasting import ForecastingThread
 from utils import Logger
 from copy import deepcopy
-from middle_term_operation.input_check import input_check_middle_term
-from middle_term_operation.output_check import output_local_check
-from middle_term_operation.middle2short import middle2short_operation
+from middle_term_operation.input_check import InputCheckMiddleTerm
+from middle_term_operation.output_check import OutputCheck
+from middle_term_operation.middle2short import Middle2Short
 from middle_term_operation.set_points_tracing import set_points_tracing_ed
 from database_management.database_management import database_storage_operation
 
 def middle_term_operation_uems(*args):
     # Short term forecasting for the middle term operation in universal energy management system.
-    from middle_term_operation.problem_formulation import problem_formulation
-    from middle_term_operation.problem_formulation_set_points_tracing import problem_formulation_tracing
-    from middle_term_operation.problem_solving import Solving_Thread
+    from middle_term_operation.problem_formulation import ProblemFormulation
+    from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
+    from middle_term_operation.problem_solving import SolvingThread
     from configuration.configuration_time_line import default_dead_line_time
     # Short term operation
     # General procedure for middle-term operation
@@ -37,6 +37,7 @@ def middle_term_operation_uems(*args):
     socket_download = args[3]
     info = args[4]
     session = args[5]
+    logger = args[6]
 
     Target_time = time.time()
     Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time[
@@ -45,7 +46,7 @@ def middle_term_operation_uems(*args):
     # Update the universal parameter by using the database engine
     # Two threads are created to obtain the information simultaneously.
     thread_forecasting = ForecastingThread(session, Target_time, universal_models)
-    thread_info_ex = Information_Collection_Thread(socket_upload, info, local_models,default_look_ahead_time_step["Look_ahead_time_ed_time_step"])
+    thread_info_ex = MultiplePeriodsInformationUpdateThread(socket_upload, info, local_models)
 
     thread_forecasting.start()
     thread_info_ex.start()
@@ -54,34 +55,31 @@ def middle_term_operation_uems(*args):
     thread_info_ex.join()
 
     universal_models = thread_forecasting.models
-    local_models = thread_info_ex.local_models
+    local_models = thread_info_ex.microgrid
 
     universal_models = set_points_tracing_ed(Target_time, session, universal_models)
 
-    local_models = input_check_middle_term.model_local_check(local_models)
-    universal_models = input_check_middle_term.model_universal_check(universal_models)
+    local_models = InputCheckMiddleTerm.model_local_check(local_models)
+    universal_models = InputCheckMiddleTerm.model_universal_check(universal_models)
 
     # Solve the optimal power flow problem
     # Two threads will be created, one for feasible problem, the other for infeasible problem
     if local_models["COMMAND_TYPE"] == 1 and universal_models["COMMAND_TYPE"] == 1:
-        logger_uems.info("ED is under set-points tracing mode!")
-        mathematical_model = problem_formulation_tracing.problem_formulation_universal(local_models, universal_models,
-                                                                                       "Feasible")
-        mathematical_model_recovery = problem_formulation_tracing.problem_formulation_universal(local_models,
-                                                                                                universal_models,
-                                                                                                "Infeasible")
+        logger.info("ED is under set-points tracing mode!")
+        mathematical_model = ProblemFormulationTracing.problem_formulation_universal(local_models, universal_models,"Feasible")
+        mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_universal(local_models,universal_models,"Infeasible")
     else:
-        logger_uems.info("ED is under idle mode!")
-        mathematical_model = problem_formulation.problem_formulation_universal(local_models, universal_models,
+        logger.info("ED is under idle mode!")
+        mathematical_model = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
                                                                                "Feasible")
-        mathematical_model_recovery = problem_formulation.problem_formulation_universal(local_models, universal_models,
+        mathematical_model_recovery = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
                                                                                         "Infeasible")
         local_models["COMMAND_TYPE"] = 0
         universal_models["COMMAND_TYPE"] = 0
 
     # Solve the problem
-    res = Solving_Thread(mathematical_model)
-    res_recovery = Solving_Thread(mathematical_model_recovery)
+    res = SolvingThread(mathematical_model)
+    res_recovery = SolvingThread(mathematical_model_recovery)
     res.daemon = True
     res_recovery.daemon = True
 
@@ -97,18 +95,19 @@ def middle_term_operation_uems(*args):
         (local_models, universal_models) = result_update(res_recovery.value, local_models, universal_models,
                                                          "Infeasible")
 
-    local_models = output_local_check(local_models)
-    universal_models = output_local_check(universal_models)
-    middle2short_operation(Target_time, session, universal_models)
+    local_models = OutputCheck.output_local_check(local_models)
+    universal_models = OutputCheck.output_local_check(universal_models)
+    Middle2Short.run(Target_time, session, universal_models)
     # Return command to the local ems
-    dynamic_model = information_formulation_extraction_dynamic.info_formulation(local_models, Target_time, "ED")
+    dynamic_model = MultiplePeriodsInformationFormulationThread(local_models, Target_time, "ED")
     dynamic_model.TIME_STAMP_COMMAND = round(time.time())
-    information_send_thread = threading.Thread(target=information_receive_send.information_send,
+    information_send_receive = InformationSendReceive()
+    information_send_thread = threading.Thread(target=InformationSendReceive.information_send,
                                                args=(socket_upload, dynamic_model, 2))
 
-    database_operation__uems = threading.Thread(target=database_operation.database_record,
+    database_operation__uems = threading.Thread(target=database_storage_operation.database_record,
                                                 args=(session, universal_models, Target_time, "ED"))
-    logger_uems.info("The command for UEMS is {}".format(universal_models["PMG"]))
+    logger.info("The command for UEMS is {}".format(universal_models["PMG"]))
     information_send_thread.start()
     database_operation__uems.start()
 
@@ -127,6 +126,7 @@ def middle_term_operation_lems(*args):
     socket_download = args[2]  # Download information channel
     info = args[3]  # Information structure
     session = args[4]  # local database
+    logger = args[5]
 
     Target_time = time.time()
     Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time[
@@ -140,23 +140,27 @@ def middle_term_operation_lems(*args):
     local_models = thread_forecasting.models
     # Update the dynamic model
     local_models = set_points_tracing_ed(Target_time, session, local_models)
-    dynamic_model = information_formulation_extraction_dynamic.info_formulation(local_models, Target_time, "ED")
+    InformationFormulationThread = MultiplePeriodsInformationFormulationThread(local_models, info, Target_time, "ED")
+    InformationFormulationThread.start()
+    InformationFormulationThread.join()
+    dynamic_model = InformationFormulationThread.microgrid
     # Information send
-    logger_lems.info("Sending request from {}".format(dynamic_model.AREA) + " to the serve")
-    logger_lems.info("The local time is {}".format(dynamic_model.TIME_STAMP))
-    information_receive_send.information_send(socket_upload, dynamic_model, 2)
-
+    logger.info("Sending request from {}".format(dynamic_model.AREA) + " to the serve")
+    logger.info("The local time is {}".format(dynamic_model.TIME_STAMP))
+    information_send_receive=InformationSendReceive(socket_upload, dynamic_model)
+    information_send_receive.send()
     # Step2: Backup operation, which indicates the universal ems is down
 
     # Receive information from uems
-    dynamic_model = information_receive_send.information_receive(socket_upload, info, 2)
+    dynamic_model = information_send_receive.receive()
     # print("The universal time is", dynamic_model.TIME_STAMP_COMMAND)
-    logger_lems.info("The command from UEMS is {}".format(dynamic_model.PMG))
+    logger.info("The command from UEMS is {}".format(dynamic_model.PMG))
     # Store the data into the database
 
-    local_models = information_formulation_extraction_dynamic.info_extraction(local_models, dynamic_model)
+    local_models = MultiplePeriodsInformationUpdateThread.info_extraction(local_models, dynamic_model)
 
-    middle2short_operation(Target_time, session, local_models)
+    Middle2Short.run(Target_time, session, local_models)
+
     database_storage_operation.database_record(session, local_models, Target_time, "ED")
 
 def result_update(*args):

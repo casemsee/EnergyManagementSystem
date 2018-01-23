@@ -4,8 +4,7 @@ import numpy
 from copy import deepcopy
 from configuration.configuration_global import default_eps
 
-class problem_formulation_tracing():
-
+class ProblemFormulationTracing():
     def problem_formulation_local(*args):
         from configuration import configuration_time_line
         from modelling.data.idx_ed_set_points_tracing import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \

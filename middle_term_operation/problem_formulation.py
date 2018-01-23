@@ -1,12 +1,11 @@
 # A linear constrained convex quadratic programming method is proposed for the economic dispatch
 # To simplify the problem, some more general problems can be mixed integer linear programing problem.
 
-
 from numpy import array, vstack, zeros
 import numpy
 from copy import deepcopy
 
-class problem_formulation():
+class ProblemFormulation():
     ## Reformulte the information model to system level
     def problem_formulation_local(*args):
         from configuration import configuration_time_line

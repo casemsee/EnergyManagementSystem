@@ -8,11 +8,11 @@ In this version, the Tensorflow based time series forecasting is used
 
 """
 # from forecasting.mid_term_forecasting import middle_term_forecasting_pv, middle_term_forecasting_wp, \
-#     middle_term_forecasting_load_ac, middle_term_forecasting_load_dc, middle_term_forecasting_load_uac, \
-#     middle_term_forecasting_load_udc
+#     middle_term_forecasting_load_ac, middle_term_forecasting_load_dc, middle_term_forecasting_load_nac, \
+#     middle_term_forecasting_load_ndc
 from forecasting.mid_term_forecasting import middle_term_forecasting_pv_history, middle_term_forecasting_wp_history, \
-    middle_term_forecasting_load_ac_history, middle_term_forecasting_load_dc_history, middle_term_forecasting_load_uac_history, \
-    middle_term_forecasting_load_udc_history
+    middle_term_forecasting_load_ac_history, middle_term_forecasting_load_dc_history, middle_term_forecasting_load_nac_history, \
+    middle_term_forecasting_load_ndc_history
 
 from configuration.configuration_time_line import default_look_ahead_time_step
 
@@ -57,9 +57,9 @@ def mid_term_forecasting(*args):
     pv_profile = middle_term_forecasting_pv_history(session, Target_time)
     wp_profile = middle_term_forecasting_wp_history(session, Target_time)
     load_ac = middle_term_forecasting_load_ac_history(session, Target_time)
-    load_uac = middle_term_forecasting_load_uac_history(session, Target_time)
+    load_nac = middle_term_forecasting_load_nac_history(session, Target_time)
     load_dc = middle_term_forecasting_load_dc_history(session, Target_time)
-    load_udc = middle_term_forecasting_load_udc_history(session, Target_time)
+    load_ndc = middle_term_forecasting_load_ndc_history(session, Target_time)
 
     for i in range(T):
         # Update the forecasting result of PV
@@ -79,7 +79,7 @@ def mid_term_forecasting(*args):
             models["Load_ac"]["PD"].append(0)
 
         if models["Load_uac"]["STATUS"][i] > 0:
-            models["Load_uac"]["PD"].append(round(load_uac[i] * models["Load_uac"]["PDMAX"]))
+            models["Load_uac"]["PD"].append(round(load_nac[i] * models["Load_uac"]["PDMAX"]))
         else:
             models["Load_uac"]["PD"].append(0)
 
@@ -89,7 +89,7 @@ def mid_term_forecasting(*args):
             models["Load_dc"]["PD"].append(0)
 
         if models["Load_udc"]["STATUS"][i] > 0:
-            models["Load_udc"]["PD"].append(round(load_udc[i] * models["Load_udc"]["PDMAX"]))
+            models["Load_udc"]["PD"].append(round(load_ndc[i] * models["Load_udc"]["PDMAX"]))
         else:
             models["Load_udc"]["PD"].append(0)
 

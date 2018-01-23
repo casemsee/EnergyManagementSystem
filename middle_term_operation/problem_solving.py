@@ -1,8 +1,8 @@
 # The main entrance of the optimal power flow in unviersal energy management system
 import threading  # Thread management (timeout and return value)
-from solvers.mix_integer_solvers import miqp_gurobi,milp_gurobi,milp_mosek  # linear programming solver
+from solvers.mixed_integer_solvers_gurobi import mixed_integer_linear_programming as milp_gurobi  # linear programming solver
 
-class Solving_Thread(threading.Thread):
+class SolvingThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, parameter):
         threading.Thread.__init__(self)
@@ -28,13 +28,12 @@ def solving_procedure(*args):
 
     # Formulate the variable types.
     vtypes = ["c"]*len(lb)
-
     # (solution,obj,success) = miqp_gurobi(c,Q,Aeq=Aeq, beq=beq,A=A, b=b, xmin=lb,xmax=ub,vtypes=vtypes)
     (solution, obj, success) = milp_gurobi(c, Aeq=Aeq, beq=beq, A=A, b=b, xmin=lb, xmax=ub, vtypes=vtypes)
     # (solution, obj, success) = milp_mosek(c, Aeq=Aeq, beq=beq, A=A, b=b, xmin=lb, xmax=ub, vtypes=vtypes)
     #The return value is the
     res = {"x": solution,
-           "obj":obj,
-           "success":success>0}
+           "obj": obj,
+           "success": success>0}
 
     return res
