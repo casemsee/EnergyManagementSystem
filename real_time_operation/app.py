@@ -12,8 +12,8 @@ class RealTimeSimulation():
     3) Real-time simulation (database management)
     """
     def __init__(self):
-        self.name = "Real time operation"
-        self.logger = Logger("Real time simulation")
+        self.name = "Real_time_simulation"
+        self.logger = Logger("Real_time_simulation")
 
     def run(self, microgrid, session_scheduling, session_rtc):
         t0 = int(time.time()) # Simulation time of real-time-simulations
