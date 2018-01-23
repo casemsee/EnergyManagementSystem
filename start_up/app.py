@@ -1,7 +1,7 @@
 """
 Main entrance for start up of energy management system
 """
-from information_management.app import information_send_receive
+from information_management.app import InformationSendReceive
 from information_management.informulation_formulation_update import static_information_formulation,static_information_update
 from configuration.configuration_global import default_operation_mode
 import time
@@ -51,7 +51,7 @@ class StartUpUEms():
         :param static_info: information model of static information models
         :return:
         """
-        info_received = information_send_receive(self.socket,static_info)
+        info_received = InformationSendReceive(self.socket,static_info)
 
         static_info_received = info_received.receive()
 
@@ -110,7 +110,7 @@ class StartUpLems():
         """
         static_info_formulated = static_information_formulation(microgrid, static_info)
 
-        info_send = information_send_receive(self.socket, static_info_formulated)
+        info_send = InformationSendReceive(self.socket, static_info_formulated)
 
         static_info_status = info_send.send()
 

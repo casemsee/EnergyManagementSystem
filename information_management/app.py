@@ -8,7 +8,7 @@ from information_management.informulation_formulation_update import multiple_per
 from utils import Logger
 import threading
 
-class information_send_receive():
+class InformationSendReceive():
     def __init__(self, socket, info):
         self.logger = Logger('Information send and receive')
         if type(info) is bytes:
@@ -27,7 +27,7 @@ class information_send_receive():
         info = information_receive(self.socket, self.information, self.information_type)
         return info
 
-class Static_information_formulation_thread(threading.Thread):
+class StaticInformationFormulationThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, microgrid, info):
         threading.Thread.__init__(self)
@@ -36,7 +36,7 @@ class Static_information_formulation_thread(threading.Thread):
     def run(self):
         self.microgrid = static_information_formulation(self.microgrid, self.info)
 
-class Static_information_update_thread(threading.Thread):
+class StaticInformationUpdateThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, microgrid, info):
         threading.Thread.__init__(self)
@@ -46,7 +46,7 @@ class Static_information_update_thread(threading.Thread):
     def run(self):
         self.microgrid = static_information_update(self.microgrid, self.info, self.logger)
 
-class Single_period_information_formulation_thread(threading.Thread):
+class SinglePeriodInformationFormulationThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, microgrid, info ,Target_time):
         threading.Thread.__init__(self)
@@ -56,7 +56,7 @@ class Single_period_information_formulation_thread(threading.Thread):
     def run(self):
         self.dynamic_info = single_period_information_formulation(self.microgrid,self.info,self.Target_time)
 
-class Single_period_information_update_thread(threading.Thread):
+class SinglePeriodInformationUpdateThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, microgrid, info, socket, T):
         threading.Thread.__init__(self)

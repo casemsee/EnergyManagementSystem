@@ -1,10 +1,11 @@
 import threading
 import time
 from configuration.configuration_time_line import default_time
-from information_management.app import Single_period_information_update_thread
-from information_management.app import information_send_receive
+from information_management.app import SinglePeriodInformationFormulationThread
+from information_management.app import InformationSendReceive
 from information_management.information_send_receive import information_send
 from information_management.informulation_formulation_update import single_period_information_formulation
+from information_management.app import SinglePeriodInformationUpdateThread
 from forecasting.app import ShortTermForecastingThread
 from configuration.configuration_time_line import default_dead_line_time
 from short_term_operation.set_ponits_tracing import set_points_tracing_opf
@@ -44,7 +45,7 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
     # Update the universal parameter by using the database engine
     # Two threads are created to obtain the information simultaneously.
     thread_forecasting = ShortTermForecastingThread(session, Target_time, universal_mg)
-    thread_info_ex = Single_period_information_update_thread(local_mg, info, socket_upload, default_look_ahead_time_step["Look_ahead_time_opf_time_step"])
+    thread_info_ex = SinglePeriodInformationUpdateThread(local_mg, info, socket_upload, default_look_ahead_time_step["Look_ahead_time_opf_time_step"])
 
     thread_forecasting.start()
     thread_info_ex.start()
@@ -146,7 +147,7 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
     # Information send
     logger.info("Sending request from {}".format(dynamic_model.AREA) + " to the serve")
     logger.info("The local time is {}".format(dynamic_model.TIME_STAMP))
-    info_management_local = information_send_receive(socket_upload,dynamic_model)
+    info_management_local = InformationSendReceive(socket_upload,dynamic_model)
     info_management_local.send()
 
 

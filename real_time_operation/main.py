@@ -4,7 +4,7 @@ The modelling of resource manager is applied here
 The real time operation will be triggered every 5 seconds
 1) The load profile is generated using the simulated profile
 2) The SOC of energy storage system will be updated
-3) The status of
+3) The status of generators , loads, ESSs
 """
 
 from modelling.database.database_format import resource_management, one_minute_history_data,db_short_term,db_real_time
