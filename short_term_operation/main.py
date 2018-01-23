@@ -16,7 +16,7 @@ from short_term_operation.output_check import output_local_check
 from database_management.database_management import database_storage_operation
 from information_management.informulation_formulation_update import single_period_information_update
 from configuration.configuration_global import default_operation_mode
-from modelling.database.database_format import resource_management
+from modelling.database.database_format import db_real_time
 
 def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_download, info, session, logger):
     """
@@ -360,7 +360,7 @@ def status_update(microgrid,session,Target_time):
     3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
     Note: This function serves as the closed loop between the scheduling and information.
     """
-    row = session.query(resource_management).filter( resource_management.TIME_STAMP < Target_time).first()
+    row = session.query(db_real_time).filter( db_real_time. TIME_STAMP < Target_time).first()
     microgrid["ESS"]["SOC"] = row.BAT_SOC
     microgrid["DG"]["STATUS"] = row.DG_STATUS
     microgrid["UG"]["STATUS"] = row.UG_STATUS
