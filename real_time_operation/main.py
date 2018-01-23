@@ -124,7 +124,7 @@ def scheduling_data(model, session, t0):
     :return:
     """
     Target_time = int(t0 - t0%default_time["Time_step_rtc"])
-    if session.query(db_short_term).filter(TIME_STAMP = Target_time).count() != 0:
+    if session.query(db_short_term).filter(TIME_STAMP = Target_time).count() != 0: # If the scheduling plan exists!
         row = session(db_short_term).filter(TIME_STAMP = Target_time).first()
         if row.DG_STATUS>0 and model["DG"]["STATUS"]>0:
             model["DG"]["STATUS"] = 1

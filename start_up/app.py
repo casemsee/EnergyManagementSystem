@@ -8,7 +8,7 @@ import time
 from utils import Logger
 from database_management.database_functions import db_session
 from configuration.configuration_database import scheduling_plan,scheduling_plan_local
-
+import threading
 class StartUpUEms():
     """
     Start up class of universal energy management system
@@ -74,7 +74,7 @@ class StartUpLems():
     """
     def __init__(self,socket):
         self.t0 = time.time()
-        self.Conenction_time_max = 100
+        self.Conenction_time_max = 1
         self.logger = Logger("Local_ems_start_up")
         self.Operation_mode = default_operation_mode["UEMS"]  # 1=Work as a universal EMS; 2=Work as a local EMS.
         self.socket = socket
@@ -84,20 +84,19 @@ class StartUpLems():
         Communication check of the neighboring MGs
         :return: Operation mode
         """
-        while True:
-            self.socket.send(b"ConnectionRequest")
-            message = self.socket.recv()
-            if message == b"Start!":
-                self.logger.info("The connection between the local EMS and universal EMS establishes!")
-                break
-            else:
-                self.logger.error("Waiting for the connection between the local EMS and universal EMS!")
+        self.socket.send(b"ConnectionRequest")
+        connection_thread = ConnectionThread(self.socket)
+        connection_thread.daemon = True
+        connection_thread.start()
+        connection_thread.join(self.Conenction_time_max)
 
-            if time.time() > self.t0 + self.Conenction_time_max:  # Timeout error detection
-                self.logger.error("Connection is timeout!")
-                self.logger.warning("EMS works as a local ems now!")
-                self.Operation_mode = default_operation_mode["LEMS"]  # Change the working mode of universal energy management system
-                break
+        try:
+            if connection_thread.message == b"Start!":
+                self.logger.info("The connection between the local EMS and universal EMS establishes!")
+        except:
+            self.logger.error("Connection is timeout!")
+            self.logger.warning("EMS works as a local ems now!")
+            self.Operation_mode = default_operation_mode["LEMS"]  # Change the working mode of universal energy management system
 
         return self.Operation_mode
 
@@ -123,3 +122,11 @@ class StartUpLems():
         """
         Session = db_session(scheduling_plan_local)
         return Session
+
+class ConnectionThread(threading.Thread):
+    def __init__(self, socket):
+        threading.Thread.__init__(self)
+        self.socket = socket
+
+    def run(self):
+        self.message = self.socket.recv()

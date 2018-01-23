@@ -7,6 +7,7 @@ default_time = \
     {   "Base_time":1506182400,
         "Time_step_uc": 1800,  # The time step of unit committment
         "Time_step_ed": 300,  # The time step of economic dispatch
+        "Time_step_opf": 60,  # The time step of economic dispatch
         "Time_step_rtc": 5,  # The time step of real time operation
         "Look_ahead_time_uc": 24 * 3600,  # The look ahead time of unit committment
         "Look_ahead_time_ed": 3600,  # The look ahead time of economic dispatch

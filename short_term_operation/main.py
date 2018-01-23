@@ -5,13 +5,13 @@ from information_management.app import Single_period_information_update_thread
 from information_management.app import information_send_receive
 from information_management.information_send_receive import information_send
 from information_management.informulation_formulation_update import single_period_information_formulation
-from forecasting.app import Short_term_forecastingThread
+from forecasting.app import ShortTermForecastingThread
 from configuration.configuration_time_line import default_dead_line_time
 from short_term_operation.set_ponits_tracing import set_points_tracing_opf
 from configuration.configuration_time_line import default_look_ahead_time_step
 from copy import deepcopy
 
-from short_term_operation.input_check import input_check_short_term
+from short_term_operation.input_check import InputCheckShorterm
 from short_term_operation.output_check import output_local_check
 from database_management.database_management import database_storage_operation
 from information_management.informulation_formulation_update import single_period_information_update
@@ -43,7 +43,7 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
 
     # Update the universal parameter by using the database engine
     # Two threads are created to obtain the information simultaneously.
-    thread_forecasting = Short_term_forecastingThread(session, Target_time, universal_mg)
+    thread_forecasting = ShortTermForecastingThread(session, Target_time, universal_mg)
     thread_info_ex = Single_period_information_update_thread(local_mg, info, socket_upload, default_look_ahead_time_step["Look_ahead_time_opf_time_step"])
 
     thread_forecasting.start()
@@ -56,8 +56,8 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
     local_mg = thread_info_ex.microgrid
     universal_mg = set_points_tracing_opf(Target_time, session,universal_mg)  # There are some bugs in this function
     # Solve the optimal power flow problem
-    local_mg = input_check_short_term.model_local_check(local_mg)
-    universal_mg = input_check_short_term.model_universal_check(universal_mg)
+    local_mg = InputCheckShorterm.model_local_check(local_mg)
+    universal_mg = InputCheckShorterm.model_universal_check(universal_mg)
 
     # Two threads will be created, one for feasible problem, the other for infeasible problem
     if local_mg["COMMAND_TYPE"] == 1 and universal_mg["COMMAND_TYPE"] == 1:
@@ -131,14 +131,14 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
     local_mg["TIME_STAMP"] = Target_time
     local_mg["COST"] = 0
     # Step 1: Short-term forecasting
-    thread_forecasting = Short_term_forecastingThread(session, Target_time, local_mg)  # The forecasting thread
+    thread_forecasting = ShortTermForecastingThread(session, Target_time, local_mg)  # The forecasting thread
     thread_forecasting.start()
     thread_forecasting.join()
 
     local_mg = thread_forecasting.microgrid
 
     # Update the dynamic model
-    local_mg = input_check_short_term.model_local_check(local_mg) # Check the data format of local ems
+    local_mg = InputCheckShorterm.model_local_check(local_mg) # Check the data format of local ems
     local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the
 
     dynamic_model = single_period_information_formulation(local_mg, info, Target_time)
@@ -183,13 +183,13 @@ def short_term_operation(local_mg,session,logger):
     local_mg["TIME_STAMP"] = Target_time
     local_mg["COST"] = 0
     # Step 1: Short-term forecasting
-    thread_forecasting = Short_term_forecastingThread(session, Target_time, local_mg)  # The forecasting thread
+    thread_forecasting = ShortTermForecastingThread(session, Target_time, local_mg)  # The forecasting thread
     thread_forecasting.start()
     thread_forecasting.join()
     local_mg = thread_forecasting.microgrid
 
     # Update the dynamic model
-    local_mg = input_check_short_term.model_local_check(local_mg) # Check the data format of local ems
+    local_mg = InputCheckShorterm.model_local_check(local_mg) # Check the data format of local ems
     local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the operation mode of local ems
 
     if local_mg["COMMAND_TYPE"] == 1:

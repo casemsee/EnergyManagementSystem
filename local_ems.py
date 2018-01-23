@@ -38,15 +38,18 @@ class Main():
         if self.Operation_mode == default_operation_mode["UEMS"]:# Local EMS work as the slave of UEMS.
             self.status = ems_main.information_send(self.microgrid, static_info)
     def local_ems(self):# Local ems
+        from real_time_operation.app import RealTimeSimulation
         microgrid = self.microgrid # Obtain the information model
+        session = self.Session
+        real_time_simulation = RealTimeSimulation()
         # 1) real-time simulation
-
+        for i in range(10):
+            real_time_simulation.run(microgrid,session,session)
         # 2) short-term operation
 
         # 3) middle-term operation
 
         # 4) long-term operation
-
 
 
 
@@ -70,14 +73,15 @@ def run():
     socket_download.connect("tcp://localhost:5559")
 
     initialize = Main(socket)
-    session_short = initialize.Session()
-    session_middle = initialize.Session()
-    session_long = initialize.Session()
-
-    info_ed = dynamic_information_pb2.microgrid()  # Dynamic information for economic dispatch
-    info_uc = dynamic_information_pb2.microgrid()  # Dynamic information for unit commitment
-    info_opf = single_period_information_pb2.microgrid()  # Optimal power flow modelling
-    local_model_short = initialize.microgrid
+    initialize.local_ems()# The local version of EMS
+    # session_short = initialize.Session()
+    # session_middle = initialize.Session()
+    # session_long = initialize.Session()
+    #
+    # info_ed = dynamic_information_pb2.microgrid()  # Dynamic information for economic dispatch
+    # info_uc = dynamic_information_pb2.microgrid()  # Dynamic information for unit commitment
+    # info_opf = single_period_information_pb2.microgrid()  # Optimal power flow modelling
+    # local_model_short = initialize.microgrid
 
     # # By short-term operation process
     # logger.info("The short-term process in local ems starts!")
@@ -102,12 +106,12 @@ def run():
     #                                                          session_lems_long),
     #     'cron', minute='*/30', second='30')  # The operation is triggered every half an hour
     # sched_lems.start()
-    for i in range(10):
-    #     long_term_operation.long_term_operation_lems(local_model_long, socket_upload_uc, socket_download, info_uc,
-    #                                                               session_lems_long)
-    #     middle_term_operation.middle_term_operation_lems(local_model_middle, socket_upload_ed, socket_download, info_ed,
-    #                                                      session_lems_middle)
-        short_term_operation_lems(local_model_short, socket_upload, socket_download, info_opf, session_short, logger)
+    # for i in range(10):
+    # #     long_term_operation.long_term_operation_lems(local_model_long, socket_upload_uc, socket_download, info_uc,
+    # #                                                               session_lems_long)
+    # #     middle_term_operation.middle_term_operation_lems(local_model_middle, socket_upload_ed, socket_download, info_ed,
+    # #                                                      session_lems_middle)
+    #     short_term_operation_lems(local_model_short, socket_upload, socket_download, info_opf, session_short, logger)
 
 
 
