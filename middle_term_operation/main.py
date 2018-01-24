@@ -208,7 +208,7 @@ def middle_term_operation(microgrid,session,logger):
         mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_local_recovery(microgrid)
     else:
         logger.info("ED is under idle mode!")
-        mathematical_model = ProblemFormulationTracing.problem_formulation_local(microgrid)
+        mathematical_model = ProblemFormulation.problem_formulation_local(microgrid)
         mathematical_model_recovery = ProblemFormulation.problem_formulation_local_recovery(microgrid)
         microgrid["COMMAND_TYPE"] = 0
         microgrid["COMMAND_TYPE"] = 0
@@ -286,18 +286,18 @@ def result_update_local(*args):
     local_model["COST"] = [0]*T
 
     if type == "Feasible":
-        if local_model["COMMAND_TYPE"] is 0:
-            from modelling.data.idx_ed_foramt import  NX
+        if local_model["COMMAND_TYPE"] == 0:
+            from modelling.data.idx_ed_foramt import NX
         else:
-            from modelling.data.idx_ed_set_points_tracing import  NX
+            from modelling.data.idx_ed_set_points_tracing import NX
     else:
-        if local_model["COMMAND_TYPE"] is 0:
-            from modelling.data.idx_ed_recovery_format import  NX
+        if local_model["COMMAND_TYPE"] == 0:
+            from modelling.data.idx_ed_recovery_format import NX
         else:
-            from modelling.data.idx_ed_set_points_tracing_recovery import  NX
+            from modelling.data.idx_ed_set_points_tracing_recovery import NX
 
     for i in range(T):
-        local_model["COST"][i] = float(sum([c*d for c,d in zip(c_local[i*NX:(i+1)*NX],x_local[i*NX:(i+1)*NX])])) # Update the
+        local_model["COST"][i] = float(sum([c*d for c,d in zip(c_local[i*NX:(i+1)*NX],x_local[i*NX:(i+1)*NX])]))*default_time["Time_step_ed"]/3600 # Update the
 
     return local_model
 
@@ -309,7 +309,7 @@ def update(*args):
     T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
     if type == "Feasible":
-        if model["COMMAND_TYPE"] is 0:
+        if model["COMMAND_TYPE"] == 0:
             from modelling.data.idx_ed_foramt import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, RESS,EESS,\
                 PMG, NX
         else:
@@ -317,10 +317,10 @@ def update(*args):
                 RESS, EESS, PMG, NX
         model["DG"]["COMMAND_PG"] = [0] * T
         model["DG"]["COMMAND_RG"] = [0] * T
-        model["DG"]["COMMAND_START_UP"] = model["DG"]["GEN_STATUS"] # The staus of generators will be not modified
+        model["DG"]["COMMAND_START_UP"] = model["DG"]["STATUS"] # The staus of generators will be not modified
 
         model["UG"]["COMMAND_PG"] = [0] * T
-        model["UG"]["COMMAND_START_UP"] = model["UG"]["GEN_STATUS"] # The staus of generators will be not modified
+        model["UG"]["COMMAND_START_UP"] = model["UG"]["STATUS"] # The staus of generators will be not modified
         model["UG"]["COMMAND_RG"] = [0] * T
 
         model["BIC"]["COMMAND_AC2DC"] = [0] * T
@@ -356,7 +356,7 @@ def update(*args):
         model["success"] = True
 
     else:
-        if model["COMMAND_TYPE"] is 0:
+        if model["COMMAND_TYPE"] == 0:
             from modelling.data.idx_ed_recovery_format import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
                 PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
         else:
@@ -426,7 +426,7 @@ def status_update(microgrid,session,Target_time):
     row = session.query(db_short_term).filter(db_short_term.TIME_STAMP <= Target_time).first()
 
     microgrid["ESS"]["SOC"] = row.BAT_SOC
-    microgrid["DG"]["STATUS"] = row.DG_STATUS
-    microgrid["UG"]["STATUS"] = row.UG_STATUS
+    microgrid["DG"]["STATUS"] = [row.DG_STATUS]*default_time["Look_ahead_time_ed"]
+    microgrid["UG"]["STATUS"] = [row.UG_STATUS]*default_time["Look_ahead_time_ed"]
 
     return microgrid
