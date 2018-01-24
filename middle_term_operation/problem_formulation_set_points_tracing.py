@@ -47,8 +47,8 @@ class ProblemFormulationTracing():
         ub[PUG] = model["UG"]["PMAX"]
         ub[RUG] = model["UG"]["PMAX"]
 
-        ub[PBIC_AC2DC] = model["BIC"]["CAP"]
-        ub[PBIC_DC2AC] = model["BIC"]["CAP"]
+        ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
+        ub[PBIC_DC2AC] = model["BIC"]["SMAX"]
 
         ub[PESS_C] = model["ESS"]["PMAX_CH"]
         ub[PESS_DC] = model["ESS"]["PMAX_DIS"]
@@ -75,7 +75,7 @@ class ProblemFormulationTracing():
             Aeq[i][i * NX + PUG] = 1
             Aeq[i][i * NX + PBIC_AC2DC] = -1
             Aeq[i][i * NX + PBIC_DC2AC] = model["BIC"]["EFF_DC2AC"]
-            beq.append(model["Load_ac"]["PD"][i] + model["Load_uac"]["PD"][i])
+            beq.append(model["Load_ac"]["PD"][i] + model["Load_nac"]["PD"][i])
 
         # 2) DC power balance equation
         Aeq_temp = zeros((T, nx))
@@ -86,7 +86,7 @@ class ProblemFormulationTracing():
             Aeq_temp[i][i * NX + PESS_DC] = 1
             Aeq_temp[i][i * NX + PMG] = -1
             beq.append(
-                model["Load_dc"]["PD"][i] + model["Load_udc"]["PD"][i] - model["PV"]["PG"][i] - model["WP"]["PG"][i])
+                model["Load_dc"]["PD"][i] + model["Load_ndc"]["PD"][i] - model["PV"]["PG"][i] - model["WP"]["PG"][i])
 
         Aeq = vstack([Aeq, Aeq_temp])
 
@@ -294,8 +294,8 @@ class ProblemFormulationTracing():
             ub[i * NX + RG] = model["DG"]["PMAX"]
             ub[i * NX + PUG] = model["UG"]["PMAX"]
             ub[i * NX + RUG] = model["UG"]["PMAX"]
-            ub[i * NX + PBIC_AC2DC] = model["BIC"]["CAP"]
-            ub[i * NX + PBIC_DC2AC] = model["BIC"]["CAP"]
+            ub[i * NX + PBIC_AC2DC] = model["BIC"]["SMAX"]
+            ub[i * NX + PBIC_DC2AC] = model["BIC"]["SMAX"]
             ub[i * NX + PESS_C] = model["ESS"]["PMAX_CH"]
             ub[i * NX + PESS_DC] = model["ESS"]["PMAX_DIS"]
             ub[i * NX + RESS] = model["ESS"]["PMAX_DIS"] + model["ESS"]["PMAX_CH"]

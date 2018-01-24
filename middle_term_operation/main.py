@@ -225,9 +225,9 @@ def middle_term_operation(microgrid,session,logger):
     res_recovery.join(default_dead_line_time["Gate_closure_ed"])
 
     if res.value["success"] is True:
-        microgrid = update(res.value, microgrid, "Feasible")
+        microgrid = update(res.value["x"], microgrid, "Feasible")
     else:
-        microgrid = update(res_recovery.value, microgrid,"Infeasible")
+        microgrid = update(res_recovery.value["x"], microgrid,"Infeasible")
 
     # Step 7: Output check
     microgrid = OutputCheck.output_local_check(microgrid)
@@ -298,9 +298,9 @@ def update(*args):
         model["PMG"] = [0] * T
 
         model["Load_ac"]["COMMAND_SHED"] = [0] * T
-        model["Load_uac"]["COMMAND_SHED"] = [0] * T
+        model["Load_nac"]["COMMAND_SHED"] = [0] * T
         model["Load_dc"]["COMMAND_SHED"] = [0] * T
-        model["Load_udc"]["COMMAND_SHED"] = [0] * T
+        model["Load_ndc"]["COMMAND_SHED"] = [0] * T
 
         for i in range(T):
             model["DG"]["COMMAND_PG"][i] = int(x[i * NX + PG])
@@ -342,9 +342,9 @@ def update(*args):
         model["PMG"] = [0] * T
 
         model["Load_ac"]["COMMAND_SHED"] = [0] * T
-        model["Load_uac"]["COMMAND_SHED"] = [0] * T
+        model["Load_nac"]["COMMAND_SHED"] = [0] * T
         model["Load_dc"]["COMMAND_SHED"] = [0] * T
-        model["Load_udc"]["COMMAND_SHED"] = [0] * T
+        model["Load_ndc"]["COMMAND_SHED"] = [0] * T
 
         for i in range(T):
             model["DG"]["COMMAND_PG"][i] = int(x[i * NX + PG])
@@ -366,9 +366,9 @@ def update(*args):
             model["WP"]["COMMAND_CURT"][i] = int(min(model["WP"]["PG"], x[i * NX + PWP]))
 
             model["Load_ac"]["COMMAND_SHED"][i] = int(min(model["Load_ac"]["PD"], x[i * NX + PL_AC]))
-            model["Load_uac"]["COMMAND_SHED"][i] = int(min(model["Load_uac"]["PD"], x[i * NX + PL_UAC]))
+            model["Load_nac"]["COMMAND_SHED"][i] = int(min(model["Load_nac"]["PD"], x[i * NX + PL_UAC]))
             model["Load_dc"]["COMMAND_SHED"][i] = int(min(model["Load_dc"]["PD"], x[i * NX + PL_DC]))
-            model["Load_udc"]["COMMAND_SHED"][i] = int(min(model["Load_udc"]["PD"], x[i * NX + PL_UDC]))
+            model["Load_ndc"]["COMMAND_SHED"][i] = int(min(model["Load_ndc"]["PD"], x[i * NX + PL_UDC]))
 
         model["success"] = False
 
@@ -386,10 +386,8 @@ def status_update(microgrid,session,Target_time):
     3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
     Note: This function serves as the closed loop between the scheduling and information.
     """
-    try:
-        row = session.query(db_short_term).filter( db_short_term.TIME_STAMP == Target_time).first()
-    except:
-        row = session.query(db_short_term).filter(db_short_term.TIME_STAMP <= Target_time).first()
+
+    row = session.query(db_short_term).filter(db_short_term.TIME_STAMP <= Target_time).first()
 
     microgrid["ESS"]["SOC"] = row.BAT_SOC
     microgrid["DG"]["STATUS"] = row.DG_STATUS

@@ -83,10 +83,10 @@ class InputCheckMiddleTerm():
             model["DG"]["QMIN"] = model["DG"]["QMAX"]
 
         # 3) The input check of photovoltaic generators
-        if len(model["PV"]["NPV"]) != T:
+        if len(model["PV"]["N"]) != T:
             logger.error("The size of photovoltaic generator status is incorrect!")
             logger.info("The status of photovoltaic generator has been reset to online!")
-            model["PV"]["NPV"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
+            model["PV"]["N"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
         if type(model["PV"]["PMAX"]) is not list:
             logger.error("The data format of photovoltaic generator capacity is incorrect!")
             try:
@@ -99,10 +99,10 @@ class InputCheckMiddleTerm():
 
 
         # 4) The input check of wind turbine generators
-        if len(model["WP"]["NWP"]) != T:
+        if len(model["WP"]["N"]) != T:
             logger.error("The size of WP status is incorrect!")
             logger.info("The status of WP has been reset to online!")
-            model["WP"]["NPV"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
+            model["WP"]["N"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
         if type(model["WP"]["PMAX"]) is not list:
             logger.error("The data format of WP capacity is incorrect!")
             try:
@@ -122,25 +122,25 @@ class InputCheckMiddleTerm():
             logger.info("The profile of critical AC load has been reset to default value!")
             model["Load_ac"]["PD"] = [configuration_default_load.default_Load_AC["PD"]] * T
         for i in range(T):
-            if model["Load_ac"]["PD"][i] > model["Load_ac"]["STATUS"][i] * model["Load_ac"]["PDMAX"]:
+            if model["Load_ac"]["PD"][i] > model["Load_ac"]["STATUS"][i] * model["Load_ac"]["PMAX"]:
                 logger.error("The critical AC load is over current!")
                 logger.info("The critical AC load is set to its default value!")
-                model["Load_ac"]["PD"][i] = model["Load_ac"]["STATUS"][i] * model["Load_ac"]["PDMAX"]
+                model["Load_ac"]["PD"][i] = model["Load_ac"]["STATUS"][i] * model["Load_ac"]["PMAX"]
 
         # 6) The input check of non-critical AC load
-        if len(model["Load_uac"]["STATUS"]) != T:
+        if len(model["Load_nac"]["STATUS"]) != T:
             logger.error("The size of non-critical AC load status is incorrect!")
             logger.info("The status of non-critical AC load has been reset to default value!")
-            model["Load_uac"]["STATUS"] = [configuration_default_load.default_Load_AC["STATUS"]] * T
-        if len(model["Load_uac"]["PD"]) != T:
+            model["Load_nac"]["STATUS"] = [configuration_default_load.default_Load_AC["STATUS"]] * T
+        if len(model["Load_nac"]["PD"]) != T:
             logger.error("The size of non-critical AC load profile is incorrect!")
             logger.info("The profile of non-critical AC load has been reset to online!")
-            model["Load_uac"]["PD"] = [configuration_default_load.default_Load_AC["PD"]] * T
+            model["Load_nac"]["PD"] = [configuration_default_load.default_Load_AC["PD"]] * T
         for i in range(T):
-            if model["Load_uac"]["PD"][i] > model["Load_uac"]["STATUS"][i] * model["Load_uac"]["PDMAX"]:
+            if model["Load_nac"]["PD"][i] > model["Load_nac"]["STATUS"][i] * model["Load_nac"]["PMAX"]:
                 logger.error("The non-critical AC load is over current!")
                 logger.info("The non-critical AC load is set to its default value!")
-                model["Load_uac"]["PD"][i] = model["Load_uac"]["STATUS"][i] * model["Load_uac"]["PDMAX"]
+                model["Load_nac"]["PD"][i] = model["Load_nac"]["STATUS"][i] * model["Load_nac"]["PMAX"]
 
         # 7) The input check of critical AC load
         if len(model["Load_dc"]["STATUS"]) != T:
@@ -152,25 +152,25 @@ class InputCheckMiddleTerm():
             logger.info("The profile of critical DC load has been reset to default value!")
             model["Load_dc"]["PD"] = [configuration_default_load.default_Load_DC["PD"]] * T
         for i in range(T):
-            if model["Load_dc"]["PD"][i] > model["Load_dc"]["STATUS"][i] * model["Load_dc"]["PDMAX"]:
+            if model["Load_dc"]["PD"][i] > model["Load_dc"]["STATUS"][i] * model["Load_dc"]["PMAX"]:
                 logger.error("The critical DC load is over current!")
                 logger.info("The critical DC load is set to its default value!")
-                model["Load_dc"]["PD"][i] = model["Load_dc"]["STATUS"][i] * model["Load_dc"]["PDMAX"]
+                model["Load_dc"]["PD"][i] = model["Load_dc"]["STATUS"][i] * model["Load_dc"]["PMAX"]
 
         # 8) The input check of non-critical AC load
-        if len(model["Load_udc"]["STATUS"]) != T:
+        if len(model["Load_ndc"]["STATUS"]) != T:
             logger.error("The size of non-critical DC load status is incorrect!")
             logger.info("The status of non-critical DC load has been reset to default value!")
             model["Load_udc"]["STATUS"] = [configuration_default_load.default_Load_DC["STATUS"]] * T
-        if len(model["Load_udc"]["PD"]) != T:
+        if len(model["Load_ndc"]["PD"]) != T:
             logger.error("The size of non-critical DC load profile is incorrect!")
             logger.info("The profile of non-critical DC load has been reset to online!")
-            model["Load_udc"]["PD"] = [configuration_default_load.default_Load_DC["PD"]] * T
+            model["Load_ndc"]["PD"] = [configuration_default_load.default_Load_DC["PD"]] * T
         for i in range(T):
-            if model["Load_udc"]["PD"][i] > model["Load_udc"]["STATUS"][i] * model["Load_udc"]["PDMAX"]:
+            if model["Load_ndc"]["PD"][i] > model["Load_ndc"]["STATUS"][i] * model["Load_ndc"]["PMAX"]:
                 logger.error("The non-critical DC load is over current!")
                 logger.info("The non-critical DC load is set to its default value!")
-                model["Load_udc"]["PD"][i] = model["Load_udc"]["STATUS"][i] * model["Load_udc"]["PDMAX"]
+                model["Load_ndc"]["PD"][i] = model["Load_ndc"]["STATUS"][i] * model["Load_ndc"]["PMAX"]
 
         # 9) The input check for BIC convertors
         if len(model["BIC"]["STATUS"]) != T:

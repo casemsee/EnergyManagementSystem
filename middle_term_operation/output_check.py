@@ -18,31 +18,31 @@ class OutputCheck():
                 if model["UG"]["COMMAND_PG"][i] + model["DG"]["COMMAND_PG"][i] - model["BIC"]["COMMAND_AC2DC"][i] + \
                         model["BIC"][
                             "COMMAND_DC2AC"][i] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"][i] - \
-                        model["Load_uac"]["PD"][i] >= \
-                        default_eps["ED"] or model["UG"]["COMMAND_PG"][i] + model["DG"]["COMMAND_PG"][i] - \
+                        model["Load_nac"]["PD"][i] >= \
+                        default_eps["POWER_BALANCE"] or model["UG"]["COMMAND_PG"][i] + model["DG"]["COMMAND_PG"][i] - \
                         model["BIC"]["COMMAND_AC2DC"][i] + model["BIC"][
-                    "COMMAND_DC2AC"][i] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"][i] - model["Load_uac"]["PD"][
+                    "COMMAND_DC2AC"][i] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"][i] - model["Load_nac"]["PD"][
                     i] <= \
-                        -default_eps["ED"]:
+                        -default_eps["POWER_BALANCE"]:
                     logger.error("The obtained solution can not meet AC bus power requirement!")
                     logger.info(
                         model["UG"]["COMMAND_PG"][i] + model["DG"]["COMMAND_PG"][i] - model["BIC"]["COMMAND_AC2DC"][i] +
                         model["BIC"][
                             "COMMAND_DC2AC"][i] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"][i] -
-                        model["Load_uac"]["PD"][i])
+                        model["Load_nac"]["PD"][i])
 
                 if model["ESS"]["COMMAND_PG"][i] + model["BIC"]["COMMAND_AC2DC"][i] * model["BIC"]["EFF_DC2AC"] - \
-                        model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_udc"]["PD"][i] + \
+                        model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_ndc"]["PD"][i] + \
                         model["PV"][
                             "PG"][i] + \
-                        model["WP"]["PG"][i] - model["PMG"][i] >= default_eps["ED"] or model["ESS"]["COMMAND_PG"][i] + \
+                        model["WP"]["PG"][i] - model["PMG"][i] >= default_eps["POWER_BALANCE"] or model["ESS"]["COMMAND_PG"][i] + \
                         model["BIC"]["COMMAND_AC2DC"][i] * model["BIC"]["EFF_DC2AC"] - \
-                        model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_udc"]["PD"][i] + \
-                        model["PV"]["PG"][i] + model["WP"]["PG"][i] - model["PMG"][i] <= -default_eps["ED"]:
+                        model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_ndc"]["PD"][i] + \
+                        model["PV"]["PG"][i] + model["WP"]["PG"][i] - model["PMG"][i] <= -default_eps["POWER_BALANCE"]:
                     logger.error("The obtained solution can not meet DC bus power requirement!")
                     logger.info(
                         model["ESS"]["COMMAND_PG"][i] + model["BIC"]["COMMAND_AC2DC"][i] * model["BIC"]["EFF_DC2AC"] -
-                        model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_udc"]["PD"][i] +
+                        model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_ndc"]["PD"][i] +
                         model["PV"]["PG"][i] + \
                         model["WP"]["PG"][i] - model["PMG"][i])
 
@@ -54,13 +54,13 @@ class OutputCheck():
                 logger.info(
                     model["UG"]["COMMAND_PG"][i] + model["DG"]["COMMAND_PG"][i] - model["BIC"]["COMMAND_AC2DC"][i] + model["BIC"][
                         "COMMAND_DC2AC"][i] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"][i] - model["Load_uac"]["PD"][i] +
-                    model["Load_ac"]["COMMAND_SHED"][i] + model["Load_uac"]["COMMAND_SHED"][i])
+                    model["Load_ac"]["COMMAND_SHED"][i] + model["Load_nac"]["COMMAND_SHED"][i])
 
                 logger.info(model["ESS"]["COMMAND_PG"][i] + model["BIC"]["COMMAND_AC2DC"][i] * model["BIC"]["EFF_DC2AC"] - \
                             model["BIC"]["COMMAND_DC2AC"][i] - model["Load_dc"]["PD"][i] - model["Load_udc"]["PD"][i] + model["PV"][
                                 "PG"][i] + \
                             model["WP"]["PG"][i] - model["PMG"][i] - model["PV"]["COMMAND_CURT"][i] - model["WP"]["COMMAND_CURT"][i] +
-                            model["Load_dc"]["COMMAND_SHED"][i] + model["Load_udc"]["COMMAND_SHED"][i])
+                            model["Load_dc"]["COMMAND_SHED"][i] + model["Load_ndc"]["COMMAND_SHED"][i])
 
                 logger.info(model["BIC"]["COMMAND_AC2DC"][i] * model["BIC"]["COMMAND_DC2AC"][i])
 

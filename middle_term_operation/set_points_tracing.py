@@ -2,7 +2,7 @@
 # 1) query long2middle database
 # 2) update models of DG status, UG status, Battery SOC and line flows
 # 3) if any information is missing, the setting point tracing will not be triggered
-from data_management.database_format import long2middle
+from modelling.database.database_format import long2middle
 from configuration.configuration_time_line import default_time,default_look_ahead_time_step
 from copy import deepcopy
 
@@ -35,9 +35,9 @@ def set_points_tracing_ed(*args):
     model["PMG"] = [0] * T
 
     model["Load_ac"]["COMMAND_SHED"] = [0] * T
-    model["Load_uac"]["COMMAND_SHED"] = [0] * T
+    model["Load_nac"]["COMMAND_SHED"] = [0] * T
     model["Load_dc"]["COMMAND_SHED"] = [0] * T
-    model["Load_udc"]["COMMAND_SHED"] = [0] * T
+    model["Load_ndc"]["COMMAND_SHED"] = [0] * T
     try:
         for i in range(T):
             row = session.query(long2middle).filter(long2middle.TIME_STAMP == Target_time + i * delta_T).first()
@@ -63,9 +63,9 @@ def set_points_tracing_ed(*args):
             model["WP"]["COMMAND_CURT"][i] = row.WP_CURT
 
             model["Load_ac"]["COMMAND_SHED"][i] = row.AC_SHED
-            model["Load_uac"]["COMMAND_SHED"][i] = row.UAC_SHED
+            model["Load_nac"]["COMMAND_SHED"][i] = row.UAC_SHED
             model["Load_dc"]["COMMAND_SHED"][i] = row.DC_SHED
-            model["Load_udc"]["COMMAND_SHED"][i] = row.UDC_SHED
+            model["Load_ndc"]["COMMAND_SHED"][i] = row.UDC_SHED
 
         model["COMMAND_TYPE"] = 1 # This is the set-point tracing
 

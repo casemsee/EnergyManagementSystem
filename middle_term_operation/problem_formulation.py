@@ -222,8 +222,8 @@ class ProblemFormulation():
             ub[i * NX + RG] = model["DG"]["PMAX"]
             ub[i * NX + PUG] = model["UG"]["PMAX"]
             ub[i * NX + RUG] = model["UG"]["PMAX"]
-            ub[i * NX + PBIC_AC2DC] = model["BIC"]["CAP"]
-            ub[i * NX + PBIC_DC2AC] = model["BIC"]["CAP"]
+            ub[i * NX + PBIC_AC2DC] = model["BIC"]["SMAX"]
+            ub[i * NX + PBIC_DC2AC] = model["BIC"]["SMAX"]
             ub[i * NX + PESS_C] = model["ESS"]["PMAX_CH"]
             ub[i * NX + PESS_DC] = model["ESS"]["PMAX_DIS"]
             ub[i * NX + RESS] = model["ESS"]["PMAX_DIS"] + model["ESS"]["PMAX_CH"]
@@ -233,9 +233,9 @@ class ProblemFormulation():
             ub[i * NX + PPV] = model["PV"]["PG"][i]
             ub[i * NX + PWP] = model["WP"]["PG"][i]
             ub[i * NX + PL_AC] = model["Load_ac"]["PD"][i]
-            ub[i * NX + PL_UAC] = model["Load_uac"]["PD"][i]
+            ub[i * NX + PL_UAC] = model["Load_nac"]["PD"][i]
             ub[i * NX + PL_DC] = model["Load_dc"]["PD"][i]
-            ub[i * NX + PL_UDC] = model["Load_udc"]["PD"][i]
+            ub[i * NX + PL_UDC] = model["Load_ndc"]["PD"][i]
 
         ## Constraints set
         # 1) Power balance equation
@@ -361,9 +361,9 @@ class ProblemFormulation():
         c[PPV] = -model["PV"]["COST"]
         c[PWP] = -model["WP"]["COST"]
         c[PL_AC] = -model["Load_ac"]["COST"][0]
-        c[PL_UAC] = -model["Load_uac"]["COST"][0]
+        c[PL_UAC] = -model["Load_nac"]["COST"][0]
         c[PL_DC] = -model["Load_dc"]["COST"][0]
-        c[PL_UDC] = -model["Load_udc"]["COST"][0]
+        c[PL_UDC] = -model["Load_ndc"]["COST"][0]
 
         C = c * T
         # Generate the quadratic parameters
@@ -393,12 +393,12 @@ class ProblemFormulation():
         ## Formulating the universal energy models
         if type == "Feasible":
             from modelling.data.idx_ed_foramt import PMG, NX
-            local_model_mathematical = problem_formulation.problem_formulation_local(local_model)
-            universal_model_mathematical = problem_formulation.problem_formulation_local(universal_model)
+            local_model_mathematical = ProblemFormulation.problem_formulation_local(local_model)
+            universal_model_mathematical = ProblemFormulation.problem_formulation_local(universal_model)
         else:
             from modelling.data.idx_ed_recovery_format import PMG, NX
-            local_model_mathematical = problem_formulation.problem_formulation_local_recovery(local_model)
-            universal_model_mathematical = problem_formulation.problem_formulation_local_recovery(universal_model)
+            local_model_mathematical = ProblemFormulation.problem_formulation_local_recovery(local_model)
+            universal_model_mathematical = ProblemFormulation.problem_formulation_local_recovery(universal_model)
         # Modify the boundary information
 
         for i in range(T):
