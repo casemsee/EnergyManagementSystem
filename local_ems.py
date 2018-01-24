@@ -43,6 +43,7 @@ class Main():
         from real_time_operation.app import RealTimeSimulation
         from short_term_operation.app import ShortTermOperation
         from middle_term_operation.app import MiddleTermOperation
+        from long_term_operation.app import LongTermOperation
         # S1: generate different
         microgrid = self.microgrid # Obtain the information model
         microgrid_middle = self.microgrid_middle
@@ -56,15 +57,17 @@ class Main():
         real_time_simulation = RealTimeSimulation()
         short_term_operation = ShortTermOperation()
         middle_term_operation = MiddleTermOperation()
+        long_term_operation = LongTermOperation()
+
         for i in range(1):
             # 1) real-time simulation
             real_time_simulation.run(microgrid, session, session_short)# Real-time simulation has pasted test!
             # 2) short-term operation
             short_term_operation.run(microgrid, session_short)  # Short-term operation has pasted test!
             # 3) middle-term operation
-            middle_term_operation.run(microgrid_middle, session_middle)
+            middle_term_operation.run(microgrid_middle, session_middle) # Middle-term operation has pasted test!
             # 4) long-term operation
-
+            long_term_operation.run(microgrid_long, session_long) # Long-term operation needs to be tested!
 
 
 def run():
