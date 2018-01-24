@@ -245,12 +245,12 @@ def result_update(*args):
     T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
     if type == "Feasible":
-        if local_model["COMMAND_TYPE"] is 0:
+        if local_model["COMMAND_TYPE"] == 0:
             from modelling.data.idx_ed_foramt import NX
         else:
             from modelling.data.idx_ed_set_points_tracing import NX
     else:
-        if local_model["COMMAND_TYPE"] is 0:
+        if local_model["COMMAND_TYPE"] == 0:
             from modelling.data.idx_ed_recovery_format import NX
         else:
             from modelling.data.idx_ed_set_points_tracing_recovery import NX

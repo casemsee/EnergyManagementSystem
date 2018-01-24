@@ -6,7 +6,7 @@ Middle term operation classes for universal ems, local ems and stand alone ems
 """
 
 from utils import Logger
-from middle_term_operation.main import middle_term_operation
+from long_term_operation.main import long_term_operation
 
 class LongTermOperation():
     """
@@ -16,4 +16,4 @@ class LongTermOperation():
         self.logger = Logger("Long_term_operation_ems")
 
     def run(self, micorgird, session):
-        middle_term_operation(micorgird,session,self.logger)
+        long_term_operation(micorgird,session,self.logger)
