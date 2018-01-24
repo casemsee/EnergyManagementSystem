@@ -7,9 +7,8 @@ Jointed energy and reserves are optimized to reduce the operation cost and risk.
 import threading
 import time
 from configuration.configuration_time_line import default_time,default_look_ahead_time_step
-from data_management.information_collection import Information_Collection_Thread
-from data_management.information_management import information_formulation_extraction_dynamic
-from data_management.information_management import information_receive_send
+from information_management.app import MultiplePeriodsInformationUpdateThread, MultiplePeriodsInformationFormulationThread
+from information_management.app import InformationSendReceive
 from long_term_operation.long_tertm_forecasting import ForecastingThread
 from utils import Logger
 from copy import deepcopy
@@ -26,7 +25,7 @@ class long_term_operation():
         # Short term forecasting for the middle term operation in universal energy management system.
         from database_management.database_management import database_storage_operation
         from long_term_operation.problem_formulation import ProblemFormulation
-        from unit_commitment.problem_solving import Solving_Thread
+        from long_term_operation.problem_solving import SolvingThread
         from configuration.configuration_time_line import default_dead_line_time
         # Short term operation
         # General procedure for middle-term operation
@@ -46,7 +45,7 @@ class long_term_operation():
         # Update the universal parameter by using the database engine
         # Two threads are created to obtain the information simultaneously.
         thread_forecasting = ForecastingThread(session, Target_time, universal_models)
-        thread_info_ex = Information_Collection_Thread(socket_upload, info, local_models,default_look_ahead_time_step["Look_ahead_time_uc_time_step"])
+        thread_info_ex = MultiplePeriodsInformationUpdateThread(local_models,info,socket_upload)
 
         thread_forecasting.start()
         thread_info_ex.start()
@@ -55,21 +54,21 @@ class long_term_operation():
         thread_info_ex.join()
 
         universal_models = thread_forecasting.models
-        local_models = thread_info_ex.local_models
+        local_models = thread_info_ex.microgrid
 
-        local_models = input_check_long_term.model_local_check(local_models)
-        universal_models = input_check_long_term.model_universal_check(universal_models)
+        local_models = InputCheck.model_local_check(local_models)
+        universal_models = InputCheck.model_universal_check(universal_models)
         # Solve the optimal power flow problem
         # Two threads will be created, one for feasible problem, the other for infeasible problem
         # universal_models["ESS"]["SOC"]=universal_models["ESS"]["SOC_MIN"], the test shows that, the input check is necessary.
 
-        mathematical_model = problem_formulation.problem_formulation_universal(local_models, universal_models,
+        mathematical_model = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
                                                                                "Feasible")
-        mathematical_model_recovery = problem_formulation.problem_formulation_universal(local_models, universal_models,
+        mathematical_model_recovery = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
                                                                                         "Infeasible")
         # Solve the problem
-        res = Solving_Thread(mathematical_model)
-        res_recovery = Solving_Thread(mathematical_model_recovery)
+        res = SolvingThread(mathematical_model)
+        res_recovery = SolvingThread(mathematical_model_recovery)
         res.daemon = True
         res_recovery.daemon = True
 
@@ -85,21 +84,21 @@ class long_term_operation():
             (local_models, universal_models) = result_update(res_recovery.value, local_models, universal_models,
                                                              "Infeasible")
 
-        local_models = output_local_check(local_models)
-        universal_models = output_local_check(universal_models)
+        local_models = OutputCheck.output_local_check(local_models)
+        universal_models = OutputCheck.output_local_check(universal_models)
 
         # Return command to the local ems
         local_models["COMMAND_TYPE"] = 0
-        dynamic_model = information_formulation_extraction_dynamic.info_formulation(local_models, Target_time,"UC")
+        dynamic_model = MultiplePeriodsInformationFormulationThread(local_models, info, Target_time,"UC")
         dynamic_model.TIME_STAMP_COMMAND = round(time.time())
 
-        information_send_thread = threading.Thread(target=information_receive_send.information_send,
+        information_send_thread = threading.Thread(target=InformationSendReceive(socket_upload,dynamic_model),
                                                    args=(socket_upload, dynamic_model, 2))
 
-        database_operation_uems = threading.Thread(target=database_operation.database_record,
+        database_operation_uems = threading.Thread(target=database_storage_operation.database_record,
                                                     args=(session, universal_models, Target_time, "UC"))
 
-        long2middle_opeartion(Target_time, session, universal_models)
+        Long2Middle.run(Target_time, session, universal_models)
         logger_uems.info("The command for UEMS is {}".format(universal_models["PMG"]))
         information_send_thread.start()
         database_operation_uems.start()
@@ -108,7 +107,7 @@ class long_term_operation():
         database_operation_uems.join()
 
     def long_term_operation_lems(*args):
-        from database_management.database_management import database_operation
+        from database_management.database_management import database_storage_operation
         # Short term operation for local ems
         # The following operation sequence
         # 1) Information collection
@@ -133,24 +132,27 @@ class long_term_operation():
         local_models = thread_forecasting.models
         # Update the dynamic model
         local_models["COMMAND_TYPE"] = 0
-        dynamic_model = information_formulation_extraction_dynamic.info_formulation(local_models, Target_time,"UC")
+        dynamic_model = MultiplePeriodsInformationUpdateThread(local_models, Target_time,"UC")
         # Information send
         logger_lems.info("Sending request from {}".format(dynamic_model.AREA) + " to the serve")
         logger_lems.info("The local time is {}".format(dynamic_model.TIME_STAMP))
-        information_receive_send.information_send(socket_upload, dynamic_model, 2)
+        information_send_receive = InformationSendReceive(socket_upload, dynamic_model)
+        information_send_receive.send()
 
         # Step2: Backup operation, which indicates the universal ems is down
         # Receive information from uems
-        dynamic_model = information_receive_send.information_receive(socket_upload, info, 2)
+        dynamic_model = information_send_receive.receive()
         # print("The universal time is", dynamic_model.TIME_STAMP_COMMAND)
         logger_lems.info("The command from UEMS is {}".format(dynamic_model.PMG))
         # Store the data into the database
 
-        local_models = information_formulation_extraction_dynamic.info_extraction(local_models, dynamic_model)
+        multiple_periods_information_update_thread = MultiplePeriodsInformationUpdateThread(local_models, dynamic_model)
+        multiple_periods_information_update_thread.start()
+        multiple_periods_information_update_thread.join()
+        local_models = multiple_periods_information_update_thread.microgrid
+        Long2Middle.run(Target_time, session, local_models)
 
-        long2middle_opeartion(Target_time, session, local_models)
-
-        database_operation_lems = threading.Thread(target=database_operation.database_record,
+        database_operation_lems = threading.Thread(target=database_storage_operation.database_record,
                                                     args=(session, local_models, Target_time, "UC"))
 
         database_operation_lems.start()

@@ -8,7 +8,7 @@ from modelling.database.database_format import long2middle
 from configuration.configuration_time_line import default_time
 
 class Long2Middle():
-    def long2middle_opeartion(*args):
+    def run(*args):
         Target_time = args[0] # Target time is the start time of scheduling in long-term operation
         model = args[2] # Solution of the long-term operation
         session = args[1] # Database session
