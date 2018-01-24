@@ -2,7 +2,7 @@ from copy import deepcopy
 from modelling.devices import transmission_lines
 from configuration.configuration_time_line import default_look_ahead_time_step
 
-def start_up(microgrid,microgrid_middle,microgrid_long):
+def start_up(microgrid, microgrid_middle, microgrid_long):
     """
     Start up of universal energy management system, which is depended on the start up of local energy management system.
     :param microgrid: short-term information model

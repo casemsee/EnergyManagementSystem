@@ -12,7 +12,6 @@ from configuration.configuration_time_line import default_time, default_look_ahe
 from information_management.app import MultiplePeriodsInformationUpdateThread, MultiplePeriodsInformationFormulationThread
 from information_management.app import InformationSendReceive
 from middle_term_operation.mid_term_forecasting import ForecastingThread
-from utils import Logger
 from copy import deepcopy
 from middle_term_operation.input_check import InputCheckMiddleTerm
 from middle_term_operation.output_check import OutputCheck
