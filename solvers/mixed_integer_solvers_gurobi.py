@@ -46,7 +46,11 @@ from numpy import Inf, ones
 from gurobipy import *
 
 def mixed_integer_linear_programming(c, Aeq=None, beq=None, A=None, b=None, xmin=None, xmax=None, vtypes=None, opt=None):
-    nx = c.shape[0]  # number of decision variables
+    if type(c) == list:
+        nx=len(c)
+    else:
+        nx = c.shape[0]  # number of decision variables
+
     if A is not None:
         if A.shape[0]!= None:
             nineq = A.shape[0]  # number of equality constraints

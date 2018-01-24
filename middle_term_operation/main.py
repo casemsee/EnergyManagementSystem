@@ -225,9 +225,9 @@ def middle_term_operation(microgrid,session,logger):
     res_recovery.join(default_dead_line_time["Gate_closure_ed"])
 
     if res.value["success"] is True:
-        microgrid = update(res.value["x"], microgrid, "Feasible")
+        microgrid = result_update_local(res.value, microgrid, "Feasible",mathematical_model)
     else:
-        microgrid = update(res_recovery.value["x"], microgrid,"Infeasible")
+        microgrid = result_update_local(res_recovery.value, microgrid,"Infeasible",mathematical_model_recovery)
 
     # Step 7: Output check
     microgrid = OutputCheck.output_local_check(microgrid)
@@ -264,6 +264,42 @@ def result_update(*args):
     universal_model = update(x_universal, universal_model, type)
 
     return local_model, universal_model
+
+def result_update_local(*args):
+    """
+    Result update with obtained solution and
+    :param args: the obtained solutions,
+    :return: updated solutions of information models
+    """
+    res = args[0]
+    local_model = args[1]
+    type = args[2]
+    mathematical_model = args[3]
+
+    T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+
+    x_local = res["x"]
+    c_local = mathematical_model["c"]
+
+    local_model = update(x_local, local_model, type)
+
+    local_model["COST"] = [0]*T
+
+    if type == "Feasible":
+        if local_model["COMMAND_TYPE"] is 0:
+            from modelling.data.idx_ed_foramt import  NX
+        else:
+            from modelling.data.idx_ed_set_points_tracing import  NX
+    else:
+        if local_model["COMMAND_TYPE"] is 0:
+            from modelling.data.idx_ed_recovery_format import  NX
+        else:
+            from modelling.data.idx_ed_set_points_tracing_recovery import  NX
+
+    for i in range(T):
+        local_model["COST"][i] = float(sum([c*d for c,d in zip(c_local[i*NX:(i+1)*NX],x_local[i*NX:(i+1)*NX])])) # Update the
+
+    return local_model
 
 def update(*args):
     x = args[0]

@@ -6,6 +6,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler  # Time scheduler
 import zmq  # The package for information and communication
 from start_up import start_up_lems
 from modelling.information import static_information_pb2 as static_info
+from copy import deepcopy
 from modelling.information import dynamic_information_pb2,single_period_information_pb2
 
 from short_term_operation.main import short_term_operation_lems
@@ -32,7 +33,7 @@ class Main():
         self.Operation_mode = ems_main.run()
         # database start-up operation
         self.Session = ems_main.database_start_up()
-        self.microgrid = start_up_lems.start_up() # Generate local ems models
+        (self.microgrid,self.microgrid_middle,self.microgrid_long) = start_up_lems.start_up() # Generate local ems models
         self.logger.info("Database has been started up!")
         # operation mode
         if self.Operation_mode == default_operation_mode["UEMS"]:# Local EMS work as the slave of UEMS.
@@ -41,20 +42,28 @@ class Main():
     def local_ems(self):# Local ems
         from real_time_operation.app import RealTimeSimulation
         from short_term_operation.app import ShortTermOperation
+        from middle_term_operation.app import MiddleTermOperation
+        # S1: generate different
         microgrid = self.microgrid # Obtain the information model
+        microgrid_middle = self.microgrid_middle
+        microgrid_long = self.microgrid_long
+
         session = self.Session()
+        session_short = self.Session()
+        session_middle = self.Session()
+        session_long = self.Session()
+
         real_time_simulation = RealTimeSimulation()
         short_term_operation = ShortTermOperation()
+        middle_term_operation = MiddleTermOperation()
         for i in range(1):
             # 1) real-time simulation
-            real_time_simulation.run(microgrid,session,session)# Real-time simulation has pasted test!
-            short_term_operation.run(microgrid,session)# Short-term operation has pasted test!
+            real_time_simulation.run(microgrid, session, session_short)# Real-time simulation has pasted test!
             # 2) short-term operation
-
-
-        # 3) middle-term operation
-
-        # 4) long-term operation
+            short_term_operation.run(microgrid, session_short)  # Short-term operation has pasted test!
+            # 3) middle-term operation
+            middle_term_operation.run(microgrid_middle, session_middle)
+            # 4) long-term operation
 
 
 

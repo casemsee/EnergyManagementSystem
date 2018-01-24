@@ -209,9 +209,9 @@ class database_storage_operation():
                     row.PV_CURT = model["PV"]["COMMAND_CURT"][i]
                     row.WP_CURT = model["WP"]["COMMAND_CURT"][i]
                     row.AC_SHED = model["Load_ac"]["COMMAND_SHED"][i]
-                    row.UAC_SHED = model["Load_uac"]["COMMAND_SHED"][i]
+                    row.NAC_SHED = model["Load_nac"]["COMMAND_SHED"][i]
                     row.DC_SHED = model["Load_dc"]["COMMAND_SHED"][i]
-                    row.UDC_SHED = model["Load_udc"]["COMMAND_SHED"][i]
+                    row.NDC_SHED = model["Load_ndc"]["COMMAND_SHED"][i]
                     row.COST = model["COST"][i]
                     session.commit()
         else:
