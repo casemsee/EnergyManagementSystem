@@ -6,8 +6,8 @@ This part of work follows LiSong's work.
 
 """
 from forecasting.long_term_forecasting import long_term_forecasting_pv_history, long_term_forecasting_wp_history, \
-    long_term_forecasting_load_ac_history, long_term_forecasting_load_dc_history, long_term_forecasting_load_uac_history, \
-    long_term_forecasting_load_udc_history
+    long_term_forecasting_load_ac_history, long_term_forecasting_load_dc_history, long_term_forecasting_load_nac_history, \
+    long_term_forecasting_load_ndc_history
 from configuration.configuration_time_line import default_look_ahead_time_step
 
 import threading

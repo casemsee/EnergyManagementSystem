@@ -10,12 +10,12 @@ from configuration.configuration_time_line import default_time,default_look_ahea
 from data_management.information_collection import Information_Collection_Thread
 from data_management.information_management import information_formulation_extraction_dynamic
 from data_management.information_management import information_receive_send
-from unit_commitment.long_tertm_forecasting import ForecastingThread
+from long_term_operation.long_tertm_forecasting import ForecastingThread
 from utils import Logger
 from copy import deepcopy
-from unit_commitment.input_check import input_check_long_term
-from unit_commitment.output_check import output_local_check
-from unit_commitment.long2middle import long2middle_opeartion
+from long_term_operation.input_check import InputCheck
+from long_term_operation.output_check import OutputCheck
+from long_term_operation.long2middle import Long2Middle
 logger_uems = Logger("Long_term_dispatch_UEMS")
 logger_lems = Logger("Long_term_dispatch_LEMS")
 
@@ -24,8 +24,8 @@ class long_term_operation():
     # Two modes are proposed for the local ems and
     def long_term_operation_uems(*args):
         # Short term forecasting for the middle term operation in universal energy management system.
-        from data_management.database_management import database_operation
-        from unit_commitment.problem_formulation import problem_formulation
+        from database_management.database_management import database_storage_operation
+        from long_term_operation.problem_formulation import ProblemFormulation
         from unit_commitment.problem_solving import Solving_Thread
         from configuration.configuration_time_line import default_dead_line_time
         # Short term operation
@@ -108,7 +108,7 @@ class long_term_operation():
         database_operation_uems.join()
 
     def long_term_operation_lems(*args):
-        from data_management.database_management import database_operation
+        from database_management.database_management import database_operation
         # Short term operation for local ems
         # The following operation sequence
         # 1) Information collection
@@ -166,9 +166,9 @@ def result_update(*args):
     T = default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
 
     if type == "Feasible":
-        from modelling.power_flow.idx_uc_format import NX
+        from modelling.data.idx_uc_format import NX
     else:
-        from modelling.power_flow.idx_uc_recovery_format import NX
+        from modelling.data.idx_uc_recovery_format import NX
 
     nx = T * NX
     x_local = res["x"][0:nx]
@@ -188,7 +188,7 @@ def update(*args):
     T = default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
 
     if type == "Feasible":
-        from modelling.power_flow.idx_uc_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, RESS,EESS,\
+        from modelling.data.idx_uc_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, RESS,EESS,\
             PMG, NX
         model["DG"]["COMMAND_START_UP"] = [0] * T
         model["DG"]["COMMAND_PG"] = [0] * T
@@ -235,7 +235,7 @@ def update(*args):
 
         model["success"] = True
     else:
-        from modelling.power_flow.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
+        from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
             PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
 
         model["DG"]["COMMAND_START_UP"] = [0] * T
@@ -292,3 +292,4 @@ def update(*args):
 
         model["success"] = False
     return model
+

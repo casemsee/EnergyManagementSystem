@@ -1,8 +1,8 @@
 # The main entrance of the optimal power flow in unviersal energy management system
 import threading  # Thread management (timeout and return value)
-from solvers.mix_integer_solvers import miqp_gurobi,milp_gurobi,milp_mosek  # linear programming solver
+from solvers.mixed_integer_solvers_gurobi import mixed_integer_linear_programming as milp_gurobi
 
-class Solving_Thread(threading.Thread):
+class SolvingThread(threading.Thread):
     # Thread operation with time control and return value
     def __init__(self, parameter):
         threading.Thread.__init__(self)

@@ -9,10 +9,10 @@ from configuration import configuration_time_line
 from copy import deepcopy
 logger = Logger("Problem formulation for UEMS")
 
-class problem_formulation():
+class ProblemFormulation():
     ## Reformulte the information model to system level
     def problem_formulation_local(*args):
-        from modelling.power_flow.idx_uc_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
+        from modelling.data.idx_uc_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
             PESS_DC, RESS, EESS, PMG, NX
         model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
         ## The feasible optimal problem formulation
@@ -54,8 +54,8 @@ class problem_formulation():
         ub[PUG] = model["UG"]["PMAX"]
         ub[RUG] = model["UG"]["PMAX"]
 
-        ub[PBIC_AC2DC] = model["BIC"]["CAP"]
-        ub[PBIC_DC2AC] = model["BIC"]["CAP"]
+        ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
+        ub[PBIC_DC2AC] = model["BIC"]["SMAX"]
 
         ub[PESS_C] = model["ESS"]["PMAX_CH"]
         ub[PESS_DC] = model["ESS"]["PMAX_DIS"]
@@ -86,7 +86,7 @@ class problem_formulation():
             Aeq_temp[i][i * NX + PESS_DC] = 1
             Aeq_temp[i][i * NX + PMG] = -1
             beq.append(
-                model["Load_dc"]["PD"][i] + model["Load_udc"]["PD"][i] - model["PV"]["PG"][i] - model["WP"]["PG"][i])
+                model["Load_dc"]["PD"][i] + model["Load_ndc"]["PD"][i] - model["PV"]["PG"][i] - model["WP"]["PG"][i])
 
         Aeq = vstack([Aeq, Aeq_temp])
 
@@ -203,7 +203,7 @@ class problem_formulation():
 
     def problem_formulation_local_recovery(*args):
         from configuration import configuration_time_line
-        from modelling.power_flow.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, \
+        from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, \
             PESS_C, PESS_DC, RESS, EESS, PMG, IPV, IWP, IL_AC, IL_UAC, IL_DC, IL_UDC, NX
         model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
         ## The infeasible optimal problem formulation
@@ -243,8 +243,8 @@ class problem_formulation():
             ub[i * NX + IUG] = 1
             ub[i * NX + PUG] = model["UG"]["PMAX"]
             ub[i * NX + RUG] = model["UG"]["PMAX"]
-            ub[i * NX + PBIC_AC2DC] = model["BIC"]["CAP"]
-            ub[i * NX + PBIC_DC2AC] = model["BIC"]["CAP"]
+            ub[i * NX + PBIC_AC2DC] = model["BIC"]["SMAX"]
+            ub[i * NX + PBIC_DC2AC] = model["BIC"]["SMAX"]
             ub[i * NX + PESS_C] = model["ESS"]["PMAX_CH"]
             ub[i * NX + PESS_DC] = model["ESS"]["PMAX_DIS"]
             ub[i * NX + RESS] = model["ESS"]["PMAX_DIS"] + model["ESS"]["PMAX_CH"]
@@ -254,9 +254,9 @@ class problem_formulation():
             ub[i * NX + IPV] = model["PV"]["PG"][i]
             ub[i * NX + IWP] = model["WP"]["PG"][i]
             ub[i * NX + IL_AC] = model["Load_ac"]["PD"][i]
-            ub[i * NX + IL_UAC] = model["Load_uac"]["PD"][i]
+            ub[i * NX + IL_UAC] = model["Load_nac"]["PD"][i]
             ub[i * NX + IL_DC] = model["Load_dc"]["PD"][i]
-            ub[i * NX + IL_UDC] = model["Load_udc"]["PD"][i]
+            ub[i * NX + IL_UDC] = model["Load_ndc"]["PD"][i]
 
         ## Constraints set
         # 1) Power balance equation
@@ -268,7 +268,7 @@ class problem_formulation():
             Aeq[i][i * NX + PBIC_AC2DC] = -1
             Aeq[i][i * NX + PBIC_DC2AC] = model["BIC"]["EFF_DC2AC"]
             Aeq[i][i * NX + IL_AC] = -model["Load_ac"]["PD"][i]
-            Aeq[i][i * NX + IL_UAC] = -model["Load_uac"]["PD"][i]
+            Aeq[i][i * NX + IL_UAC] = -model["Load_nac"]["PD"][i]
             beq.append(0)
         # 2) DC power balance equation
         Aeq_temp = zeros((T, nx))
@@ -279,7 +279,7 @@ class problem_formulation():
             Aeq_temp[i][i * NX + PESS_DC] = 1
             Aeq_temp[i][i * NX + PMG] = -1
             Aeq_temp[i][i * NX + IL_DC] = -model["Load_dc"]["PD"][i]
-            Aeq_temp[i][i * NX + IL_UDC] = -model["Load_udc"]["PD"][i]
+            Aeq_temp[i][i * NX + IL_UDC] = -model["Load_ndc"]["PD"][i]
             Aeq_temp[i][i * NX + IPV] = model["PV"]["PG"][i]
             Aeq_temp[i][i * NX + IWP] = model["WP"]["PG"][i]
             beq.append(0)
@@ -384,9 +384,9 @@ class problem_formulation():
         c[IPV] = -model["PV"]["COST"]
         c[IWP] = -model["WP"]["COST"]
         c[IL_AC] = -model["Load_ac"]["COST"][0]
-        c[IL_UAC] = -model["Load_uac"]["COST"][0]
+        c[IL_UAC] = -model["Load_nac"]["COST"][0]
         c[IL_DC] = -model["Load_dc"]["COST"][0]
-        c[IL_UDC] = -model["Load_udc"]["COST"][0]
+        c[IL_UDC] = -model["Load_ndc"]["COST"][0]
 
         C = c * T
         # Generate the quadratic parameters
@@ -416,13 +416,13 @@ class problem_formulation():
 
         ## Formulating the universal energy models
         if type == "Feasible":
-            from modelling.power_flow.idx_uc_format import PMG, NX
-            local_model_mathematical = problem_formulation.problem_formulation_local(local_model)
-            universal_model_mathematical = problem_formulation.problem_formulation_local(universal_model)
+            from modelling.data.idx_uc_format import PMG, NX
+            local_model_mathematical = ProblemFormulation.problem_formulation_local(local_model)
+            universal_model_mathematical = ProblemFormulation.problem_formulation_local(universal_model)
         else:
-            from modelling.power_flow.idx_uc_recovery_format import PMG, NX
-            local_model_mathematical = problem_formulation.problem_formulation_local_recovery(local_model)
-            universal_model_mathematical = problem_formulation.problem_formulation_local_recovery(universal_model)
+            from modelling.data.idx_uc_recovery_format import PMG, NX
+            local_model_mathematical = ProblemFormulation.problem_formulation_local_recovery(local_model)
+            universal_model_mathematical = ProblemFormulation.problem_formulation_local_recovery(universal_model)
         # Modify the boundary information
 
         for i in range(T):
