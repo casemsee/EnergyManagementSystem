@@ -57,7 +57,7 @@ def middle_term_operation_uems(*args):
     universal_models = thread_forecasting.models
     local_models = thread_info_ex.microgrid
 
-    universal_models = set_points_tracing_ed(Target_time, session, universal_models)
+    universal_models = SetPointsTracing.set_points_tracing_ed(Target_time, session, universal_models)
 
     local_models = InputCheckMiddleTerm.model_local_check(local_models)
     universal_models = InputCheckMiddleTerm.model_universal_check(universal_models)
@@ -230,7 +230,6 @@ def middle_term_operation(microgrid,session,logger):
 
     # Step 7: Output check
     microgrid = OutputCheck.output_local_check(microgrid)
-
     # Step 8: Database operation
     Middle2Short.run(Target_time, session, microgrid)
     database_storage_operation.database_record(session, microgrid, Target_time, "ED")
@@ -314,12 +313,13 @@ def update(*args):
         else:
             from modelling.data.idx_ed_set_points_tracing import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, \
                 RESS, EESS, PMG, NX
+
+        model["DG"]["COMMAND_START_UP"] = model["DG"]["COMMAND_START_UP"] # The staus of generators will be not modified
         model["DG"]["COMMAND_PG"] = [0] * T
         model["DG"]["COMMAND_RG"] = [0] * T
-        model["DG"]["COMMAND_START_UP"] = model["DG"]["STATUS"] # The staus of generators will be not modified
 
+        model["UG"]["COMMAND_START_UP"] = model["UG"]["COMMAND_START_UP"] # The staus of generators will be not modified
         model["UG"]["COMMAND_PG"] = [0] * T
-        model["UG"]["COMMAND_START_UP"] = model["UG"]["STATUS"] # The staus of generators will be not modified
         model["UG"]["COMMAND_RG"] = [0] * T
 
         model["BIC"]["COMMAND_AC2DC"] = [0] * T
@@ -361,13 +361,17 @@ def update(*args):
         else:
             from modelling.data.idx_ed_set_points_tracing_recovery import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
                 EESS, PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
-
+        model["DG"]["COMMAND_START_UP"] = model["DG"]["COMMAND_START_UP"] # The staus of generators will be not modified
         model["DG"]["COMMAND_PG"] = [0] * T
         model["DG"]["COMMAND_RG"] = [0] * T
+
+        model["UG"]["COMMAND_START_UP"] = model["UG"]["COMMAND_START_UP"] # The staus of generators will be not modified
         model["UG"]["COMMAND_PG"] = [0] * T
         model["UG"]["COMMAND_RG"] = [0] * T
+
         model["BIC"]["COMMAND_AC2DC"] = [0] * T
         model["BIC"]["COMMAND_DC2AC"] = [0] * T
+
         model["ESS"]["COMMAND_PG"] = [0] * T
         model["ESS"]["COMMAND_RG"] = [0] * T
         model["ESS"]["SOC"] = [0] * T
@@ -397,19 +401,19 @@ def update(*args):
 
             model["PMG"][i] = int(x[i * NX + PMG])
 
-            model["PV"]["COMMAND_CURT"][i] = int(min(model["PV"]["PG"], x[i * NX + PPV]))
-            model["WP"]["COMMAND_CURT"][i] = int(min(model["WP"]["PG"], x[i * NX + PWP]))
+            model["PV"]["COMMAND_CURT"][i] = int(model["PV"]["PG"][i]- x[i * NX + PPV])
+            model["WP"]["COMMAND_CURT"][i] = int(model["WP"]["PG"][i]- x[i * NX + PWP])
 
-            model["Load_ac"]["COMMAND_SHED"][i] = int(min(model["Load_ac"]["PD"], x[i * NX + PL_AC]))
-            model["Load_nac"]["COMMAND_SHED"][i] = int(min(model["Load_nac"]["PD"], x[i * NX + PL_UAC]))
-            model["Load_dc"]["COMMAND_SHED"][i] = int(min(model["Load_dc"]["PD"], x[i * NX + PL_DC]))
-            model["Load_ndc"]["COMMAND_SHED"][i] = int(min(model["Load_ndc"]["PD"], x[i * NX + PL_UDC]))
+            model["Load_ac"]["COMMAND_SHED"][i] = int(model["Load_ac"]["PD"][i] - x[i * NX + PL_AC])
+            model["Load_nac"]["COMMAND_SHED"][i] = int(model["Load_nac"]["PD"][i] - x[i * NX + PL_UAC])
+            model["Load_dc"]["COMMAND_SHED"][i] = int(model["Load_dc"]["PD"][i] - x[i * NX + PL_DC])
+            model["Load_ndc"]["COMMAND_SHED"][i] = int(model["Load_ndc"]["PD"][i] - x[i * NX + PL_UDC])
 
         model["success"] = False
 
     return model
 
-def status_update(microgrid,session,Target_time):
+def status_update(microgrid, session, Target_time):
     """
     Update Battery SOC, generation status, load status, bic status etc
     Some kind of SOC estimation for the scheduling

@@ -4,13 +4,13 @@
 from numpy import array, vstack, zeros
 import numpy
 from copy import deepcopy
+from configuration import configuration_time_line
 
 class ProblemFormulation():
     """
     Problem formulation class for economic dispatch
     """
     def problem_formulation_local(*args):
-        from configuration import configuration_time_line
         from modelling.data.idx_ed_foramt import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
             PESS_DC, RESS, EESS, PMG, NX
         model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
@@ -186,12 +186,11 @@ class ProblemFormulation():
         return mathematical_model
 
     def problem_formulation_local_recovery(*args):
-        from configuration import configuration_time_line
         from modelling.data.idx_ed_recovery_format import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, \
             PESS_C, PESS_DC, RESS, EESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
 
         model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
-        ## The infeasible optimal problem formulation
+
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
         nx = T * NX
         lb = [0] * nx
@@ -228,8 +227,7 @@ class ProblemFormulation():
             ub[i * NX + PESS_DC] = model["ESS"]["PMAX_DIS"]
             ub[i * NX + RESS] = model["ESS"]["PMAX_DIS"] + model["ESS"]["PMAX_CH"]
             ub[i * NX + EESS] = model["ESS"]["SOC_MAX"] * model["ESS"]["CAP"]
-            ub[
-                i * NX + PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
+            ub[i * NX + PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
             ub[i * NX + PPV] = model["PV"]["PG"][i]
             ub[i * NX + PWP] = model["WP"]["PG"][i]
             ub[i * NX + PL_AC] = model["Load_ac"]["PD"][i]
@@ -387,7 +385,6 @@ class ProblemFormulation():
         local_model = args[0]
         universal_model = args[1]
         type = args[len(args) - 1]  # The last one is the type
-        from configuration import configuration_time_line
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
         ## Formulating the universal energy models

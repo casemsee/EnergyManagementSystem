@@ -2,13 +2,14 @@ from numpy import array, vstack, zeros
 import numpy
 from copy import deepcopy
 from configuration.configuration_global import default_eps
+from configuration import configuration_time_line
+
 
 class ProblemFormulationTracing():
     """
     Problem formulation class for economic dispatch
     """
     def problem_formulation_local(*args):
-        from configuration import configuration_time_line
         from modelling.data.idx_ed_set_points_tracing import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
             PESS_DC, RESS, EESS, PMG, PMG_negative, PMG_positive, PUG_negative, PUG_positive, SOC_negative, \
             SOC_positive, NX
@@ -254,7 +255,6 @@ class ProblemFormulationTracing():
         return mathematical_model
 
     def problem_formulation_local_recovery(*args):
-        from configuration import configuration_time_line
         from modelling.data.idx_ed_set_points_tracing_recovery import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, \
             PESS_C, PESS_DC, RESS, EESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, PMG_negative, PMG_positive, PUG_negative, PUG_positive, SOC_negative, SOC_positive, NX
 
@@ -518,18 +518,17 @@ class ProblemFormulationTracing():
         local_model = args[0]
         universal_model = args[1]
         type = args[len(args) - 1]  # The last one is the type
-        from configuration import configuration_time_line
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
         ## Formulating the universal energy models
         if type == "Feasible":
             from modelling.data.idx_ed_set_points_tracing import PMG, NX
-            local_model_mathematical = problem_formulation_tracing.problem_formulation_local(local_model)
-            universal_model_mathematical = problem_formulation_tracing.problem_formulation_local(universal_model)
+            local_model_mathematical = ProblemFormulationTracing.problem_formulation_local(local_model)
+            universal_model_mathematical = ProblemFormulationTracing.problem_formulation_local(universal_model)
         else:
             from modelling.data.idx_ed_set_points_tracing_recovery import PMG, NX
-            local_model_mathematical = problem_formulation_tracing.problem_formulation_local_recovery(local_model)
-            universal_model_mathematical = problem_formulation_tracing.problem_formulation_local_recovery(universal_model)
+            local_model_mathematical = ProblemFormulationTracing.problem_formulation_local_recovery(local_model)
+            universal_model_mathematical = ProblemFormulationTracing.problem_formulation_local_recovery(universal_model)
         # Modify the boundary information
 
         for i in range(T):
