@@ -61,7 +61,7 @@ class Main():
         # S4: Functions scheduling
         sched = BlockingScheduler()
         # 1) real-time simulation
-        sched.add_job(lambda: real_time_simulation.run(microgrid, session, session_short),'cron', minute='0-59', second='*/5')
+        sched.add_job(lambda: real_time_simulation.run(microgrid, session, session),'cron', minute='0-59', second='*/5')
         # 2) short-term operation
         sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short),'cron', minute='*/1', second='1')
         # 3) middle-term operation
