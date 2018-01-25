@@ -22,11 +22,11 @@ class ProblemFormulation():
         ub = zeros(NX)
         ## Update lower boundary
         lb[PG] = model["DG"]["PMIN"]
-        lb[QG] = model["DG"]["QMIN"]
+        lb[QG] = model["DG"]["QMIN"]*model["DG"]["STATUS"]
         lb[RG] = model["DG"]["PMIN"]
 
         lb[PUG] = model["UG"]["PMIN"]
-        lb[QUG] = model["UG"]["QMIN"]
+        lb[QUG] = model["UG"]["QMIN"]*model["UG"]["STATUS"]
         lb[RUG] = model["UG"]["PMIN"]
 
         lb[PBIC_AC2DC] = 0
@@ -42,11 +42,11 @@ class ProblemFormulation():
 
         ## Update lower boundary
         ub[PG] = model["DG"]["PMAX"]
-        ub[QG] = model["DG"]["QMAX"]
+        ub[QG] = model["DG"]["QMAX"]*model["DG"]["STATUS"]
         ub[RG] = model["DG"]["PMAX"]
 
         ub[PUG] = model["UG"]["PMAX"]
-        ub[QUG] = model["UG"]["QMAX"]
+        ub[QUG] = model["UG"]["QMAX"]*model["UG"]["STATUS"]
         ub[RUG] = model["UG"]["PMAX"]
 
         ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
@@ -182,11 +182,11 @@ class ProblemFormulation():
         ub = zeros(NX)
         ## Update lower boundary
         lb[PG] = model["DG"]["PMIN"]
-        lb[QG] = model["DG"]["QMIN"]
+        lb[QG] = model["DG"]["QMIN"]*model["DG"]["STATUS"]
         lb[RG] = model["DG"]["PMIN"]
 
         lb[PUG] = model["UG"]["PMIN"]
-        lb[QUG] = model["UG"]["QMIN"]
+        lb[QUG] = model["UG"]["QMIN"]*model["UG"]["STATUS"]
         lb[RUG] = model["UG"]["PMIN"]
 
         lb[PBIC_AC2DC] = 0
@@ -208,11 +208,11 @@ class ProblemFormulation():
 
         ## Update lower boundary
         ub[PG] = model["DG"]["PMAX"]
-        ub[QG] = model["DG"]["QMAX"]
+        ub[QG] = model["DG"]["QMAX"]*model["DG"]["STATUS"]
         ub[RG] = model["DG"]["PMAX"]
 
         ub[PUG] = model["UG"]["PMAX"]
-        ub[QUG] = model["UG"]["QMAX"]
+        ub[QUG] = model["UG"]["QMAX"]*model["UG"]["STATUS"]
         ub[RUG] = model["UG"]["PMAX"]
 
         ub[PBIC_AC2DC] = model["BIC"]["SMAX"]

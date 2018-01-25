@@ -52,11 +52,11 @@ class ProblemFormulationSetPointsTracing():
         lb[SOC_negative] = 0
         ## Update lower boundary
         ub[PG] = model["DG"]["PMAX"]
-        ub[QG] = model["DG"]["QMAX"]
+        ub[QG] = model["DG"]["QMAX"]*min(model["DG"]["STATUS"],model["DG"]["COMMAND_START_UP"])
         ub[RG] = model["DG"]["PMAX"]
 
         ub[PUG] = model["UG"]["PMAX"]
-        ub[QUG] = model["UG"]["QMAX"]
+        ub[QUG] = model["UG"]["QMAX"]*min(model["UG"]["STATUS"],model["UG"]["COMMAND_START_UP"])
         ub[RUG] = model["UG"]["PMAX"]
 
         ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
@@ -256,11 +256,11 @@ class ProblemFormulationSetPointsTracing():
         ub = zeros(NX)
         ## Update lower boundary
         lb[PG] = model["DG"]["PMIN"]
-        lb[QG] = model["DG"]["QMIN"]
+        lb[QG] = model["DG"]["QMIN"]*min(model["DG"]["STATUS"],model["DG"]["COMMAND_START_UP"])
         lb[RG] = model["DG"]["PMIN"]
 
         lb[PUG] = model["UG"]["PMIN"]
-        lb[QUG] = model["UG"]["QMIN"]
+        lb[QUG] = model["UG"]["QMIN"]*min(model["UG"]["STATUS"],model["UG"]["COMMAND_START_UP"])
         lb[RUG] = model["UG"]["PMIN"]
 
         lb[PBIC_AC2DC] = 0
