@@ -59,27 +59,27 @@ class Main():
         long_term_operation = LongTermOperation()
 
         # S4: Functions scheduling
-        # sched = BlockingScheduler()
-        # # 1) real-time simulation
-        # sched.add_job(lambda: real_time_simulation.run(microgrid, session, session_short),'cron', minute='0-59', second='*/5')
-        # # 2) short-term operation
-        # sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short),'cron', minute='*/1', second='1')
-        # # 3) middle-term operation
-        # sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle),'cron', minute='*/5', second='5')
-        # # 4) long-term operation
-        # sched.add_job(lambda: long_term_operation.run(microgrid_long, session_long),'cron', minute='*/30', second='30')
-        # # 5) start simulation
-        # sched.start()
+        sched = BlockingScheduler()
+        # 1) real-time simulation
+        sched.add_job(lambda: real_time_simulation.run(microgrid, session, session_short),'cron', minute='0-59', second='*/5')
+        # 2) short-term operation
+        sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short),'cron', minute='*/1', second='1')
+        # 3) middle-term operation
+        sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle),'cron', minute='*/5', second='5')
+        # 4) long-term operation
+        sched.add_job(lambda: long_term_operation.run(microgrid_long, session_long),'cron', minute='*/30', second='30')
+        # 5) start simulation
+        sched.start()
 
-        for i in range(1):
-            # 1) real-time simulation
-            real_time_simulation.run(microgrid, session, session_short)# Real-time simulation has pasted test!
-            # 2) short-term operation
-            short_term_operation.run(microgrid_short, session_short)  # Short-term operation has pasted test!
-            # 3) middle-term operation
-            middle_term_operation.run(microgrid_middle, session_middle) # Middle-term operation has pasted test!
-            # 4) long-term operation
-            long_term_operation.run(microgrid_long, session_long) # Long-term operation needs to be tested!
+        # for i in range(1):
+        #     # 1) real-time simulation
+        #     real_time_simulation.run(microgrid, session, session_short)# Real-time simulation has pasted test!
+        #     # 2) short-term operation
+        #     short_term_operation.run(microgrid_short, session_short)  # Short-term operation has pasted test!
+        #     # 3) middle-term operation
+        #     middle_term_operation.run(microgrid_middle, session_middle) # Middle-term operation has pasted test!
+        #     # 4) long-term operation
+        #     long_term_operation.run(microgrid_long, session_long) # Long-term operation needs to be tested!
 
 
 def run():

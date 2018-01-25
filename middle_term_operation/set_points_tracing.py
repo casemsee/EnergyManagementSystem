@@ -10,7 +10,7 @@ class SetPointsTracing():
     3) if any information is missing, the setting point tracing will not be triggered
     """
     def set_points_tracing_ed(*args):
-        Target_time = args[0]+3600 # Target time is the start time of scheduling in long-term operation
+        Target_time = args[0] # Target time is the start time of scheduling in long-term operation
         session = args[1] # Database session
         model = deepcopy(args[2]) # Solution of the long-term operation
 
