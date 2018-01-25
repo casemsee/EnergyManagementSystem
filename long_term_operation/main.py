@@ -271,7 +271,6 @@ def update(*args):
     x = args[0]
     model = args[1]
     type = args[2]
-
     T = default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
 
     if type == "Feasible":
@@ -322,8 +321,8 @@ def update(*args):
 
         model["success"] = True
     else:
-        from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
-            PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
+        from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, IBIC, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
+            PESS_DC, RESS, PMG, IPV, IWP, IL_AC, IL_NAC, IL_DC, IL_NDC, NX
 
         model["DG"]["COMMAND_START_UP"] = [0] * T
         model["DG"]["COMMAND_PG"] = [0] * T
@@ -369,13 +368,13 @@ def update(*args):
 
             model["PMG"][i] = int(x[i * NX + PMG])
 
-            model["PV"]["COMMAND_CURT"][i] = int(x[i * NX + PPV])
-            model["WP"]["COMMAND_CURT"][i] = int(x[i * NX + PWP])
+            model["PV"]["COMMAND_CURT"][i] = model["PV"]["PG"][i]-int(x[i * NX + IPV])
+            model["WP"]["COMMAND_CURT"][i] = model["WP"]["PG"][i]-int(x[i * NX + IWP])
 
-            model["Load_ac"]["COMMAND_SHED"][i] = int(x[i * NX + PL_AC])
-            model["Load_nac"]["COMMAND_SHED"][i] = int(x[i * NX + PL_UAC])
-            model["Load_dc"]["COMMAND_SHED"][i] = int(x[i * NX + PL_DC])
-            model["Load_ndc"]["COMMAND_SHED"][i] = int(x[i * NX + PL_UDC])
+            model["Load_ac"]["COMMAND_SHED"][i] = model["Load_ac"]["PD"][i]-int(x[i * NX + IL_AC])
+            model["Load_nac"]["COMMAND_SHED"][i] = model["Load_nac"]["PD"][i]-int(x[i * NX + IL_NAC])
+            model["Load_dc"]["COMMAND_SHED"][i] = model["Load_dc"]["PD"][i]-int(x[i * NX + IL_DC])
+            model["Load_ndc"]["COMMAND_SHED"][i] = model["Load_ndc"]["PD"][i]-int(x[i * NX + IL_NDC])
 
         model["success"] = False
     return model

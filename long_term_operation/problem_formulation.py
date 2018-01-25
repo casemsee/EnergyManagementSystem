@@ -1,26 +1,28 @@
-# A mixed-integer linear constrained convex quadratic programming method is proposed for the unit commitment
-# The problem is solved by using Mosek.
-
-
 from numpy import array, vstack, zeros
 import numpy
-from utils import Logger
 from configuration import configuration_time_line
 from copy import deepcopy
-logger = Logger("Problem formulation for UEMS")
 
 class ProblemFormulation():
-    ## Reformulte the information model to system level
+    """
+    Problem formulation class for unit commitment problem in hybrid AC/DC microgrid.
+    """
     def problem_formulation_local(*args):
+        """
+        Problem formulation for unit commitment problem (normal state)
+        :param model:
+        :return:
+        """
+
         from modelling.data.idx_uc_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
             PESS_DC, RESS, EESS, PMG, NX
-        model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
-        ## The feasible optimal problem formulation
+
+        model = deepcopy(args[0])
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
         nx = NX * T
-
         lb = [0] * NX
         ub = [0] * NX
+
         vtypes = ["c"] * NX
         vtypes[IG] = "b"
         vtypes[IUG] = "b"
@@ -46,11 +48,13 @@ class ProblemFormulation():
         lb[PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
 
         ## Update lower boundary
-        ub[IG] = 1
+        for i in range(T):
+            ub[IG] = model["DG"]["STATUS"][i]
         ub[PG] = model["DG"]["PMAX"]
         ub[RG] = model["DG"]["PMAX"]
 
-        ub[IUG] = 1
+        for i in range(T):
+            ub[IUG] = model["UG"]["STATUS"][i]
         ub[PUG] = model["UG"]["PMAX"]
         ub[RUG] = model["UG"]["PMAX"]
 
@@ -70,7 +74,7 @@ class ProblemFormulation():
         ## Constraints set
         # 1) Power balance equation
         Aeq = zeros((T, nx))
-        beq = []
+        beq = [ ]
         for i in range(T):
             Aeq[i][i * NX + PG] = 1
             Aeq[i][i * NX + PUG] = 1
@@ -104,9 +108,9 @@ class ProblemFormulation():
                 Aeq_temp[i][(i - 1) * NX + EESS] = -1
                 Aeq_temp[i][i * NX + EESS] = 1
                 Aeq_temp[i][i * NX + PESS_C] = -model["ESS"]["EFF_CH"] * configuration_time_line.default_time[
-                    "Time_step_ed"] / 3600
+                    "Time_step_uc"] / 3600
                 Aeq_temp[i][i * NX + PESS_DC] = 1 / model["ESS"]["EFF_DIS"] * configuration_time_line.default_time[
-                    "Time_step_ed"] / 3600
+                    "Time_step_uc"] / 3600
                 beq.append(0)
         Aeq = vstack([Aeq, Aeq_temp])
         # Inequality constraints
@@ -162,14 +166,14 @@ class ProblemFormulation():
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + EESS] = -1
-            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_ed"] / 3600
+            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_uc"] / 3600
             bineq.append(-model["ESS"]["SOC_MIN"] * model["ESS"]["CAP"])
         Aineq = vstack([Aineq, Aineq_temp])
         # 8) EESS + RESS*delta <= EESSMAX
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + EESS] = 1
-            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_ed"] / 3600
+            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_uc"] / 3600
             bineq.append(model["ESS"]["SOC_MAX"] * model["ESS"]["CAP"])
         Aineq = vstack([Aineq, Aineq_temp])
         # 9) RG + RUG + RESS >= sum(Load)*beta + sum(PV)*beta_pv + sum(WP)*beta_wp
@@ -179,7 +183,10 @@ class ProblemFormulation():
             c[PG] = model["DG"]["COST"][1]
         else:
             c[PG] = model["DG"]["COST"][0]
+
+        c[IG] = model["DG"]["COST_START_UP"]
         c[PUG] = model["UG"]["COST"][0]
+        c[IUG] = model["UG"]["COST_START_UP"]
         c[PESS_C] = model["ESS"]["COST_CH"][0]
         c[PESS_DC] = model["ESS"]["COST_DIS"][0]
         C = c * T
@@ -202,11 +209,15 @@ class ProblemFormulation():
         return mathematical_model
 
     def problem_formulation_local_recovery(*args):
-        from configuration import configuration_time_line
-        from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, \
-            PESS_C, PESS_DC, RESS, EESS, PMG, IPV, IWP, IL_AC, IL_UAC, IL_DC, IL_UDC, NX
-        model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
-        ## The infeasible optimal problem formulation
+        """
+        Problem formulation for unit commitment problem (emergency state)
+        :param model: information model
+        :return:
+        """
+        from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, IBIC, PBIC_AC2DC, PBIC_DC2AC, \
+            PESS_C, PESS_DC, RESS, EESS, PMG, IPV, IWP, IL_AC, IL_NAC, IL_DC, IL_NDC, NX
+        model = deepcopy(args[0])
+
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
         nx = T * NX
         lb = [0] * nx
@@ -220,43 +231,44 @@ class ProblemFormulation():
             lb[i * NX + RG] = model["DG"]["PMIN"]
             lb[i * NX + IUG] = 0
             vtypes[i * NX + IUG] = "b"
+            lb[i * NX + IBIC] = 0
             lb[i * NX + PUG] = model["UG"]["PMIN"]
             lb[i * NX + RUG] = model["UG"]["PMIN"]
+            vtypes[i * NX + IBIC] = "b"
             lb[i * NX + PBIC_AC2DC] = 0
             lb[i * NX + PBIC_DC2AC] = 0
             lb[i * NX + PESS_C] = 0
             lb[i * NX + PESS_DC] = 0
             lb[i * NX + RESS] = 0
             lb[i * NX + EESS] = model["ESS"]["SOC_MIN"] * model["ESS"]["CAP"]
-            lb[
-                i * NX + PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
+            lb[i * NX + PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
             lb[i * NX + IPV] = 0
             lb[i * NX + IWP] = 0
             lb[i * NX + IL_AC] = 0
-            lb[i * NX + IL_UAC] = 0
+            lb[i * NX + IL_NAC] = 0
             lb[i * NX + IL_DC] = 0
-            lb[i * NX + IL_UDC] = 0
+            lb[i * NX + IL_NDC] = 0
             ## Update lower boundary
-            ub[i * NX + IG] = 1
+            ub[i * NX + IG] = model["DG"]["STATUS"][i]
             ub[i * NX + PG] = model["DG"]["PMAX"]
             ub[i * NX + RG] = model["DG"]["PMAX"]
-            ub[i * NX + IUG] = 1
+            ub[i * NX + IUG] = model["UG"]["STATUS"][i]
             ub[i * NX + PUG] = model["UG"]["PMAX"]
             ub[i * NX + RUG] = model["UG"]["PMAX"]
+            ub[i * NX + IBIC] = 1
             ub[i * NX + PBIC_AC2DC] = model["BIC"]["SMAX"]
             ub[i * NX + PBIC_DC2AC] = model["BIC"]["SMAX"]
             ub[i * NX + PESS_C] = model["ESS"]["PMAX_CH"]
             ub[i * NX + PESS_DC] = model["ESS"]["PMAX_DIS"]
             ub[i * NX + RESS] = model["ESS"]["PMAX_DIS"] + model["ESS"]["PMAX_CH"]
             ub[i * NX + EESS] = model["ESS"]["SOC_MAX"] * model["ESS"]["CAP"]
-            ub[
-                i * NX + PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
+            ub[i * NX + PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
             ub[i * NX + IPV] = model["PV"]["PG"][i]
             ub[i * NX + IWP] = model["WP"]["PG"][i]
             ub[i * NX + IL_AC] = model["Load_ac"]["PD"][i]
-            ub[i * NX + IL_UAC] = model["Load_nac"]["PD"][i]
+            ub[i * NX + IL_NAC] = model["Load_nac"]["PD"][i]
             ub[i * NX + IL_DC] = model["Load_dc"]["PD"][i]
-            ub[i * NX + IL_UDC] = model["Load_ndc"]["PD"][i]
+            ub[i * NX + IL_NDC] = model["Load_ndc"]["PD"][i]
 
         ## Constraints set
         # 1) Power balance equation
@@ -267,8 +279,8 @@ class ProblemFormulation():
             Aeq[i][i * NX + PUG] = 1
             Aeq[i][i * NX + PBIC_AC2DC] = -1
             Aeq[i][i * NX + PBIC_DC2AC] = model["BIC"]["EFF_DC2AC"]
-            Aeq[i][i * NX + IL_AC] = -model["Load_ac"]["PD"][i]
-            Aeq[i][i * NX + IL_UAC] = -model["Load_nac"]["PD"][i]
+            Aeq[i][i * NX + IL_AC] = -1
+            Aeq[i][i * NX + IL_NAC] = -1
             beq.append(0)
         # 2) DC power balance equation
         Aeq_temp = zeros((T, nx))
@@ -278,10 +290,10 @@ class ProblemFormulation():
             Aeq_temp[i][i * NX + PESS_C] = -1
             Aeq_temp[i][i * NX + PESS_DC] = 1
             Aeq_temp[i][i * NX + PMG] = -1
-            Aeq_temp[i][i * NX + IL_DC] = -model["Load_dc"]["PD"][i]
-            Aeq_temp[i][i * NX + IL_UDC] = -model["Load_ndc"]["PD"][i]
-            Aeq_temp[i][i * NX + IPV] = model["PV"]["PG"][i]
-            Aeq_temp[i][i * NX + IWP] = model["WP"]["PG"][i]
+            Aeq_temp[i][i * NX + IL_DC] = -1
+            Aeq_temp[i][i * NX + IL_NDC] = -1
+            Aeq_temp[i][i * NX + IPV] = 1
+            Aeq_temp[i][i * NX + IWP] = 1
             beq.append(0)
         Aeq = vstack([Aeq, Aeq_temp])
 
@@ -292,17 +304,17 @@ class ProblemFormulation():
             if i == 0:
                 Aeq_temp[i][i * NX + EESS] = 1
                 Aeq_temp[i][i * NX + PESS_C] = -model["ESS"]["EFF_CH"] * configuration_time_line.default_time[
-                    "Time_step_opf"] / 3600
+                    "Time_step_uc"] / 3600
                 Aeq_temp[i][i * NX + PESS_DC] = 1 / model["ESS"]["EFF_DIS"] * configuration_time_line.default_time[
-                    "Time_step_opf"] / 3600
+                    "Time_step_uc"] / 3600
                 beq.append(model["ESS"]["SOC"] * model["ESS"]["CAP"])
             else:
                 Aeq_temp[i][(i - 1) * NX + EESS] = -1
                 Aeq_temp[i][i * NX + EESS] = 1
                 Aeq_temp[i][i * NX + PESS_C] = -model["ESS"]["EFF_CH"] * configuration_time_line.default_time[
-                    "Time_step_opf"] / 3600
+                    "Time_step_uc"] / 3600
                 Aeq_temp[i][i * NX + PESS_DC] = 1 / model["ESS"]["EFF_DIS"] * configuration_time_line.default_time[
-                    "Time_step_opf"] / 3600
+                    "Time_step_uc"] / 3600
                 beq.append(0)
         Aeq = vstack([Aeq, Aeq_temp])
 
@@ -359,17 +371,31 @@ class ProblemFormulation():
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + EESS] = -1
-            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_ed"] / 3600
+            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_uc"] / 3600
             bineq.append(-model["ESS"]["SOC_MIN"] * model["ESS"]["CAP"])
         Aineq = vstack([Aineq, Aineq_temp])
         # 8) EESS + RESS*delta <= EESSMAX
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + EESS] = 1
-            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_ed"] / 3600
+            Aineq_temp[i][i * NX + RESS] = configuration_time_line.default_time["Time_step_uc"] / 3600
             bineq.append(model["ESS"]["SOC_MAX"] * model["ESS"]["CAP"])
         Aineq = vstack([Aineq, Aineq_temp])
         # 9) RG + RUG + RESS >= sum(Load)*beta + sum(PV)*beta_pv + sum(WP)*beta_wp
+        # 10) PBIC_AC2DC <=IBIC*
+        Aineq_temp = zeros((T, nx))
+        for i in range(T):
+            Aineq_temp[i][i * NX + PBIC_AC2DC] = 1
+            Aineq_temp[i][i * NX + IBIC] = -model["BIC"]["SMAX"]
+            bineq.append(0)
+        Aineq = vstack([Aineq, Aineq_temp])
+        # 11) PBIC_AC2DC <=(1-IBIC)*
+        Aineq_temp = zeros((T, nx))
+        for i in range(T):
+            Aineq_temp[i][i * NX + PBIC_DC2AC] = 1
+            Aineq_temp[i][i * NX + IBIC] = model["BIC"]["SMAX"]
+            bineq.append(model["BIC"]["SMAX"])
+        Aineq = vstack([Aineq, Aineq_temp])
 
         # No reserve requirement
         c = [0] * NX
@@ -380,13 +406,15 @@ class ProblemFormulation():
         c[PUG] = model["UG"]["COST"][0]
         c[PESS_C] = model["ESS"]["COST_CH"][0]
         c[PESS_DC] = model["ESS"]["COST_DIS"][0]
+        c[IG] = model["DG"]["COST_START_UP"]
+        c[IUG] = model["UG"]["COST_START_UP"]
         # The sheding cost
         c[IPV] = -model["PV"]["COST"]
         c[IWP] = -model["WP"]["COST"]
         c[IL_AC] = -model["Load_ac"]["COST"][0]
-        c[IL_UAC] = -model["Load_nac"]["COST"][0]
+        c[IL_NAC] = -model["Load_nac"]["COST"][0]
         c[IL_DC] = -model["Load_dc"]["COST"][0]
-        c[IL_UDC] = -model["Load_ndc"]["COST"][0]
+        c[IL_NDC] = -model["Load_ndc"]["COST"][0]
 
         C = c * T
         # Generate the quadratic parameters

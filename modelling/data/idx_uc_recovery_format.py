@@ -8,21 +8,22 @@ IUG = 3
 PUG = 4
 RUG = 5
 # Bi-directional convertor set
-PBIC_AC2DC = 6
-PBIC_DC2AC = 7
+IBIC = 6
+PBIC_AC2DC = 7
+PBIC_DC2AC = 8
 # Energy storage system set
-PESS_C = 8
-PESS_DC = 9
-RESS = 10
-EESS = 11
+PESS_C = 9
+PESS_DC = 10
+RESS = 11
+EESS = 12
 # Neighboring set
-PMG = 12
+PMG = 13
 # Emergency shedding/curtailment set
-IPV = 13
-IWP = 14
-IL_AC = 15
-IL_UAC = 16
-IL_DC = 17
-IL_UDC = 18
+IPV = 14
+IWP = 15
+IL_AC = 16
+IL_NAC = 17
+IL_DC = 18
+IL_NDC = 19
 # total number of decision variables
-NX = 19
+NX = 20

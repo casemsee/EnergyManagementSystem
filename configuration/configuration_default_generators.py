@@ -17,7 +17,7 @@ default_AC_generator_parameters = \
         "RAMP_10": 3000,
         "PF_LIMIT": [-1, 1],
         "APF": 0,  # The droop parameters
-        "COST_START_UP": 0,
+        "COST_START_UP": 1,
         "COST_SHUT_DOWN": 0,
         "COST_MODEL": 2,
         "NCOST": 3,

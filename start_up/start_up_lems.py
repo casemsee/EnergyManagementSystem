@@ -3,8 +3,8 @@ Start up operation procedure for local ems
 short, middle and long term operating models are generated for the short, middle and long term operation respectively.
 """
 
-from modelling.devices import generators, loads, energy_storage_systems, convertors  # Import modellings
-from configuration.configuration_time_line import default_look_ahead_time_step# The look ahead time is adopted to
+from modelling.devices import generators, loads, energy_storage_systems, convertors  # Information modelling
+from configuration.configuration_time_line import default_look_ahead_time_step # Look ahead time
 from configuration.configuration_global import default_command
 from copy import deepcopy
 
@@ -23,7 +23,8 @@ def start_up():
                  "Load_ndc": deepcopy(loads.Load_DC),
                  "PMG": 0,
                  "V_DC": 0}
-
+    # Price information update
+    microgrid["UG"]["COST_START_UP"] = 0
     microgrid["PV"]["N"] = microgrid["PV"]["PMAX"]
     microgrid["PV"]["TYPE"] = default_command["PV"]
     microgrid["WP"]["N"] = microgrid["WP"]["PMAX"]
