@@ -7,16 +7,11 @@ import zmq  # The package for information and communication
 from start_up import start_up_lems
 from modelling.information import static_information_pb2 as static_info
 from copy import deepcopy
-from modelling.information import dynamic_information_pb2,single_period_information_pb2
-
-from short_term_operation.main import short_term_operation_lems
-# from economic_dispatch.main import middle_term_operation
-# from unit_commitment.main import long_term_operation
 
 from utils import Logger
 from configuration.configuration_global import default_operation_mode
 
-logger = Logger("local_ems")
+logger = Logger("Local_ems")
 
 class Main():
     """
@@ -28,7 +23,7 @@ class Main():
         """
         from start_up import app
         self.socket = socket
-        self.logger = Logger("local_ems_start_up")
+        self.logger = Logger("Local_ems_start_up")
         ems_main = app.StartUpLems(socket)
         self.Operation_mode = ems_main.run()
         # database start-up operation
@@ -44,21 +39,25 @@ class Main():
         from short_term_operation.app import ShortTermOperation
         from middle_term_operation.app import MiddleTermOperation
         from long_term_operation.app import LongTermOperation
+
         # S1: Initialize information models
         microgrid = self.microgrid # Obtain the information model
         microgrid_short = deepcopy(microgrid)
         microgrid_middle = self.microgrid_middle
         microgrid_long = self.microgrid_long
+
         # S2: Initialize databases
         session = self.Session()
         session_short = self.Session()
         session_middle = self.Session()
         session_long = self.Session()
+
         # S3: Initialize target functions
         real_time_simulation = RealTimeSimulation()
         short_term_operation = ShortTermOperation()
         middle_term_operation = MiddleTermOperation()
         long_term_operation = LongTermOperation()
+
         # S4: Functions scheduling
         sched = BlockingScheduler()
         # 1) real-time simulation
