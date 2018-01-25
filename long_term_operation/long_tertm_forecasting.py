@@ -36,46 +36,46 @@ def long_term_forecasting(*args):
     models["PV"]["PG"] = []
     models["WP"]["PG"] = []
     models["Load_ac"]["PD"] = []
-    models["Load_uac"]["PD"] = []
+    models["Load_nac"]["PD"] = []
     models["Load_dc"]["PD"] = []
-    models["Load_udc"]["PD"] = []
+    models["Load_ndc"]["PD"] = []
     pv_profile = long_term_forecasting_pv_history(session, Target_time)
     wp_profile = long_term_forecasting_wp_history(session, Target_time)
     load_ac = long_term_forecasting_load_ac_history(session, Target_time)
-    load_uac = long_term_forecasting_load_uac_history(session, Target_time)
+    load_uac = long_term_forecasting_load_nac_history(session, Target_time)
     load_dc = long_term_forecasting_load_dc_history(session, Target_time)
-    load_udc = long_term_forecasting_load_udc_history(session, Target_time)
+    load_udc = long_term_forecasting_load_ndc_history(session, Target_time)
 
     for i in range(T):
         # Update the forecasting result of PV
-        if models["PV"]["NPV"][i] > 0:
+        if models["PV"]["N"][i] > 0:
             models["PV"]["PG"].append(round(models["PV"]["PMAX"][i] * pv_profile[i]))
         else:
             models["PV"]["PG"].append(0)
 
-        if models["WP"]["NWP"][i] > 0:
+        if models["WP"]["N"][i] > 0:
             models["WP"]["PG"].append(round(models["WP"]["PMAX"][i] * wp_profile[i]))
         else:
             models["WP"]["PG"].append(0)
 
         if models["Load_ac"]["STATUS"][i] > 0:
-            models["Load_ac"]["PD"].append(round(load_ac[i] * models["Load_ac"]["PDMAX"]))
+            models["Load_ac"]["PD"].append(round(load_ac[i] * models["Load_ac"]["PMAX"]))
         else:
             models["Load_ac"]["PD"].append(0)
 
-        if models["Load_uac"]["STATUS"][i] > 0:
-            models["Load_uac"]["PD"].append(round(load_uac[i] * models["Load_uac"]["PDMAX"]))
+        if models["Load_nac"]["STATUS"][i] > 0:
+            models["Load_nac"]["PD"].append(round(load_uac[i] * models["Load_nac"]["PMAX"]))
         else:
-            models["Load_uac"]["PD"].append(0)
+            models["Load_nac"]["PD"].append(0)
 
         if models["Load_dc"]["STATUS"][i] > 0:
-            models["Load_dc"]["PD"].append(round(load_dc[i] * models["Load_dc"]["PDMAX"]))
+            models["Load_dc"]["PD"].append(round(load_dc[i] * models["Load_dc"]["PMAX"]))
         else:
             models["Load_dc"]["PD"].append(0)
 
-        if models["Load_udc"]["STATUS"][i] > 0:
-            models["Load_udc"]["PD"].append(round(load_udc[i] * models["Load_udc"]["PDMAX"]))
+        if models["Load_ndc"]["STATUS"][i] > 0:
+            models["Load_ndc"]["PD"].append(round(load_udc[i] * models["Load_ndc"]["PMAX"]))
         else:
-            models["Load_udc"]["PD"].append(0)
+            models["Load_ndc"]["PD"].append(0)
 
     return models

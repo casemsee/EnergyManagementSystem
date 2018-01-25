@@ -23,7 +23,7 @@ class OutputCheck():
                         model["BIC"]["COMMAND_AC2DC"][i] + model["BIC"][
                     "COMMAND_DC2AC"][i] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"][i] - model["Load_nac"]["PD"][
                     i] <= \
-                        -default_eps["ED"]:
+                        -default_eps["POWER_BALANCE"]:
                     logger.error("The obtained solution can not meet AC bus power requirement!")
                     logger.info(
                         model["UG"]["COMMAND_PG"][i] + model["DG"]["COMMAND_PG"][i] - model["BIC"]["COMMAND_AC2DC"][i] +

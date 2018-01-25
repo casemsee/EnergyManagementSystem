@@ -298,9 +298,9 @@ def update(*args):
         model["PMG"] = [0] * T
 
         model["Load_ac"]["COMMAND_SHED"] = [0] * T
-        model["Load_uac"]["COMMAND_SHED"] = [0] * T
+        model["Load_nac"]["COMMAND_SHED"] = [0] * T
         model["Load_dc"]["COMMAND_SHED"] = [0] * T
-        model["Load_udc"]["COMMAND_SHED"] = [0] * T
+        model["Load_ndc"]["COMMAND_SHED"] = [0] * T
 
         for i in range(T):
             model["DG"]["COMMAND_START_UP"][i] = int(x[i * NX + IG])
@@ -346,9 +346,9 @@ def update(*args):
         model["PMG"] = [0] * T
 
         model["Load_ac"]["COMMAND_SHED"] = [0] * T
-        model["Load_uac"]["COMMAND_SHED"] = [0] * T
+        model["Load_nac"]["COMMAND_SHED"] = [0] * T
         model["Load_dc"]["COMMAND_SHED"] = [0] * T
-        model["Load_udc"]["COMMAND_SHED"] = [0] * T
+        model["Load_ndc"]["COMMAND_SHED"] = [0] * T
 
         for i in range(T):
             # Update the solutions
@@ -373,9 +373,9 @@ def update(*args):
             model["WP"]["COMMAND_CURT"][i] = int(x[i * NX + PWP])
 
             model["Load_ac"]["COMMAND_SHED"][i] = int(x[i * NX + PL_AC])
-            model["Load_uac"]["COMMAND_SHED"][i] = int(x[i * NX + PL_UAC])
+            model["Load_nac"]["COMMAND_SHED"][i] = int(x[i * NX + PL_UAC])
             model["Load_dc"]["COMMAND_SHED"][i] = int(x[i * NX + PL_DC])
-            model["Load_udc"]["COMMAND_SHED"][i] = int(x[i * NX + PL_UDC])
+            model["Load_ndc"]["COMMAND_SHED"][i] = int(x[i * NX + PL_UDC])
 
         model["success"] = False
     return model

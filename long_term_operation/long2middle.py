@@ -33,9 +33,9 @@ class Long2Middle():
                                         PV_CURT = model["PV"]["COMMAND_CURT"][int(i/compress_rate)],
                                         WP_CURT = model["WP"]["COMMAND_CURT"][int(i/compress_rate)],
                                         AC_SHED = model["Load_ac"]["COMMAND_SHED"][int(i/compress_rate)],
-                                        NAC_SHED = model["Load_uac"]["COMMAND_SHED"][int(i/compress_rate)],
+                                        NAC_SHED = model["Load_nac"]["COMMAND_SHED"][int(i/compress_rate)],
                                         DC_SHED = model["Load_dc"]["COMMAND_SHED"][int(i/compress_rate)],
-                                        NDC_SHED = model["Load_udc"]["COMMAND_SHED"][int(i/compress_rate)],)
+                                        NDC_SHED = model["Load_ndc"]["COMMAND_SHED"][int(i/compress_rate)],)
                 session.add(blank_row)
                 session.commit()
             else:
@@ -55,8 +55,8 @@ class Long2Middle():
                 row.PV_CURT = model["PV"]["COMMAND_CURT"][int(i / compress_rate)]
                 row.WP_CURT = model["WP"]["COMMAND_CURT"][int(i / compress_rate)]
                 row.AC_SHED = model["Load_ac"]["COMMAND_SHED"][int(i / compress_rate)]
-                row.UAC_SHED = model["Load_uac"]["COMMAND_SHED"][int(i / compress_rate)]
+                row.UAC_SHED = model["Load_nac"]["COMMAND_SHED"][int(i / compress_rate)]
                 row.DC_SHED = model["Load_dc"]["COMMAND_SHED"][int(i / compress_rate)]
-                row.UDC_SHED = model["Load_udc"]["COMMAND_SHED"][int(i / compress_rate)]
+                row.UDC_SHED = model["Load_ndc"]["COMMAND_SHED"][int(i / compress_rate)]
 
             session.commit()

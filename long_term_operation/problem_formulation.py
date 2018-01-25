@@ -76,7 +76,7 @@ class ProblemFormulation():
             Aeq[i][i * NX + PUG] = 1
             Aeq[i][i * NX + PBIC_AC2DC] = -1
             Aeq[i][i * NX + PBIC_DC2AC] = model["BIC"]["EFF_DC2AC"]
-            beq.append(model["Load_ac"]["PD"][i] + model["Load_uac"]["PD"][i])
+            beq.append(model["Load_ac"]["PD"][i] + model["Load_nac"]["PD"][i])
         # 2) DC power balance equation
         Aeq_temp = zeros((T, nx))
         for i in range(T):

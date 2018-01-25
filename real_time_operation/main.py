@@ -146,7 +146,7 @@ def scheduling_data(microgrid, session, t0):
     """
     Target_time = int(t0 - t0%default_time["Time_step_rtc"])
     if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() != 0: # If the scheduling plan exists!
-        row = session(db_short_term).filter(TIME_STAMP = Target_time).first()
+        row = session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).first()
         if row.DG_STATUS>0 and microgrid["DG"]["STATUS"]>0:
             microgrid["DG"]["STATUS"] = 1
             microgrid["DG"]["COMMAND_PG"] = row.DG_PG
