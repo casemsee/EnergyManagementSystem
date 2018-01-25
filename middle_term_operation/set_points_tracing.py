@@ -17,11 +17,11 @@ class SetPointsTracing():
         delta_T = default_time["Time_step_ed"]
         T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"] #Amount of data should be addedsss
 
-        model["DG"]["COMMAND_START_UP"] = model["DG"]["STATUS"]
+        model["DG"]["COMMAND_START_UP"] = [1]*T
         model["DG"]["COMMAND_PG"] = [0] * T
         model["DG"]["COMMAND_RG"] = [0] * T
 
-        model["UG"]["COMMAND_START_UP"] = model["DG"]["STATUS"]
+        model["UG"]["COMMAND_START_UP"] = [1]*T
         model["UG"]["COMMAND_PG"] = [0] * T
         model["UG"]["COMMAND_RG"] = [0] * T
 
