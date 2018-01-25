@@ -9,7 +9,7 @@ import configuration.configuration_convertors as default_parameters
 BIC = \
     {
         "ID": default_parameters.BIC["AREA"], # Static information
-        "SMAX": default_parameters.BIC["CAP"], # Static information
+        "SMAX": default_parameters.BIC["SMAX"], # Static information
         "EFF_AC2DC": default_parameters.BIC["EFF_AC2DC"], # Static information
         "EFF_DC2AC": default_parameters.BIC["EFF_DC2AC"], # Static information
         "STATUS": default_parameters.BIC["STATUS"], # Measurement information

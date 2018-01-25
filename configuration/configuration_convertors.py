@@ -5,7 +5,7 @@ BIC = \
     {
         "AREA": 1,
         "STATUS": 1,
-        "CAP": 5000,
+        "SMAX": 3000,
         "EFF_AC2DC": 0.95,
         "EFF_DC2AC": 0.95,
         "P_AC2DC":0,

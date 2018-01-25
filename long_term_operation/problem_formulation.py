@@ -113,6 +113,12 @@ class ProblemFormulation():
                     "Time_step_uc"] / 3600
                 beq.append(0)
         Aeq = vstack([Aeq, Aeq_temp])
+        # 4) Energy storage system
+        Aeq_temp = zeros((1, nx))
+        Aeq_temp[0][(T-1)*NX+EESS] = 1
+        Aeq = vstack([Aeq, Aeq_temp])
+        beq.append(model["ESS"]["SOC"] * model["ESS"]["CAP"])
+
         # Inequality constraints
         # 1) PG + RG <= IG*PGMAX
         Aineq = zeros((T, nx))
@@ -178,6 +184,14 @@ class ProblemFormulation():
         Aineq = vstack([Aineq, Aineq_temp])
         # 9) RG + RUG + RESS >= sum(Load)*beta + sum(PV)*beta_pv + sum(WP)*beta_wp
         # No reserve requirement
+        # 10） IG+IUG<=1
+        Aineq_temp = zeros((T, nx))
+        for i in range(T):
+            Aineq_temp[i][i * NX + IG] = 1
+            Aineq_temp[i][i * NX + IUG] = 1
+            bineq.append(1)
+        Aineq = vstack([Aineq, Aineq_temp])
+
         c = [0] * NX
         if model["DG"]["COST_MODEL"] == 2:
             c[PG] = model["DG"]["COST"][1]
@@ -215,7 +229,7 @@ class ProblemFormulation():
         :return:
         """
         from modelling.data.idx_uc_recovery_format import IG, PG, RG, IUG, PUG, RUG, IBIC, PBIC_AC2DC, PBIC_DC2AC, \
-            PESS_C, PESS_DC, RESS, EESS, PMG, IPV, IWP, IL_AC, IL_NAC, IL_DC, IL_NDC, NX
+            IESS, PESS_C, PESS_DC, RESS, EESS, PMG, IPV, IWP, IL_AC, IL_NAC, IL_DC, IL_NDC, NX
         model = deepcopy(args[0])
 
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
@@ -237,6 +251,8 @@ class ProblemFormulation():
             vtypes[i * NX + IBIC] = "b"
             lb[i * NX + PBIC_AC2DC] = 0
             lb[i * NX + PBIC_DC2AC] = 0
+            vtypes[i * NX + IESS] = "b"
+            lb[i * NX + IESS] = 0
             lb[i * NX + PESS_C] = 0
             lb[i * NX + PESS_DC] = 0
             lb[i * NX + RESS] = 0
@@ -258,6 +274,7 @@ class ProblemFormulation():
             ub[i * NX + IBIC] = 1
             ub[i * NX + PBIC_AC2DC] = model["BIC"]["SMAX"]
             ub[i * NX + PBIC_DC2AC] = model["BIC"]["SMAX"]
+            ub[i * NX + IESS] = 1
             ub[i * NX + PESS_C] = model["ESS"]["PMAX_CH"]
             ub[i * NX + PESS_DC] = model["ESS"]["PMAX_DIS"]
             ub[i * NX + RESS] = model["ESS"]["PMAX_DIS"] + model["ESS"]["PMAX_CH"]
@@ -395,6 +412,20 @@ class ProblemFormulation():
             Aineq_temp[i][i * NX + PBIC_DC2AC] = 1
             Aineq_temp[i][i * NX + IBIC] = model["BIC"]["SMAX"]
             bineq.append(model["BIC"]["SMAX"])
+        Aineq = vstack([Aineq, Aineq_temp])
+        # 12) PBIC_AC2DC <=IBIC*
+        Aineq_temp = zeros((T, nx))
+        for i in range(T):
+            Aineq_temp[i][i * NX + PESS_C] = 1
+            Aineq_temp[i][i * NX + IESS] = -model["ESS"]["PMAX_CH"]
+            bineq.append(0)
+        Aineq = vstack([Aineq, Aineq_temp])
+        # 13) PBIC_AC2DC <=(1-IBIC)*
+        Aineq_temp = zeros((T, nx))
+        for i in range(T):
+            Aineq_temp[i][i * NX + PESS_DC] = 1
+            Aineq_temp[i][i * NX + IESS] = model["ESS"]["PMAX_DIS"]
+            bineq.append(model["ESS"]["PMAX_DIS"])
         Aineq = vstack([Aineq, Aineq_temp])
 
         # No reserve requirement

@@ -177,7 +177,7 @@ def long_term_operation(microgrid,session,logger):
     microgrid = deepcopy(microgrid)  # Local energy management system models
 
     Target_time = time.time()
-    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
+    Target_time = round((Target_time - Target_time % default_time["Time_step_uc"] + default_time["Time_step_uc"]))
 
     # Step 1: Short-term forecasting
     thread_forecasting = ForecastingThread(session, Target_time, microgrid)  # The forecasting thread
@@ -185,7 +185,7 @@ def long_term_operation(microgrid,session,logger):
     thread_forecasting.join()
     microgrid = thread_forecasting.models
     # Step 2: Status update
-    microgrid = status_update(microgrid, session, Target_time)
+    # microgrid = status_update(microgrid, session, Target_time)
     # Step 4: Input check
     microgrid = InputCheck.model_local_check(microgrid)
     # Step 5: Problem formulation
@@ -392,10 +392,10 @@ def status_update(microgrid,session,Target_time):
     Note: This function serves as the closed loop between the scheduling and information.
     """
 
-    row = session.query(db_middle_term).filter(db_middle_term.TIME_STAMP <= Target_time).first()
-
-    microgrid["ESS"]["SOC"] = row.BAT_SOC
-    microgrid["DG"]["STATUS"] = [row.DG_STATUS]*default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
-    microgrid["UG"]["STATUS"] = [row.UG_STATUS]*default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
+    if session.query(db_middle_term).filter(db_middle_term.TIME_STAMP == Target_time).count()!=0:
+        row = session.query(db_middle_term).filter(db_middle_term.TIME_STAMP == Target_time).first()
+        microgrid["ESS"]["SOC"] = row.BAT_SOC
+        microgrid["DG"]["STATUS"] = [row.DG_STATUS]*default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
+        microgrid["UG"]["STATUS"] = [row.UG_STATUS]*default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
 
     return microgrid
