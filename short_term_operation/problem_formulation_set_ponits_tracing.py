@@ -131,25 +131,25 @@ class ProblemFormulationSetPointsTracing():
         bineq = []
         Aineq[PG] = 1
         Aineq[RG] = 1
-        bineq.append(model["DG"]["PMAX"])
+        bineq.append(model["DG"]["PMAX"]*min(model["DG"]["STATUS"],model["DG"]["COMMAND_START_UP"]))
         # 2）
         Aineq_temp = zeros(NX)
         Aineq_temp[PG] = -1
         Aineq_temp[RG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["DG"]["PMIN"])
+        bineq.append(-model["DG"]["PMIN"]*min(model["DG"]["STATUS"],model["DG"]["COMMAND_START_UP"]))
         # 3）
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = 1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(model["UG"]["PMAX"])
+        bineq.append(model["UG"]["PMAX"]*min(model["UG"]["STATUS"],model["UG"]["COMMAND_START_UP"]))
         # 4）
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = -1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["UG"]["PMIN"])
+        bineq.append(-model["UG"]["PMIN"]*min(model["UG"]["STATUS"],model["UG"]["COMMAND_START_UP"]))
         # 5）
         Aineq_temp = zeros(NX)
         Aineq_temp[PESS_DC] = 1
@@ -375,25 +375,25 @@ class ProblemFormulationSetPointsTracing():
         bineq = []
         Aineq[PG] = 1
         Aineq[RG] = 1
-        bineq.append(model["DG"]["PMAX"])
+        bineq.append(model["DG"]["PMAX"]*min(model["DG"]["STATUS"],model["DG"]["COMMAND_START_UP"]))
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PG] = -1
         Aineq_temp[RG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["DG"]["PMIN"])
+        bineq.append(-model["DG"]["PMIN"]*min(model["DG"]["STATUS"],model["DG"]["COMMAND_START_UP"]))
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = 1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(model["UG"]["PMAX"])
+        bineq.append(model["UG"]["PMAX"]*min(model["UG"]["STATUS"],model["UG"]["COMMAND_START_UP"]))
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = -1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["UG"]["PMIN"])
+        bineq.append(-model["UG"]["PMIN"]*min(model["UG"]["STATUS"],model["UG"]["COMMAND_START_UP"]))
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PESS_DC] = 1

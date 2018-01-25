@@ -108,25 +108,25 @@ class ProblemFormulation():
         bineq = []
         Aineq[PG] = 1
         Aineq[RG] = 1
-        bineq.append(model["DG"]["PMAX"])
+        bineq.append(model["DG"]["PMAX"]*model["DG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PG] = -1
         Aineq_temp[RG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["DG"]["PMIN"])
+        bineq.append(-model["DG"]["PMIN"]*model["DG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = 1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(model["UG"]["PMAX"])
+        bineq.append(model["UG"]["PMAX"]*model["UG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = -1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["UG"]["PMIN"])
+        bineq.append(-model["UG"]["PMIN"]*model["UG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PESS_DC] = 1
@@ -288,25 +288,25 @@ class ProblemFormulation():
         bineq = []
         Aineq[PG] = 1
         Aineq[RG] = 1
-        bineq.append(model["DG"]["PMAX"])
+        bineq.append(model["DG"]["PMAX"]*model["DG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PG] = -1
         Aineq_temp[RG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["DG"]["PMIN"])
+        bineq.append(-model["DG"]["PMIN"]*model["DG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = 1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(model["UG"]["PMAX"])
+        bineq.append(model["UG"]["PMAX"]*model["UG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PUG] = -1
         Aineq_temp[RUG] = 1
         Aineq = vstack([Aineq, Aineq_temp])
-        bineq.append(-model["UG"]["PMIN"])
+        bineq.append(-model["UG"]["PMIN"]*model["UG"]["STATUS"])
 
         Aineq_temp = zeros(NX)
         Aineq_temp[PESS_DC] = 1
@@ -366,12 +366,12 @@ class ProblemFormulation():
         ## Formulating the universal energy models
         if type == "Feasible":
             from modelling.data.idx_format import PMG, NX
-            local_model_mathematical = problem_formulation.problem_formulation_local(local_model)
-            universal_model_mathematical = problem_formulation.problem_formulation_local(universal_model)
+            local_model_mathematical = ProblemFormulation.problem_formulation_local(local_model)
+            universal_model_mathematical = ProblemFormulation.problem_formulation_local(universal_model)
         else:
             from modelling.data.idx_format_recovery import PMG, NX
-            local_model_mathematical = problem_formulation.problem_formulation_local_recovery(local_model)
-            universal_model_mathematical = problem_formulation.problem_formulation_local_recovery(universal_model)
+            local_model_mathematical = ProblemFormulation.problem_formulation_local_recovery(local_model)
+            universal_model_mathematical = ProblemFormulation.problem_formulation_local_recovery(universal_model)
         # Modify the boundary information
         local_model_mathematical["lb"][PMG] = -universal_model["LINE"]["STATUS"] * universal_model["LINE"]["RATE_A"]
         local_model_mathematical["ub"][PMG] = universal_model["LINE"]["STATUS"] * universal_model["LINE"]["RATE_A"]

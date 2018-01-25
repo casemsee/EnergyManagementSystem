@@ -8,7 +8,7 @@ from information_management.informulation_formulation_update import single_perio
 from information_management.app import SinglePeriodInformationUpdateThread
 from forecasting.app import ShortTermForecastingThread
 from configuration.configuration_time_line import default_dead_line_time
-from short_term_operation.set_ponits_tracing import set_points_tracing_opf
+from short_term_operation.set_ponits_tracing import SetPointsTracing
 from configuration.configuration_time_line import default_look_ahead_time_step
 from copy import deepcopy
 
@@ -55,7 +55,7 @@ def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_down
 
     universal_mg = thread_forecasting.microgrid
     local_mg = thread_info_ex.microgrid
-    universal_mg = set_points_tracing_opf(Target_time, session,universal_mg)  # There are some bugs in this function
+    universal_mg = SetPointsTracing.set_points_tracing_opf(Target_time, session,universal_mg)  # There are some bugs in this function
     # Solve the optimal power flow problem
     local_mg = InputCheckShortTerm.model_local_check(local_mg)
     universal_mg = InputCheckShortTerm.model_universal_check(universal_mg)
@@ -140,7 +140,7 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
 
     # Update the dynamic model
     local_mg = InputCheckShortTerm.model_local_check(local_mg) # Check the data format of local ems
-    local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the
+    local_mg = SetPointsTracing.set_points_tracing_opf(Target_time,session,local_mg) # Update the
 
     dynamic_model = single_period_information_formulation(local_mg, info, Target_time)
 
@@ -192,7 +192,7 @@ def short_term_operation(local_mg,session,logger):
     # Update the dynamic model
     local_mg = InputCheckShortTerm.model_local_check(local_mg) # Check the data format of local ems
 
-    local_mg = set_points_tracing_opf(Target_time,session,local_mg) # Update the operation mode of local ems
+    local_mg = SetPointsTracing.set_points_tracing_opf(Target_time,session,local_mg) # Update the operation mode of local ems
 
     if local_mg["COMMAND_TYPE"] == 1:
         logger.info("OPF is under set-points tracing mode!")
@@ -221,7 +221,6 @@ def short_term_operation(local_mg,session,logger):
     else:
         local_mg = result_update_local(res_recovery.value, local_mg, "Infeasible",mathematical_model_recovery)
 
-        local_mg = OutputCheck.output_local_check(local_mg)
 
     #Check the output of optimal power flow
     local_mg = OutputCheck.output_local_check(local_mg)
@@ -277,7 +276,7 @@ def result_update_local(*args):
     c_local = mathematical_model["c"]
 
     local_model = update(x_local, local_model, type)
-    local_model["COST"] = float(sum([c*d for c,d in zip(c_local,x_local)])) # Update the
+    local_model["COST"] = float(sum([c*d for c,d in zip(c_local,x_local)]))*default_time["Time_step_opf"]/3600 # Update cost
 
     return local_model
 
@@ -321,7 +320,7 @@ def update(*args):
         else:
             from modelling.data.idx_opf_set_points_tracing_recovery import PG, QG, RG, PUG, QUG, RUG, PBIC_AC2DC, PBIC_DC2AC, \
                 QBIC,PESS_C, PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC
-            microgrid["DG"]["COMMAND_PG"] = int(x[PG])
+        microgrid["DG"]["COMMAND_PG"] = int(x[PG])
         microgrid["DG"]["COMMAND_QG"] = int(x[QG])
         microgrid["DG"]["COMMAND_RG"] = int(x[RG])
 
@@ -364,7 +363,7 @@ def status_update(microgrid,session,Target_time):
     """
     row = session.query(db_real_time).filter( db_real_time. TIME_STAMP < Target_time).first()
     microgrid["ESS"]["SOC"] = row.BAT_SOC
-    microgrid["DG"]["STATUS"] = row.DG_STATUS
-    microgrid["UG"]["STATUS"] = row.UG_STATUS
+    # microgrid["DG"]["STATUS"] = row.DG_STATUS
+    # microgrid["UG"]["STATUS"] = row.UG_STATUS
 
     return microgrid

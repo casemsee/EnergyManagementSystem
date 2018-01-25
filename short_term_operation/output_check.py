@@ -45,13 +45,13 @@ class OutputCheck():
             logger.info(
                 model["UG"]["COMMAND_PG"] + model["DG"]["COMMAND_PG"] - model["BIC"]["COMMAND_AC2DC"] + model["BIC"][
                     "COMMAND_DC2AC"] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"] - model["Load_nac"]["PD"] +
-                model["Load_ac"]["COMMAND_SHED"] + model["Load_uac"]["COMMAND_SHED"])
+                model["Load_ac"]["COMMAND_SHED"] + model["Load_nac"]["COMMAND_SHED"])
 
             logger.info(model["ESS"]["COMMAND_PG"] + model["BIC"]["COMMAND_AC2DC"] * model["BIC"]["EFF_DC2AC"] - \
                         model["BIC"]["COMMAND_DC2AC"] - model["Load_dc"]["PD"] - model["Load_ndc"]["PD"] + model["PV"][
                             "PG"] + \
                         model["WP"]["PG"] - model["PMG"] - model["PV"]["COMMAND_CURT"] - model["WP"]["COMMAND_CURT"] +
-                        model["Load_dc"]["COMMAND_SHED"] + model["Load_udc"]["COMMAND_SHED"])
+                        model["Load_dc"]["COMMAND_SHED"] + model["Load_ndc"]["COMMAND_SHED"])
 
             logger.info(model["BIC"]["COMMAND_AC2DC"] * model["BIC"]["COMMAND_DC2AC"])
 
