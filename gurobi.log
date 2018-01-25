@@ -1,0 +1,1248 @@
+
+Gurobi 7.5.1 (mac64, Python) logging started Tue Jan 23 15:20:19 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Tue Jan 23 15:24:06 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Tue Jan 23 15:28:38 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:16:16 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:16:37 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:17:26 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:17:55 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:20:41 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:22:52 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:25:25 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:26:27 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:36:09 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:36:27 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:36:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:36:46 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:36:57 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:37:20 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 13:54:31 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:01:38 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.507750e+02   0.000000e+00      0s
+       1    2.4317895e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.431789474e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.8450000e+06   4.507750e+02   0.000000e+00      0s
+       1   -3.8449757e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.844975682e+06
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:03:27 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.507750e+02   0.000000e+00      0s
+       1    2.4317895e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.431789474e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.8450000e+06   4.507750e+02   0.000000e+00      0s
+       1   -3.8449757e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.844975682e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 97 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 107 columns, 131 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.3135000e+07   5.906031e+03   0.000000e+00      0s
+      12   -4.3134125e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.313412458e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.044625e+03   0.000000e+00      0s
+      36    1.2244660e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.224466026e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:04:23 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.507750e+02   0.000000e+00      0s
+       1    2.4317895e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.431789474e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.8450000e+06   4.507750e+02   0.000000e+00      0s
+       1   -3.8449757e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.844975682e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 97 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 107 columns, 131 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.3135000e+07   5.906031e+03   0.000000e+00      0s
+      12   -4.3134125e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.313412458e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.044625e+03   0.000000e+00      0s
+      36    1.2244660e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.224466026e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:05:41 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.507750e+02   0.000000e+00      0s
+       1    2.4317895e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.431789474e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.8450000e+06   4.507750e+02   0.000000e+00      0s
+       1   -3.8449757e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.844975682e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 98 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 106 columns, 130 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.2993000e+07   6.044887e+03   0.000000e+00      0s
+      12   -4.2991661e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.299166095e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.168875e+03   0.000000e+00      0s
+      36    1.6986849e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.698684895e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:06:30 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.507750e+02   0.000000e+00      0s
+       1    2.4317895e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.431789474e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.8450000e+06   4.507750e+02   0.000000e+00      0s
+       1   -3.8449757e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.844975682e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 98 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 106 columns, 130 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.2993000e+07   6.044887e+03   0.000000e+00      0s
+      12   -4.2991661e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.299166095e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.168875e+03   0.000000e+00      0s
+      36    1.6986849e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.698684895e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:07:22 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.507750e+02   0.000000e+00      0s
+       1    2.4317895e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.431789474e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.8450000e+06   4.507750e+02   0.000000e+00      0s
+       1   -3.8449757e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.844975682e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 98 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 106 columns, 130 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.2993000e+07   6.044887e+03   0.000000e+00      0s
+      12   -4.2991661e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.299166095e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.168875e+03   0.000000e+00      0s
+      36    1.6986849e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.698684895e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:08:07 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.571500e+02   0.000000e+00      0s
+       1    2.4854737e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.485473684e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.7940000e+06   4.571500e+02   0.000000e+00      0s
+       1   -3.7939751e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.793975145e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 98 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 106 columns, 130 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.2993000e+07   6.044887e+03   0.000000e+00      0s
+      12   -4.2991661e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.299166095e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.168875e+03   0.000000e+00      0s
+      36    1.6986849e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.698684895e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 14:08:27 2018
+
+Academic license - for non-commercial use only
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 14 columns and 33 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 9 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 5 columns, 7 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.571500e+02   0.000000e+00      0s
+       1    2.4854737e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective  2.485473684e+01
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 12 rows, 20 columns and 39 nonzeros
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 10 rows and 12 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 8 columns, 10 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -3.7940000e+06   4.571500e+02   0.000000e+00      0s
+       1   -3.7939751e+06   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.00 seconds
+Optimal objective -3.793975145e+06
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 132 rows, 204 columns and 443 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-02, 1e+03]
+  Bounds range     [2e+02, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 108 rows and 98 columns
+Presolve time: 0.00s
+Presolved: 24 rows, 106 columns, 130 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -4.2993000e+07   6.044887e+03   0.000000e+00      0s
+      12   -4.2991661e+07   0.000000e+00   0.000000e+00      0s
+
+Solved in 12 iterations and 0.00 seconds
+Optimal objective -4.299166095e+07
+Parameter OutputFlag unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Changed value of parameter DisplayInterval to 1
+   Prev: 5  Min: 1  Max: 2000000000  Default: 5
+Optimize a model with 204 rows, 204 columns and 539 nonzeros
+Coefficient statistics:
+  Matrix range     [8e-02, 1e+00]
+  Objective range  [1e-03, 2e+00]
+  Bounds range     [1e+03, 1e+04]
+  RHS range        [1e+03, 1e+04]
+Presolve removed 156 rows and 120 columns
+Presolve time: 0.00s
+Presolved: 48 rows, 84 columns, 168 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   4.168875e+03   0.000000e+00      0s
+      36    1.6986849e+03   0.000000e+00   0.000000e+00      0s
+
+Solved in 36 iterations and 0.00 seconds
+Optimal objective  1.698684895e+03
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:03:56 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:04:21 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:04:41 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:05:58 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:09:25 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:31:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:32:11 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:32:21 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:32:54 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:32:58 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:35:07 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:35:11 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:35:16 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:35:20 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:37:42 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:38:39 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:47:18 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:48:41 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:53:03 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:53:18 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:53:32 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:54:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Wed Jan 24 15:54:50 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 08:57:01 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 08:57:42 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 08:58:28 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 08:59:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 08:59:59 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:00:21 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:00:40 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:01:30 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:01:46 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:02:34 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:02:47 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:03:18 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:03:32 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:03:52 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:04:30 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:07:48 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:09:12 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:09:26 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:12:13 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:12:22 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:12:30 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:12:40 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 09:12:48 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:14:21 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:14:57 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:15:46 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:22:50 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:23:25 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:23:37 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:25:37 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:26:11 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:26:20 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:29:55 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:30:28 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:31:17 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:32:26 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:35:58 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:36:16 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:36:28 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 10:37:17 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:06:33 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:07:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:09:13 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:09:28 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:10:33 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:10:53 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 11:11:21 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:02:34 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:15:30 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:16:25 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:20:26 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:33:00 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:34:44 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:35:14 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:47:50 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:48:45 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:49:12 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:49:31 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:52:55 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:54:01 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:54:31 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:57:40 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:57:58 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:58:18 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 12:59:39 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:04:41 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:12:01 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:12:15 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:18:25 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:19:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:25:05 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:31:36 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:34:07 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:35:22 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 13:38:45 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:01:03 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:01:23 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:03:44 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:04:34 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:05:12 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:06:56 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 14:08:04 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:07:45 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:11:46 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:11:57 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:12:23 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:13:15 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:14:10 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:14:50 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:19:17 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:20:28 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:34:57 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:35:17 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:36:52 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:41:24 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:43:56 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:45:34 2018
+
+Academic license - for non-commercial use only
+
+Gurobi 7.5.1 (mac64, Python) logging started Thu Jan 25 15:56:10 2018
+
+Academic license - for non-commercial use only
