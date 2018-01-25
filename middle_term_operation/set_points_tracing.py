@@ -14,11 +14,11 @@ def set_points_tracing_ed(*args):
     delta_T = default_time["Time_step_ed"]
     T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"] #Amount of data should be addedsss
 
-    model["DG"]["GEN_STATUS"] = [0] * T
+    model["DG"]["COMMAND_START_UP"] = [0] * T
     model["DG"]["COMMAND_PG"] = [0] * T
     model["DG"]["COMMAND_RG"] = [0] * T
 
-    model["UG"]["GEN_STATUS"] = [0] * T
+    model["UG"]["COMMAND_START_UP"] = [0] * T
     model["UG"]["COMMAND_PG"] = [0] * T
     model["UG"]["COMMAND_RG"] = [0] * T
 
@@ -41,10 +41,10 @@ def set_points_tracing_ed(*args):
     try:
         for i in range(T):
             row = session.query(long2middle).filter(long2middle.TIME_STAMP == Target_time + i * delta_T).first()
-            model["DG"]["GEN_STATUS"][i] = int(row.DG_STATUS)
+            model["DG"]["STATUS"][i] = int(row.DG_STATUS)
             model["DG"]["COMMAND_PG"][i] = row.DG_PG
 
-            model["UG"]["GEN_STATUS"][i] = int(row.UG_STATUS)
+            model["UG"]["STATUS"][i] = int(row.UG_STATUS)
             model["UG"]["COMMAND_PG"][i] = row.UG_PG
 
             if row.BIC_PG > 0 :
@@ -63,9 +63,9 @@ def set_points_tracing_ed(*args):
             model["WP"]["COMMAND_CURT"][i] = row.WP_CURT
 
             model["Load_ac"]["COMMAND_SHED"][i] = row.AC_SHED
-            model["Load_nac"]["COMMAND_SHED"][i] = row.UAC_SHED
+            model["Load_nac"]["COMMAND_SHED"][i] = row.NAC_SHED
             model["Load_dc"]["COMMAND_SHED"][i] = row.DC_SHED
-            model["Load_ndc"]["COMMAND_SHED"][i] = row.UDC_SHED
+            model["Load_ndc"]["COMMAND_SHED"][i] = row.NDC_SHED
 
         model["COMMAND_TYPE"] = 1 # This is the set-point tracing
 

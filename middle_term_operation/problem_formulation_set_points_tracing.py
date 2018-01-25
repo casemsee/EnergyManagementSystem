@@ -304,9 +304,9 @@ class ProblemFormulationTracing():
             ub[i * NX + PPV] = model["PV"]["PG"][i]
             ub[i * NX + PWP] = model["WP"]["PG"][i]
             ub[i * NX + PL_AC] = model["Load_ac"]["PD"][i]
-            ub[i * NX + PL_UAC] = model["Load_uac"]["PD"][i]
+            ub[i * NX + PL_UAC] = model["Load_nac"]["PD"][i]
             ub[i * NX + PL_DC] = model["Load_dc"]["PD"][i]
-            ub[i * NX + PL_UDC] = model["Load_udc"]["PD"][i]
+            ub[i * NX + PL_UDC] = model["Load_ndc"]["PD"][i]
             ub[i * NX + PMG_positive] = 0  # This boundary information will ne updated to the
             ub[i * NX + PMG_negative] = 0
             ub[i * NX + PUG_positive] = model["UG"]["PMAX"]
@@ -482,9 +482,9 @@ class ProblemFormulationTracing():
         c[PPV] = -model["PV"]["COST"]
         c[PWP] = -model["WP"]["COST"]
         c[PL_AC] = -model["Load_ac"]["COST"][0]
-        c[PL_UAC] = -model["Load_uac"]["COST"][0]
+        c[PL_UAC] = -model["Load_nac"]["COST"][0]
         c[PL_DC] = -model["Load_dc"]["COST"][0]
-        c[PL_UDC] = -model["Load_udc"]["COST"][0]
+        c[PL_UDC] = -model["Load_ndc"]["COST"][0]
         c[PMG_negative] = default_eps["Penalty_ed"]
         c[PMG_positive] = default_eps["Penalty_ed"]
         c[PUG_positive] = default_eps["Penalty_ed"]

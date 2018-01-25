@@ -425,7 +425,7 @@ def status_update(microgrid,session,Target_time):
     row = session.query(db_short_term).filter(db_short_term.TIME_STAMP <= Target_time).first()
 
     microgrid["ESS"]["SOC"] = row.BAT_SOC
-    microgrid["DG"]["STATUS"] = [row.DG_STATUS]*default_time["Look_ahead_time_ed"]
-    microgrid["UG"]["STATUS"] = [row.UG_STATUS]*default_time["Look_ahead_time_ed"]
+    microgrid["DG"]["STATUS"] = [row.DG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+    microgrid["UG"]["STATUS"] = [row.UG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
     return microgrid

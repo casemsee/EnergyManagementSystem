@@ -23,7 +23,7 @@ class InputCheckMiddleTerm():
         model = deepcopy(args[0])  # The input model
         T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]  # The look ahead time step for short term operation
         # 1) The input check of utility grid
-        if len(model["UG"]["GEN_STATUS"]) != T:
+        if len(model["UG"]["STATUS"]) != T:
             logger.error("The size of utility grid status is incorrect!")
             logger.info("The status of utility grid has been reset to online!")
             model["UG"]["GEN_STATUS"] = [1] * T
@@ -53,7 +53,7 @@ class InputCheckMiddleTerm():
             model["UG"]["QMIN"] = model["UG"]["QMAX"]
 
         # 2) The input check of diesel generator
-        if len(model["DG"]["GEN_STATUS"]) != T:
+        if len(model["DG"]["STATUS"]) != T:
             logger.error("The size of diesel generator status is incorrect!")
             logger.info("The status of diesel generator has been reset to online!")
             model["DG"]["GEN_STATUS"] = [1] * T
@@ -191,7 +191,7 @@ class InputCheckMiddleTerm():
         T = default_look_ahead_time_step[
             "Look_ahead_time_ed_time_step"]  # The look ahead time step for short term operation
         # 1) The input check of utility grid
-        if len(model["UG"]["GEN_STATUS"]) != T:
+        if len(model["UG"]["STATUS"]) != T:
             logger.error("The size of utility grid status is incorrect!")
             logger.info("The status of utility grid has been reset to online!")
             model["UG"]["GEN_STATUS"] = [1] * T
@@ -221,7 +221,7 @@ class InputCheckMiddleTerm():
             model["UG"]["QMIN"] = model["UG"]["QMAX"]
 
         # 2) The input check of diesel generator
-        if len(model["DG"]["GEN_STATUS"]) != T:
+        if len(model["DG"]["STATUS"]) != T:
             logger.error("The size of diesel generator status is incorrect!")
             logger.info("The status of diesel generator has been reset to online!")
             model["DG"]["GEN_STATUS"] = [1] * T

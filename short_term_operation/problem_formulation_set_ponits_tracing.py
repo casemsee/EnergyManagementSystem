@@ -36,7 +36,7 @@ class ProblemFormulationSetPointsTracing():
 
         lb[PBIC_AC2DC] = 0
         lb[PBIC_DC2AC] = 0
-        lb[QBIC] = -model["BIC"]["CAP"]
+        lb[QBIC] = -model["BIC"]["SMAX"]
 
         lb[PESS_C] = 0
         lb[PESS_DC] = 0
@@ -59,9 +59,9 @@ class ProblemFormulationSetPointsTracing():
         ub[QUG] = model["UG"]["QMAX"]
         ub[RUG] = model["UG"]["PMAX"]
 
-        ub[PBIC_AC2DC] = model["BIC"]["CAP"]
-        ub[PBIC_DC2AC] = model["BIC"]["CAP"]
-        ub[QBIC] = model["BIC"]["CAP"]
+        ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
+        ub[PBIC_DC2AC] = model["BIC"]["SMAX"]
+        ub[QBIC] = model["BIC"]["SMAX"]
 
         ub[PESS_C] = model["ESS"]["PMAX_CH"]
         ub[PESS_DC] = model["ESS"]["PMAX_DIS"]
@@ -83,7 +83,7 @@ class ProblemFormulationSetPointsTracing():
         Aeq[PG] = 1
         Aeq[PUG] = 1
         Aeq[PBIC_AC2DC] = -1
-        beq.append(model["Load_ac"]["PD"] + model["Load_uac"]["PD"])
+        beq.append(model["Load_ac"]["PD"] + model["Load_nac"]["PD"])
         # 2) DC power balance equation
         Aeq_temp = zeros(NX)
         Aeq_temp[PBIC_AC2DC] = model["BIC"]["EFF_AC2DC"]
@@ -92,7 +92,7 @@ class ProblemFormulationSetPointsTracing():
         Aeq_temp[PESS_DC] = 1
         Aeq_temp[PMG] = -1
         Aeq = vstack([Aeq, Aeq_temp])
-        beq.append(model["Load_dc"]["PD"] + model["Load_udc"]["PD"] - model["PV"]["PG"] - model["WP"]["PG"])
+        beq.append(model["Load_dc"]["PD"] + model["Load_ndc"]["PD"] - model["PV"]["PG"] - model["WP"]["PG"])
         ## This erro is caused by the information collection, and the model formulated is list. This is easy for the use
         # 3) Reactive power balance equation
         Aeq_temp = zeros(NX)
@@ -101,7 +101,7 @@ class ProblemFormulationSetPointsTracing():
         Aeq_temp[QBIC] = 1
         Aeq = vstack([Aeq, Aeq_temp])
         # beq.append(0)
-        beq.append(model["Load_ac"]["QD"] + model["Load_uac"]["QD"])
+        beq.append(model["Load_ac"]["QD"] + model["Load_nac"]["QD"])
         # 4) Energy storage system
         Aeq_temp = zeros(NX)
         Aeq_temp[EESS] = 1
@@ -265,7 +265,7 @@ class ProblemFormulationSetPointsTracing():
 
         lb[PBIC_AC2DC] = 0
         lb[PBIC_DC2AC] = 0
-        lb[QBIC] = -model["BIC"]["CAP"]
+        lb[QBIC] = -model["BIC"]["SMAX"]
 
         lb[PESS_C] = 0
         lb[PESS_DC] = 0
@@ -296,9 +296,9 @@ class ProblemFormulationSetPointsTracing():
         ub[QUG] = model["UG"]["QMAX"]
         ub[RUG] = model["UG"]["PMAX"]
 
-        ub[PBIC_AC2DC] = model["BIC"]["CAP"]
-        ub[PBIC_DC2AC] = model["BIC"]["CAP"]
-        ub[QBIC] = model["BIC"]["CAP"]
+        ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
+        ub[PBIC_DC2AC] = model["BIC"]["SMAX"]
+        ub[QBIC] = model["BIC"]["SMAX"]
 
         ub[PESS_C] = model["ESS"]["PMAX_CH"]
         ub[PESS_DC] = model["ESS"]["PMAX_DIS"]
@@ -310,9 +310,9 @@ class ProblemFormulationSetPointsTracing():
         ub[PPV] = model["PV"]["PG"]
         ub[PWP] = model["WP"]["PG"]
         ub[PL_AC] = model["Load_ac"]["PD"]
-        ub[PL_UAC] = model["Load_uac"]["PD"]
+        ub[PL_UAC] = model["Load_nac"]["PD"]
         ub[PL_DC] = model["Load_dc"]["PD"]
-        ub[PL_UDC] = model["Load_udc"]["PD"]
+        ub[PL_UDC] = model["Load_ndc"]["PD"]
 
         ub[PMG_positive] = 0  # This boundary information will ne updated to the
         ub[PMG_negative] = 0
@@ -350,7 +350,7 @@ class ProblemFormulationSetPointsTracing():
         Aeq_temp[QUG] = 1
         Aeq_temp[QBIC] = 1
         Aeq = vstack([Aeq, Aeq_temp])
-        beq.append(model["Load_ac"]["QD"] + model["Load_uac"]["QD"])
+        beq.append(model["Load_ac"]["QD"] + model["Load_nac"]["QD"])
         # 4) Energy storage system
         Aeq_temp = zeros(NX)
         Aeq_temp[EESS] = 1
@@ -470,9 +470,9 @@ class ProblemFormulationSetPointsTracing():
         c[PPV] = -model["PV"]["COST"]
         c[PWP] = -model["WP"]["COST"]
         c[PL_AC] = -model["Load_ac"]["COST"][0]
-        c[PL_UAC] = -model["Load_uac"]["COST"][0]
+        c[PL_UAC] = -model["Load_nac"]["COST"][0]
         c[PL_DC] = -model["Load_dc"]["COST"][0]
-        c[PL_UDC] = -model["Load_udc"]["COST"][0]
+        c[PL_UDC] = -model["Load_ndc"]["COST"][0]
 
         # Add the constraints to the local optimal power flow
         c[PMG_negative] = default_eps["Penalty_opf"]
