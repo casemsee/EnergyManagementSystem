@@ -13,8 +13,8 @@ default_AC_generator_parameters = \
         "QMIN": -5000,
         "SMAX": 5000,
         "VG": 1.0,
-        "RAMP_AGC": 3000,
-        "RAMP_10": 3000,
+        "RAMP_AGC": 5000,
+        "RAMP_10": 5000,
         "PF_LIMIT": [-1, 1],
         "APF": 0,  # The droop parameters
         "COST_START_UP": 1,
