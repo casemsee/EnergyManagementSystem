@@ -427,7 +427,13 @@ class ProblemFormulation():
             Aineq_temp[i][i * NX + IESS] = model["ESS"]["PMAX_DIS"]
             bineq.append(model["ESS"]["PMAX_DIS"])
         Aineq = vstack([Aineq, Aineq_temp])
-
+        # 14） IG+IUG<=1
+        Aineq_temp = zeros((T, nx))
+        for i in range(T):
+            Aineq_temp[i][i * NX + IG] = 1
+            Aineq_temp[i][i * NX + IUG] = 1
+            bineq.append(1)
+        Aineq = vstack([Aineq, Aineq_temp])
         # No reserve requirement
         c = [0] * NX
         if model["DG"]["COST_MODEL"] == 2:
