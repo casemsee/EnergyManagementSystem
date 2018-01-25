@@ -382,7 +382,7 @@ def update(*args):
 
 def status_update(microgrid,session,Target_time):
     """
-    Update Battery SOC, generation status, load status, bic status etc
+    Update Battery SOC, generation status, load status, bic status etc, according to the scheduling of middle term operation
     :param microgrid: information model
     :param session: inquery the middle_term operation database
     :param Target_time: scheduling time of middle time operation
@@ -396,7 +396,7 @@ def status_update(microgrid,session,Target_time):
     row = session.query(db_middle_term).filter(db_middle_term.TIME_STAMP <= Target_time).first()
 
     microgrid["ESS"]["SOC"] = row.BAT_SOC
-    microgrid["DG"]["STATUS"] = [row.DG_STATUS]*default_time["Look_ahead_time_uc"]
-    microgrid["UG"]["STATUS"] = [row.UG_STATUS]*default_time["Look_ahead_time_uc"]
+    microgrid["DG"]["STATUS"] = [row.DG_STATUS]*default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
+    microgrid["UG"]["STATUS"] = [row.UG_STATUS]*default_look_ahead_time_step["Look_ahead_time_uc_time_step"]
 
     return microgrid
