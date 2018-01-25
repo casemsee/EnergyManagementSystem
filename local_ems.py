@@ -78,8 +78,8 @@ class Main():
         #     short_term_operation.run(microgrid_short, session_short)  # Short-term operation has pasted test!
         #     # 3) middle-term operation
         #     middle_term_operation.run(microgrid_middle, session_middle) # Middle-term operation has pasted test!
-        #     # 4) long-term operation
-        #     long_term_operation.run(microgrid_long, session_long) # Long-term operation needs to be tested!
+            # 4) long-term operation
+            # long_term_operation.run(microgrid_long, session_long) # Long-term operation needs to be tested!
 
 
 def run():

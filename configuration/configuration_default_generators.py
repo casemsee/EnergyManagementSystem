@@ -25,7 +25,7 @@ default_AC_generator_parameters = \
         "TIME_GENERATED": timeline.default_time["Base_time"],
         "TIME_APPLIED": [timeline.default_time["Base_time"], timeline.default_time["Base_time"]+timeline.default_time["Look_ahead_time_uc"]],
         "TIME_COMMANDED": timeline.default_time["Base_time"],
-        "COMMAND_START_UP": 0,
+        "COMMAND_START_UP": 1,
         "COMMAND_SET_POINT_VG": 0,
         "COMMAND_SET_POINT_PG": 0,
         "COMMAND_SET_POINT_QG": 0,

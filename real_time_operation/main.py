@@ -144,7 +144,7 @@ def scheduling_data(microgrid, session, t0):
     :param session: short_term_scheduling database session
     :return:
     """
-    Target_time = int(t0 - t0%default_time["Time_step_rtc"])
+    Target_time = int(t0 - t0%default_time["Time_step_opf"])
     if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() != 0: # If the scheduling plan exists!
         row = session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).first()
         if row.DG_STATUS>0 and microgrid["DG"]["STATUS"]>0:
@@ -155,7 +155,7 @@ def scheduling_data(microgrid, session, t0):
             microgrid["DG"]["STATUS"] = 0
             microgrid["DG"]["COMMAND_PG"] = 0
             microgrid["DG"]["COMMAND_QG"] = 0
-        if row.UG_STATUS>0 and  microgrid["UG"]["STATUS"]>0:
+        if row.UG_STATUS>0 and microgrid["UG"]["STATUS"]>0:
             microgrid["UG"]["STATUS"] = 1
             microgrid["UG"]["COMMAND_PG"] = row.UG_PG
             microgrid["UG"]["COMMAND_QG"] = row.UG_QG
