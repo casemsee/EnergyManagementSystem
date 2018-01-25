@@ -6,7 +6,9 @@ import numpy
 from copy import deepcopy
 
 class ProblemFormulation():
-    ## Reformulte the information model to system level
+    """
+    Problem formulation class for economic dispatch
+    """
     def problem_formulation_local(*args):
         from configuration import configuration_time_line
         from modelling.data.idx_ed_foramt import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
@@ -53,7 +55,6 @@ class ProblemFormulation():
         # Finalize the boundary information
         LB = lb * T
         UB = ub * T
-
         ## Constraints set
         # 1) Power balance equation
         Aeq = zeros((T, nx))
@@ -73,8 +74,7 @@ class ProblemFormulation():
             Aeq_temp[i][i * NX + PESS_C] = -1
             Aeq_temp[i][i * NX + PESS_DC] = 1
             Aeq_temp[i][i * NX + PMG] = -1
-            beq.append(
-                model["Load_dc"]["PD"][i] + model["Load_ndc"]["PD"][i] - model["PV"]["PG"][i] - model["WP"]["PG"][i])
+            beq.append(model["Load_dc"]["PD"][i] + model["Load_ndc"]["PD"][i] - model["PV"]["PG"][i] - model["WP"]["PG"][i])
 
         Aeq = vstack([Aeq, Aeq_temp])
 
@@ -105,27 +105,27 @@ class ProblemFormulation():
         for i in range(T):
             Aineq[i][i * NX + PG] = 1
             Aineq[i][i * NX + RG] = 1
-            bineq.append(model["DG"]["PMAX"])
+            bineq.append(model["DG"]["PMAX"]*model["DG"]["STATUS"][i])
         # 2) PG - RG >= PGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PG] = -1
             Aineq_temp[i][i * NX + RG] = 1
-            bineq.append(-model["DG"]["PMIN"])
+            bineq.append(-model["DG"]["PMIN"]*model["DG"]["STATUS"][i])
         Aineq = vstack([Aineq, Aineq_temp])
         # 3) PUG + RUG <= PUGMAX
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = 1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(model["UG"]["PMAX"])
+            bineq.append(model["UG"]["PMAX"]*model["UG"]["STATUS"][i])
         Aineq = vstack([Aineq, Aineq_temp])
         # 4) PUG - RUG >= PUGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = -1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(-model["UG"]["PMIN"])
+            bineq.append(-model["UG"]["PMIN"]*model["UG"]["STATUS"][i])
         Aineq = vstack([Aineq, Aineq_temp])
         # 5) PESS_DC - PESS_C + RESS <= PESS_DC_MAX
         Aineq_temp = zeros((T, nx))
@@ -294,27 +294,27 @@ class ProblemFormulation():
         for i in range(T):
             Aineq[i][i * NX + PG] = 1
             Aineq[i][i * NX + RG] = 1
-            bineq.append(model["DG"]["PMAX"])
+            bineq.append(model["DG"]["PMAX"]*model["DG"]["STATUS"][i])
         # 2) PG - RG >= PGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PG] = -1
             Aineq_temp[i][i * NX + RG] = 1
-            bineq.append(-model["DG"]["PMIN"])
+            bineq.append(-model["DG"]["PMIN"]*model["DG"]["STATUS"][i])
         Aineq = vstack([Aineq, Aineq_temp])
         # 3) PUG + RUG <= PUGMAX
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = 1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(model["UG"]["PMAX"])
+            bineq.append(model["UG"]["PMAX"]*model["UG"]["STATUS"][i])
         Aineq = vstack([Aineq, Aineq_temp])
         # 4) PUG - RUG >= PUGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = -1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(-model["UG"]["PMIN"])
+            bineq.append(-model["UG"]["PMIN"]*model["UG"]["STATUS"][i])
         Aineq = vstack([Aineq, Aineq_temp])
         # 5) PESS_DC - PESS_C + RESS <= PESS_DC_MAX
         Aineq_temp = zeros((T, nx))

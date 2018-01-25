@@ -1,15 +1,15 @@
-# Output check procedure for optimal power flow
-# The following rules are used to test the feasiblity of output
-# 1) Active power balancing of on AC bus
-# 2) Reactive power balancing of on DC bus
-
 from configuration.configuration_time_line import default_look_ahead_time_step
 from utils import Logger
-
 logger = Logger("Middle_term_dispatch_output_check")
 from configuration.configuration_global import default_eps
 
 class OutputCheck():
+    """
+    Output check procedure for optimal power flow
+    The following rules are used to test the feasiblity of output
+    1) Active power balancing of on AC bus
+    2) Reactive power balancing of on DC bus
+    """
     def output_local_check(*args):
         model = args[0]  # local ems models
         T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]  # The look ahead time step of optimal power flow

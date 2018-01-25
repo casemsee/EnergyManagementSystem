@@ -1,17 +1,19 @@
-# Problem formulation for the set-points tracing method
 from numpy import array, vstack, zeros
 import numpy
 from copy import deepcopy
 from configuration.configuration_global import default_eps
 
 class ProblemFormulationTracing():
+    """
+    Problem formulation class for economic dispatch
+    """
     def problem_formulation_local(*args):
         from configuration import configuration_time_line
         from modelling.data.idx_ed_set_points_tracing import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
             PESS_DC, RESS, EESS, PMG, PMG_negative, PMG_positive, PUG_negative, PUG_positive, SOC_negative, \
             SOC_positive, NX
-        model = deepcopy(args[0])  # If multiple models are inputed, more local ems models will be formulated
-        ## The feasible optimal problem formulation
+        model = deepcopy(args[0])
+
         T = configuration_time_line.default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
         nx = NX * T
 
@@ -117,27 +119,27 @@ class ProblemFormulationTracing():
         for i in range(T):
             Aineq[i][i * NX + PG] = 1
             Aineq[i][i * NX + RG] = 1
-            bineq.append(model["DG"]["PMAX"])
+            bineq.append(model["DG"]["PMAX"]*min(model["DG"]["STATUS"][i],model["DG"]["COMMAND_START_UP"][i]))
         # 2) PG - RG >= PGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PG] = -1
             Aineq_temp[i][i * NX + RG] = 1
-            bineq.append(-model["DG"]["PMIN"])
+            bineq.append(-model["DG"]["PMIN"]*min(model["DG"]["STATUS"][i],model["DG"]["COMMAND_START_UP"][i]))
         Aineq = vstack([Aineq, Aineq_temp])
         # 3) PUG + RUG <= PUGMAX
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = 1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(model["UG"]["PMAX"])
+            bineq.append(model["UG"]["PMAX"]*min(model["UG"]["STATUS"][i],model["UG"]["COMMAND_START_UP"][i]))
         Aineq = vstack([Aineq, Aineq_temp])
         # 4) PUG - RUG >= PUGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = -1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(-model["UG"]["PMIN"])
+            bineq.append(-model["UG"]["PMIN"]*min(model["UG"]["STATUS"][i],model["UG"]["COMMAND_START_UP"][i]))
         Aineq = vstack([Aineq, Aineq_temp])
         # 5) PESS_DC - PESS_C + RESS <= PESS_DC_MAX
         Aineq_temp = zeros((T, nx))
@@ -370,27 +372,27 @@ class ProblemFormulationTracing():
         for i in range(T):
             Aineq[i][i * NX + PG] = 1
             Aineq[i][i * NX + RG] = 1
-            bineq.append(model["DG"]["PMAX"])
+            bineq.append(model["DG"]["PMAX"]*min(model["DG"]["STATUS"][i],model["DG"]["COMMAND_START_UP"][i]))
         # 2) PG - RG >= PGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PG] = -1
             Aineq_temp[i][i * NX + RG] = 1
-            bineq.append(-model["DG"]["PMIN"])
+            bineq.append(-model["DG"]["PMIN"]*min(model["DG"]["STATUS"][i],model["DG"]["COMMAND_START_UP"][i]))
         Aineq = vstack([Aineq, Aineq_temp])
         # 3) PUG + RUG <= PUGMAX
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = 1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(model["UG"]["PMAX"])
+            bineq.append(model["UG"]["PMAX"]*min(model["UG"]["STATUS"][i],model["UG"]["COMMAND_START_UP"][i]))
         Aineq = vstack([Aineq, Aineq_temp])
         # 4) PUG - RUG >= PUGMIN
         Aineq_temp = zeros((T, nx))
         for i in range(T):
             Aineq_temp[i][i * NX + PUG] = -1
             Aineq_temp[i][i * NX + RUG] = 1
-            bineq.append(-model["UG"]["PMIN"])
+            bineq.append(-model["UG"]["PMIN"]*min(model["UG"]["STATUS"][i],model["UG"]["COMMAND_START_UP"][i]))
         Aineq = vstack([Aineq, Aineq_temp])
         # 5) PESS_DC - PESS_C + RESS <= PESS_DC_MAX
         Aineq_temp = zeros((T, nx))

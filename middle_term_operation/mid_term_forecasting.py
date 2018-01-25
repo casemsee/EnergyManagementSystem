@@ -5,7 +5,6 @@
 This part of work follows LiSong's work.
 I suggest more general steps should be carried out.
 In this version, the Tensorflow based time series forecasting is used
-
 """
 # from forecasting.mid_term_forecasting import middle_term_forecasting_pv, middle_term_forecasting_wp, \
 #     middle_term_forecasting_load_ac, middle_term_forecasting_load_dc, middle_term_forecasting_load_nac, \

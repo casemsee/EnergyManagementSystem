@@ -1,24 +1,25 @@
-# The input information check function for the unit committment
-# Two types of information will be checked, shown as follows.
-# 1) universal model, which contains the connection and topology information within the microgrid parks
-# 2) local model, which contains the local sources information
-
-# The following rules are used
-# 1) Online status of generators
-# 2) Capacity
-
-# Important notice:
-# The input check is the oriented from 1） the start-up of the local ems and universal ems
-# 2） modelling of each equipment
-
 from copy import deepcopy
 from configuration.configuration_time_line import default_look_ahead_time_step
 from utils import Logger
-
 logger = Logger("Middle_term_dispatch_input_check")
 from configuration import configuration_default_generators, configuration_default_load, configuration_convertors
 
 class InputCheckMiddleTerm():
+    """
+    The input information check function for the economic dispatch
+    Two types of information will be checked, shown as follows.
+    1) universal model, which contains the connection and topology information within the microgrid parks
+    2) local model, which contains the local sources information
+
+    There are 10 rules for the  input check of local scheduling problem and 11 rules for the universal scheduling problem.
+    1) Online status of generators
+    2) Capacity
+
+    Important notice:
+    The input check is the oriented from
+    1） the start-up of the local ems and universal ems
+    2） modelling of each equipment
+    """
     def model_local_check(*args):
         model = deepcopy(args[0])  # The input model
         T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]  # The look ahead time step for short term operation
@@ -251,10 +252,10 @@ class InputCheckMiddleTerm():
             model["DG"]["QMIN"] = model["DG"]["QMAX"]
 
         # 3) The input check of photovoltaic generators
-        if len(model["PV"]["NPV"]) != T:
+        if len(model["PV"]["N"]) != T:
             logger.error("The size of photovoltaic generator status is incorrect!")
             logger.info("The status of photovoltaic generator has been reset to online!")
-            model["PV"]["NPV"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
+            model["PV"]["N"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
         if type(model["PV"]["PMAX"]) is not list:
             logger.error("The data format of photovoltaic generator capacity is incorrect!")
             try:
@@ -267,10 +268,10 @@ class InputCheckMiddleTerm():
 
 
         # 4) The input check of wind turbine generators
-        if len(model["WP"]["NWP"]) != T:
+        if len(model["WP"]["N"]) != T:
             logger.error("The size of WP status is incorrect!")
             logger.info("The status of WP has been reset to online!")
-            model["WP"]["NPV"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
+            model["WP"]["N"] = [configuration_default_generators.default_RES_generator_parameters["PMAX"]] * T
         if type(model["WP"]["PMAX"]) is not list:
             logger.error("The data format of WP capacity is incorrect!")
             try:

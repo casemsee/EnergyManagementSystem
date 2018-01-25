@@ -1,9 +1,11 @@
-# The long2middle function is provided to convert the long-term opeartion to middle-term operation.
-# This operation is mainly related to the database operation.
 from modelling.database.database_format import middle2short
 from configuration.configuration_time_line import default_time
 
 class Middle2Short():
+    """
+    The long2middle function is provided to convert the long-term opeartion to middle-term operation.
+    This operation is mainly related to the database operation.
+    """
     def run(*args):
         Target_time = args[0] # Target time is the start time of scheduling in long-term operation
         model = args[2] # Solution of the long-term operation
@@ -14,7 +16,6 @@ class Middle2Short():
         # Remove old data
         session.query(middle2short).filter(middle2short.TIME_STAMP < Target_time-default_time["Look_ahead_time_ed"] ).delete()
         session.commit()
-
         for i in range(add_len): # Add the set-pointed repeatly
             if session.query(middle2short).filter(middle2short.TIME_STAMP == Target_time + i * delta_T).count() == 0:
                 blank_row = middle2short(TIME_STAMP = Target_time + i * delta_T,

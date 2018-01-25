@@ -16,9 +16,10 @@ from copy import deepcopy
 from middle_term_operation.input_check import InputCheckMiddleTerm
 from middle_term_operation.output_check import OutputCheck
 from middle_term_operation.middle2short import Middle2Short
-from middle_term_operation.set_points_tracing import set_points_tracing_ed
+from middle_term_operation.set_points_tracing import SetPointsTracing
 from database_management.database_management import database_storage_operation
 from modelling.database.database_format import db_short_term
+
 def middle_term_operation_uems(*args):
     # Middle term forecasting for the middle term operation in universal energy management system.
     from middle_term_operation.problem_formulation import ProblemFormulation
@@ -128,8 +129,7 @@ def middle_term_operation_lems(*args):
     logger = args[5]
 
     Target_time = time.time()
-    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time[
-            "Time_step_ed"]))
+    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
 
     # Step 1: Short-term forecasting
     thread_forecasting = ForecastingThread(session, Target_time, local_models)  # The forecasting thread
@@ -138,7 +138,7 @@ def middle_term_operation_lems(*args):
 
     local_models = thread_forecasting.models
     # Update the dynamic model
-    local_models = set_points_tracing_ed(Target_time, session, local_models)
+    local_models = SetPointsTracing.set_points_tracing_ed(Target_time, session, local_models)
     InformationFormulationThread = MultiplePeriodsInformationFormulationThread(local_models, info, Target_time, "ED")
     InformationFormulationThread.start()
     InformationFormulationThread.join()
@@ -195,7 +195,7 @@ def middle_term_operation(microgrid,session,logger):
     thread_forecasting.join()
     microgrid = thread_forecasting.models
     # Step 2: Set-point tracing check
-    microgrid = set_points_tracing_ed(Target_time, session, microgrid)
+    microgrid = SetPointsTracing.set_points_tracing_ed(Target_time, session, microgrid)
     # Step 3: Status update
     microgrid = status_update(microgrid, session, Target_time)
     # Step 4: Input check
@@ -224,9 +224,9 @@ def middle_term_operation(microgrid,session,logger):
     res_recovery.join(default_dead_line_time["Gate_closure_ed"])
 
     if res.value["success"] is True:
-        microgrid = result_update_local(res.value, microgrid, "Feasible",mathematical_model)
+        microgrid = result_update_local(res.value, microgrid, "Feasible", mathematical_model)
     else:
-        microgrid = result_update_local(res_recovery.value, microgrid,"Infeasible",mathematical_model_recovery)
+        microgrid = result_update_local(res_recovery.value, microgrid,"Infeasible", mathematical_model_recovery)
 
     # Step 7: Output check
     microgrid = OutputCheck.output_local_check(microgrid)
@@ -412,6 +412,7 @@ def update(*args):
 def status_update(microgrid,session,Target_time):
     """
     Update Battery SOC, generation status, load status, bic status etc
+    Some kind of SOC estimation for the scheduling
     :param microgrid: information model of
     :param session: inquery the short_term operation database
     :param Target_time: scheduling time of middle time operation
@@ -422,10 +423,11 @@ def status_update(microgrid,session,Target_time):
     Note: This function serves as the closed loop between the scheduling and information.
     """
 
-    row = session.query(db_short_term).filter(db_short_term.TIME_STAMP <= Target_time).first()
+    if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() !=0:
+        row = session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).first()
 
-    microgrid["ESS"]["SOC"] = row.BAT_SOC
-    microgrid["DG"]["STATUS"] = [row.DG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
-    microgrid["UG"]["STATUS"] = [row.UG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+        microgrid["ESS"]["SOC"] = row.BAT_SOC
+        # microgrid["DG"]["STATUS"] = [row.DG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+        # microgrid["UG"]["STATUS"] = [row.UG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
     return microgrid
