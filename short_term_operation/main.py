@@ -361,8 +361,8 @@ def status_update(microgrid,session,Target_time):
     3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
     Note: This function serves as the closed loop between the scheduling and information.
     """
-    row = session.query(db_real_time).filter( db_real_time. TIME_STAMP < Target_time).first()
-    microgrid["ESS"]["SOC"] = row.BAT_SOC
+    row = session.query(db_real_time).filter( db_real_time. TIME_STAMP < Target_time).all()
+    microgrid["ESS"]["SOC"] = row[len(row)-1].BAT_SOC
     # microgrid["DG"]["STATUS"] = row.DG_STATUS
     # microgrid["UG"]["STATUS"] = row.UG_STATUS
 
