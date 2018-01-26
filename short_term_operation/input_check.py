@@ -188,6 +188,18 @@ class InputCheckShortTerm():
             logger.error("The size of BIC status is incorrect!")
             logger.info("The status of BIC has been reset to default value!")
             model["BIC"]["STATUS"] = configuration_convertors.BIC["STATUS"]
+
+        # 11) The input check for ESSs
+        if model["ESS"]["SOC"] < model["ESS"]["SOC_MIN"]:
+            logger.error("BAT SOC is out of boundary!")
+            logger.info("The SOC of BIC has been reset to lower boundary!")
+            model["ESS"]["SOC"] = model["ESS"]["SOC_MIN"]
+
+        if model["ESS"]["SOC"] > model["ESS"]["SOC_MAX"]:
+            logger.error("BAT SOC is out of boundary!")
+            logger.info("The SOC of BIC has been reset to upper boundary!")
+            model["ESS"]["SOC"] = model["ESS"]["SOC_MAX"]
+
         return model
 
     def model_universal_check(*args):
@@ -369,5 +381,15 @@ class InputCheckShortTerm():
             logger.info("The status of transmission line has been reset to default value!")
             model["LINE"]["STATUS"] = configuration_default_lines.default_Line["STATUS"]
 
+        # 12) The input check for ESSs
+        if model["ESS"]["SOC"] < model["ESS"]["SOC_MIN"]:
+            logger.error("BAT SOC is out of boundary!")
+            logger.info("The SOC of BIC has been reset to lower boundary!")
+            model["ESS"]["SOC"] = model["ESS"]["SOC_MIN"]
+
+        if model["ESS"]["SOC"] > model["ESS"]["SOC_MAX"]:
+            logger.error("BAT SOC is out of boundary!")
+            logger.info("The SOC of BIC has been reset to upper boundary!")
+            model["ESS"]["SOC"] = model["ESS"]["SOC_MAX"]
         return model
 
