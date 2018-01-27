@@ -110,6 +110,7 @@ def mixed_integer_linear_programming(c, Aeq=None, beq=None, A=None, b=None, xmin
         gurobi_model.Params.OutputFlag = 0
         gurobi_model.Params.LogToConsole = 0
         gurobi_model.Params.DisplayInterval = 1
+        gurobi_model.Params.LogFile = ""
         gurobi_model.optimize()
         xx = []
         for v in gurobi_model.getVars():
