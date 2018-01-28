@@ -160,7 +160,7 @@ def short_term_forecasting_pv_history(*args):
     row = session.query(db_short_term_forecasting).filter_by(TIME_STAMP=Target_Time).first()
     row.PV_PG = PV_PG
     session.commit()
-
+    session_source.close()
     return PV_PG
 
 
@@ -182,7 +182,7 @@ def short_term_forecasting_wp_history(*args):
     row = session.query(db_short_term_forecasting).filter_by(TIME_STAMP=Target_Time).first()
     row.WP_PG = WP_PG
     session.commit()
-
+    session_source.close()
     return WP_PG
 
 
@@ -204,7 +204,7 @@ def short_term_forecasting_load_ac_history(*args):
     row = session.query(db_short_term_forecasting).filter_by(TIME_STAMP=Target_Time).first()
     row.AC_PD = AC_PD
     session.commit()
-
+    session_source.close()
     return AC_PD
 
 
@@ -226,7 +226,7 @@ def short_term_forecasting_load_nac_history(*args):
     row = session.query(db_short_term_forecasting).filter_by(TIME_STAMP=Target_Time).first()
     row.NAC_PD = NAC_PD
     session.commit()
-
+    session_source.close()
     return NAC_PD
 
 
@@ -248,7 +248,7 @@ def short_term_forecasting_load_dc_history(*args):
     row = session.query(db_short_term_forecasting).filter_by(TIME_STAMP=Target_Time).first()
     row.DC_PD = DC_PD
     session.commit()
-
+    session_source.close()
     return DC_PD
 
 
@@ -270,5 +270,5 @@ def short_term_forecasting_load_ndc_history(*args):
     row = session.query(db_short_term_forecasting).filter_by(TIME_STAMP=Target_Time).first()
     row.NDC_PD = NDC_PD
     session.commit()
-
+    session_source.close()
     return NDC_PD

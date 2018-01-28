@@ -228,6 +228,7 @@ def middle_term_forecasting_load_udc(*args):
             row.UDC_PD = UDC_PD[i]
         session.commit()
 
+
     return UDC_PD
 
 def middle_term_forecasting_pv_history(*args):
@@ -262,6 +263,7 @@ def middle_term_forecasting_pv_history(*args):
             row.PV_PG = PV_PG[i]
 
         session.commit()
+    session_source.close()
 
     return PV_PG
 
@@ -297,6 +299,7 @@ def middle_term_forecasting_wp_history(*args):
             row.WP_PG = WP_PG[i]
 
         session.commit()
+    session_source.close()
 
     return WP_PG
 
@@ -333,6 +336,7 @@ def middle_term_forecasting_load_ac_history(*args):
             row.AC_PD = AC_PD[i]
 
         session.commit()
+    session_source.close()
     return AC_PD
 
 
@@ -369,6 +373,7 @@ def middle_term_forecasting_load_nac_history(*args):
             row.NAC_PD = NAC_PD[i]
 
         session.commit()
+    session_source.close()
 
     return NAC_PD
 
@@ -406,7 +411,7 @@ def middle_term_forecasting_load_dc_history(*args):
             row.DC_PD = DC_PD[i]
 
         session.commit()
-
+    session_source.close()
 
     return DC_PD
 
@@ -442,5 +447,6 @@ def middle_term_forecasting_load_ndc_history(*args):
                 TIME_STAMP=Target_Time + i * default_time["Time_step_ed"]).first()
             row.UDC_PD = NDC_PD[i]
         session.commit()
+    session_source.close()
 
     return NDC_PD
