@@ -85,6 +85,7 @@ def measurement_data(microgrid, session, t0):
     # Further information might be updated.
     # 1) Battery status
     # 2) BIC status
+    session_source.close()
 
     return microgrid
 
