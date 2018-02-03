@@ -23,20 +23,22 @@ logger = Logger("Mid_term_forecasting")
 
 class ForecastingThread(threading.Thread):
     # Thread operation with time control and return value
-    def __init__(self, session, Target_time, models):
+    def __init__(self, session, session_history, Target_time, models):
         threading.Thread.__init__(self)
         self.session = session
         self.Target_time = Target_time
         self.models = models
+        self.session_history = session_history
 
     def run(self):
-        self.models = mid_term_forecasting(self.session, self.Target_time, self.models)
+        self.models = mid_term_forecasting(self.session, self.session_history, self.Target_time, self.models)
 
 
 def mid_term_forecasting(*args):
     session = args[0]
-    Target_time = args[1]
-    models = deepcopy(args[2])
+    session_history_data = args[2]
+    Target_time = args[2]
+    models = deepcopy(args[3])
 
     T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
@@ -53,12 +55,12 @@ def mid_term_forecasting(*args):
     # load_uac = middle_term_forecasting_load_uac(session, Target_time)
     # load_dc = middle_term_forecasting_load_dc(session, Target_time)
     # load_udc = middle_term_forecasting_load_udc(session, Target_time)
-    pv_profile = middle_term_forecasting_pv_history(session, Target_time)
-    wp_profile = middle_term_forecasting_wp_history(session, Target_time)
-    load_ac = middle_term_forecasting_load_ac_history(session, Target_time)
-    load_nac = middle_term_forecasting_load_nac_history(session, Target_time)
-    load_dc = middle_term_forecasting_load_dc_history(session, Target_time)
-    load_ndc = middle_term_forecasting_load_ndc_history(session, Target_time)
+    pv_profile = middle_term_forecasting_pv_history(session,session_history_data, Target_time)
+    wp_profile = middle_term_forecasting_wp_history(session, session_history_data,Target_time)
+    load_ac = middle_term_forecasting_load_ac_history(session, session_history_data,Target_time)
+    load_nac = middle_term_forecasting_load_nac_history(session, session_history_data,Target_time)
+    load_dc = middle_term_forecasting_load_dc_history(session, session_history_data,Target_time)
+    load_ndc = middle_term_forecasting_load_ndc_history(session, session_history_data,Target_time)
 
     for i in range(T):
         # Update the forecasting result of PV

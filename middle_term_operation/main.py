@@ -162,7 +162,7 @@ def middle_term_operation_lems(*args):
 
     database_storage_operation.database_record(session, local_models, Target_time, "ED")
 
-def middle_term_operation(microgrid,session,logger):
+def middle_term_operation(microgrid,session,session_history,logger):
     """
     Middle-term operation for standalone ems
     :param local_mg:Middle-term energy management system models
@@ -190,7 +190,7 @@ def middle_term_operation(microgrid,session,logger):
     Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
 
     # Step 1: Short-term forecasting
-    thread_forecasting = ForecastingThread(session, Target_time, microgrid)  # The forecasting thread
+    thread_forecasting = ForecastingThread(session, session_history, Target_time, microgrid)  # The forecasting thread
     thread_forecasting.start()
     thread_forecasting.join()
     microgrid = thread_forecasting.models

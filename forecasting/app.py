@@ -23,14 +23,15 @@ class ShortTermForecastingThread(threading.Thread):
     """
     Short-term forecasting thread for the short-term operation process
     """
-    def __init__(self, session, Target_time, microgrid):
+    def __init__(self, session,session_history, Target_time, microgrid):
         threading.Thread.__init__(self)
         self.session = session
         self.Target_time = Target_time
         self.microgrid = microgrid
+        self.session_history = session_history
         self.logger = Logger("Short_term_forecasting")
     def run(self):
-        self.microgrid = short_term_forecasting(self.session, self.Target_time, self.microgrid, self.logger)
+        self.microgrid = short_term_forecasting(self.session, self.session_history, self.Target_time, self.microgrid, self.logger)
 
 class MiddleTermForecastingThread(threading.Thread):
     """
@@ -76,27 +77,28 @@ def short_term_forecasting(*args):
     :return: information model of microgrid
     """
     session = args[0]
-    Target_time = args[1]
-    microgrid = deepcopy(args[2])
+    session_history = args[1]
+    Target_time = args[2]
+    microgrid = deepcopy(args[3])
 
-    logger = args[3]
+    logger = args[4]
 
     if microgrid["PV"]["STATUS"] > 0:
-        pv_profile = short_term_forecasting_pv_history(session, Target_time)
+        pv_profile = short_term_forecasting_pv_history(session, session_history, Target_time)
         microgrid["PV"]["PG"] = round(microgrid["PV"]["PMAX"] * pv_profile)
     else:
         logger.warning("No PV is connected, set to default value 0!")
         microgrid["PV"]["PG"] = 0
 
     if microgrid["WP"]["STATUS"] > 0:
-        pv_profile = short_term_forecasting_wp_history(session, Target_time)
+        pv_profile = short_term_forecasting_wp_history(session, session_history, Target_time)
         microgrid["WP"]["PG"] = round(microgrid["WP"]["PMAX"] * pv_profile)
     else:
         logger.warning("No WP is connected, set to default value 0!")
         microgrid["WP"]["PG"] = 0
 
     if microgrid["Load_ac"]["STATUS"] > 0:
-        load_ac = short_term_forecasting_load_ac_history(session, Target_time)
+        load_ac = short_term_forecasting_load_ac_history(session, session_history, Target_time)
         microgrid["Load_ac"]["PD"] = round(load_ac * microgrid["Load_ac"]["PMAX"])
     else:
         logger.warning("No critical AC load is connected, set to default value 0!")
@@ -104,21 +106,21 @@ def short_term_forecasting(*args):
 
     if microgrid["Load_nac"]["STATUS"] > 0:
         if microgrid["Load_nac"]["STATUS"] > 0:
-            load_nac = short_term_forecasting_load_nac_history(session, Target_time)
+            load_nac = short_term_forecasting_load_nac_history(session, session_history, Target_time)
             microgrid["Load_nac"]["PD"] = round(load_nac * microgrid["Load_nac"]["PMAX"])
         else:
             logger.warning("No non-critical AC load is connected, set to default value 0!")
             microgrid["Load_nac"]["PD"] = 0
 
     if microgrid["Load_dc"]["STATUS"] > 0:
-        load_dc = short_term_forecasting_load_dc_history(session, Target_time)
+        load_dc = short_term_forecasting_load_dc_history(session,session_history, Target_time)
         microgrid["Load_dc"]["PD"] = round(load_dc * microgrid["Load_dc"]["PMAX"])
     else:
         logger.warning("No critical DC load is connected, set to default value 0!")
         microgrid["Load_dc"]["PD"] = 0
 
     if microgrid["Load_ndc"]["STATUS"] > 0:
-        load_ndc = short_term_forecasting_load_ndc_history(session, Target_time)
+        load_ndc = short_term_forecasting_load_ndc_history(session,session_history, Target_time)
         microgrid["Load_ndc"]["PD"] = round(load_ndc * microgrid["Load_ndc"]["PMAX"])
     else:
         logger.warning("No non-critical DC load is connected, set to default value 0!")
