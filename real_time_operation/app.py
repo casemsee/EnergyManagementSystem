@@ -15,12 +15,12 @@ class RealTimeSimulation():
         self.name = "Real_time_simulation"
         self.logger = Logger("Real_time_simulation")
 
-    def run(self, microgrid, session_scheduling, session_rtc):
+    def run(self, microgrid, session_scheduling, session_rtc, session_resource):
         # Simulation time of real-time-simulations
         t0 = int(time.time())
 
         # obtain information from the measurement database (resources manager)
-        microgrid = measurement_data(microgrid, session_rtc , t0)
+        microgrid = measurement_data(microgrid, session_rtc , session_resource, t0)
 
         # obtain scheduling information from the short-term operation process (short-term-operation)
         microgrid = scheduling_data(microgrid, session_scheduling, t0)

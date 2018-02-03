@@ -9,20 +9,11 @@ The real time operation will be triggered every 5 seconds
 
 from modelling.database.database_format import resource_management, one_minute_history_data,db_short_term,db_real_time
 import random
-from configuration.configuration_database import history_data
-from sqlalchemy import create_engine, and_  # Import database
-from sqlalchemy.orm import sessionmaker
 from configuration.configuration_time_line import default_time
 from configuration.configuration_global import default_stochastic
-db_str = 'mysql+pymysql://' + history_data["user_name"] + ':' + history_data["password"] + '@' + history_data[
-    "ip_address"] + '/' + history_data["db_name"]
-
-engine = create_engine(db_str, echo=False)
-Session = sessionmaker(bind=engine)
-session_source = Session()
 
 
-def measurement_data(microgrid, session, t0):
+def measurement_data(microgrid, session, session_source, t0):
     """
     History database query function for real time simulation
     :param history data:

@@ -160,7 +160,7 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
     database_storage_operation.database_record(session, local_mg, Target_time, "OPF")
 
 
-def short_term_operation(local_mg,session,logger):
+def short_term_operation(local_mg,session,session_history, logger):
     """
     Short term operation for stand alone microgrid
     The following operation sequence
@@ -184,7 +184,7 @@ def short_term_operation(local_mg,session,logger):
     local_mg["TIME_STAMP"] = Target_time
     local_mg["COST"] = 0
     # Step 1: Short-term forecasting
-    thread_forecasting = ShortTermForecastingThread(session, Target_time, local_mg)  # The forecasting thread
+    thread_forecasting = ShortTermForecastingThread(session, session_history, Target_time, local_mg)  # The forecasting thread
     thread_forecasting.start()
     thread_forecasting.join()
     local_mg = thread_forecasting.microgrid
