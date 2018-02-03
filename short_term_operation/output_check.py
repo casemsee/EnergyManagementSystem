@@ -24,7 +24,7 @@ class OutputCheck():
             default_eps[
                 "POWER_BALANCE"]:
                 logger.error("The obtained solution can not meet AC bus power requirement!")
-                logger.info(model["UG"]["COMMAND_PG"] + model["DG"]["COMMAND_PG"] - model["BIC"]["COMMAND_AC2DC"] + model["BIC"]["COMMAND_DC2AC"] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"] - model["Load_uac"]["PD"])
+                logger.info(model["UG"]["COMMAND_PG"] + model["DG"]["COMMAND_PG"] - model["BIC"]["COMMAND_AC2DC"] + model["BIC"]["COMMAND_DC2AC"] * model["BIC"]["EFF_DC2AC"] - model["Load_ac"]["PD"] - model["Load_nac"]["PD"])
 
             if model["ESS"]["COMMAND_PG"] + model["BIC"]["COMMAND_AC2DC"] * model["BIC"]["EFF_DC2AC"] - \
                     model["BIC"]["COMMAND_DC2AC"] - model["Load_dc"]["PD"] - model["Load_ndc"]["PD"] + model["PV"]["PG"] + \

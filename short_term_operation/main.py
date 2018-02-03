@@ -156,6 +156,7 @@ def short_term_operation_lems(local_mg,socket_upload,socket_download,info,sessio
     logger.info("The command from UEMS is {}".format(dynamic_model.PMG))
 
     local_mg = single_period_information_update(local_mg, dynamic_model)# Store the data into the database
+    logger.info(local_mg)
     database_storage_operation.database_record(session, local_mg, Target_time, "OPF")
 
 

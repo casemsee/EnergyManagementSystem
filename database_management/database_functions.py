@@ -1,8 +1,8 @@
-from configuration.configuration_database import scheduling_plan
+from configuration.configuration_database import scheduling_plan_local
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-def db_session(config = scheduling_plan):
+def db_session(config = scheduling_plan_local):
     """
     Create database engine for the energy management system
     :return: Database Session

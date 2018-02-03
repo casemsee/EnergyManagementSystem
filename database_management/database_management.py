@@ -113,48 +113,81 @@ class database_storage_operation():
                            "ED": db_middle_term,
                            "OPF": db_short_term}
 
-        if session.query(database_target[function]).filter(database_target[function].TIME_STAMP == Target_time).count() == 0:
-            if function == "OPF":
-                blank_row = database_storage_operation.default_short_term_operation_data(Target_time)
-                session.add(blank_row)
-                session.commit()
-
         if function == "OPF":
             from configuration.configuration_time_line import default_time
-            row = session.query(database_target[function]).filter(database_target[function].TIME_STAMP == Target_time).first()
-            row.AC_PD = model["Load_ac"]["PD"]
-            row.AC_QD = model["Load_ac"]["QD"]
-            row.NAC_PD = model["Load_nac"]["PD"]
-            row.NAC_QD = model["Load_nac"]["QD"]
-            row.DC_PD = model["Load_dc"]["PD"]
-            row.NDC_PD = model["Load_ndc"]["PD"]
-            row.PV_PG = model["PV"]["PG"]
-            row.WP_PG = model["WP"]["PG"]
-            row.DG_STATUS = model["DG"]["COMMAND_START_UP"]
-            row.DG_PG = model["DG"]["COMMAND_PG"]
-            row.DG_QG = model["DG"]["COMMAND_QG"]
-            row.UG_STATUS = model["UG"]["COMMAND_START_UP"]
-            row.UG_PG = model["UG"]["COMMAND_PG"]
-            row.UG_QG = model["UG"]["COMMAND_QG"]
-            row.BIC_PG = model["BIC"]["COMMAND_DC2AC"]-model["BIC"]["COMMAND_AC2DC"]
-            row.BIC_QG = model["BIC"]["COMMAND_Q"]
-            row.BAT_PG = model["ESS"]["COMMAND_PG"]
-            # Update the SOC record information
-            if row.BAT_PG > 0:
-                row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_opf"] / model["ESS"][
-                    "EFF_DIS"] / model["ESS"]["CAP"] / 3600
+            if session.query(database_target[function]).filter(
+                    database_target[function].TIME_STAMP == Target_time).count() == 0:
+                row = database_storage_operation.default_short_term_operation_data(Target_time)
+                row.AC_PD = model["Load_ac"]["PD"]
+                row.AC_QD = model["Load_ac"]["QD"]
+                row.NAC_PD = model["Load_nac"]["PD"]
+                row.NAC_QD = model["Load_nac"]["QD"]
+                row.DC_PD = model["Load_dc"]["PD"]
+                row.NDC_PD = model["Load_ndc"]["PD"]
+                row.PV_PG = model["PV"]["PG"]
+                row.WP_PG = model["WP"]["PG"]
+                row.DG_STATUS = model["DG"]["COMMAND_START_UP"]
+                row.DG_PG = model["DG"]["COMMAND_PG"]
+                row.DG_QG = model["DG"]["COMMAND_QG"]
+                row.UG_STATUS = model["UG"]["COMMAND_START_UP"]
+                row.UG_PG = model["UG"]["COMMAND_PG"]
+                row.UG_QG = model["UG"]["COMMAND_QG"]
+                row.BIC_PG = model["BIC"]["COMMAND_DC2AC"] - model["BIC"]["COMMAND_AC2DC"]
+                row.BIC_QG = model["BIC"]["COMMAND_Q"]
+                row.BAT_PG = model["ESS"]["COMMAND_PG"]
+                # Update the SOC record information
+                if row.BAT_PG > 0:
+                    row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_opf"] / model["ESS"][
+                        "EFF_DIS"] / model["ESS"]["CAP"] / 3600
+                else:
+                    row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time[
+                        "Time_step_opf"] / model["ESS"]["CAP"] / 3600
+                row.PMG = model["PMG"]
+                row.V_DC = model["V_DC"]
+                row.PV_CURT = model["PV"]["COMMAND_CURT"]
+                row.WP_CURT = model["WP"]["COMMAND_CURT"]
+                row.AC_SHED = model["Load_ac"]["COMMAND_SHED"]
+                row.NAC_SHED = model["Load_nac"]["COMMAND_SHED"]
+                row.DC_SHED = model["Load_dc"]["COMMAND_SHED"]
+                row.NDC_SHED = model["Load_ndc"]["COMMAND_SHED"]
+                row.COST = model["COST"]
+                session.add(row)
             else:
-                row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time[
-                    "Time_step_opf"] / model["ESS"]["CAP"] / 3600
-            row.PMG = model["PMG"]
-            row.V_DC = model["V_DC"]
-            row.PV_CURT = model["PV"]["COMMAND_CURT"]
-            row.WP_CURT = model["WP"]["COMMAND_CURT"]
-            row.AC_SHED = model["Load_ac"]["COMMAND_SHED"]
-            row.NAC_SHED = model["Load_nac"]["COMMAND_SHED"]
-            row.DC_SHED = model["Load_dc"]["COMMAND_SHED"]
-            row.NDC_SHED = model["Load_ndc"]["COMMAND_SHED"]
-            row.COST = model["COST"]
+                row = session.query(database_target[function]).filter(database_target[function].TIME_STAMP == Target_time).first()
+                row.AC_PD = model["Load_ac"]["PD"]
+                row.AC_QD = model["Load_ac"]["QD"]
+                row.NAC_PD = model["Load_nac"]["PD"]
+                row.NAC_QD = model["Load_nac"]["QD"]
+                row.DC_PD = model["Load_dc"]["PD"]
+                row.NDC_PD = model["Load_ndc"]["PD"]
+                row.PV_PG = model["PV"]["PG"]
+                row.WP_PG = model["WP"]["PG"]
+                row.DG_STATUS = model["DG"]["COMMAND_START_UP"]
+                row.DG_PG = model["DG"]["COMMAND_PG"]
+                row.DG_QG = model["DG"]["COMMAND_QG"]
+                row.UG_STATUS = model["UG"]["COMMAND_START_UP"]
+                row.UG_PG = model["UG"]["COMMAND_PG"]
+                row.UG_QG = model["UG"]["COMMAND_QG"]
+                row.BIC_PG = model["BIC"]["COMMAND_DC2AC"]-model["BIC"]["COMMAND_AC2DC"]
+                row.BIC_QG = model["BIC"]["COMMAND_Q"]
+                row.BAT_PG = model["ESS"]["COMMAND_PG"]
+                # Update the SOC record information
+                if row.BAT_PG > 0:
+                    row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * default_time["Time_step_opf"] / model["ESS"][
+                        "EFF_DIS"] / model["ESS"]["CAP"] / 3600
+                else:
+                    row.BAT_SOC = model["ESS"]["SOC"] - row.BAT_PG * model["ESS"]["EFF_CH"] * default_time[
+                        "Time_step_opf"] / model["ESS"]["CAP"] / 3600
+                row.PMG = model["PMG"]
+                row.V_DC = model["V_DC"]
+                row.PV_CURT = model["PV"]["COMMAND_CURT"]
+                row.WP_CURT = model["WP"]["COMMAND_CURT"]
+                row.AC_SHED = model["Load_ac"]["COMMAND_SHED"]
+                row.NAC_SHED = model["Load_nac"]["COMMAND_SHED"]
+                row.DC_SHED = model["Load_dc"]["COMMAND_SHED"]
+                row.NDC_SHED = model["Load_ndc"]["COMMAND_SHED"]
+                row.COST = model["COST"]
+
             session.commit()
         elif function == "ED":
             from configuration.configuration_time_line import default_look_ahead_time_step
@@ -188,6 +221,7 @@ class database_storage_operation():
                     blank_row.NDC_SHED = model["Load_ndc"]["COMMAND_SHED"][i]
                     blank_row.COST = model["COST"][i]
                     session.add(blank_row)
+
                     session.commit()
                 else:
                     row = session.query(database_target[function]).filter(database_target[function].TIME_STAMP == Target_time + i * delta_T).first()

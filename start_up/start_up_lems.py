@@ -27,6 +27,7 @@ def start_up():
     microgrid["UG"]["COST_START_UP"] = 0
     microgrid["PV"]["N"] = microgrid["PV"]["PMAX"]
     microgrid["PV"]["TYPE"] = default_command["PV"]
+    microgrid["WP"]["PMAX"] = 0
     microgrid["WP"]["N"] = microgrid["WP"]["PMAX"]
     microgrid["WP"]["TYPE"] = default_command["WP"]
 

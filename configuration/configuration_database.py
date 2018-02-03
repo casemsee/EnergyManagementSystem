@@ -59,8 +59,8 @@ resource_manager = \
 
 scheduling_plan_local = \
     {
-        "user_name":'lems',
-        "password":'3',
+        "user_name":'root',
+        "password":'1',
         "ip_address":'localhost',
         "db_name":'microgrid_db_local'
     }

@@ -12,7 +12,8 @@
 ## 7)Q represents for the reactive power.
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, FLOAT, INTEGER, DATETIME
+from sqlalchemy import Column, FLOAT, INTEGER,String
+from sqlalchemy.dialects.mysql import DATETIME
 
 Base = declarative_base()
 
@@ -448,3 +449,142 @@ class resource_management(Base):
     # Coordination group
     PMG = Column(INTEGER)
     V_DC = Column(FLOAT)
+
+class BicDBData(Base):
+    __tablename__ = 'bic_status'
+    id = Column(INTEGER, primary_key=True, autoincrement=True)
+    name = Column(String(20), default='bic0')
+    datetime1 = Column(DATETIME(fsp=6))
+    # group 1
+    AC_bus_voltage_phase_A = Column(FLOAT)
+    AC_bus_voltage_phase_B = Column(FLOAT)
+    AC_bus_voltage_phase_C = Column(FLOAT)
+
+    # group 2
+    AC_bus_current_A = Column(FLOAT)
+    AC_bus_current_B = Column(FLOAT)
+    AC_bus_current_C = Column(FLOAT)
+    # group 3
+    AC_bus_frequency = Column(FLOAT)
+    DC_bus_voltage = Column(FLOAT)
+    DC_bus_current = Column(FLOAT)
+
+    # group 4
+    DC_reference_voltage = Column(FLOAT)
+    AC_reference_voltage = Column(FLOAT)
+    AC_reference_frequency = Column(FLOAT)
+
+    # group 5
+    DC_VP_droop_coefficient = Column(FLOAT)
+    AC_fP_droop_coefficient = Column(FLOAT)
+    AC_VQ_droop_coefficient = Column(FLOAT)
+
+    # group 6
+    DC_output_power = Column(FLOAT)
+    AC_output_active_power = Column(FLOAT)
+    AC_output_reactive_power = Column(FLOAT)
+
+    # group 7
+    environment_temperature = Column(FLOAT)
+    heat_sink_temperature = Column(FLOAT)
+    device_temperature = Column(FLOAT)
+
+    # group 8
+    AC_relay_ON_OFF_status = Column(INTEGER)
+    DC_relay_ON_OFF_status = Column(INTEGER)
+    fault_message = Column(INTEGER)
+
+    # group 9
+    isolate_status = Column(INTEGER)
+    operating_mode = Column(INTEGER)
+    operation_status = Column(INTEGER)
+
+    # group 10
+    active_power_reference = Column(INTEGER)
+    reactive_power_reference = Column(INTEGER)
+    reactive_power_reference_rec = Column(INTEGER)
+
+
+class BatteryDBData(Base):
+    __tablename__ = 'battery_status'
+    id = Column(INTEGER, primary_key=True, autoincrement=True)
+
+    name = Column(String(20), default='battery')
+
+    datetime1 = Column(DATETIME(fsp=6))
+
+    # group 1
+    INDUCTOR_CUR_CH1 = Column(FLOAT)
+    INDUCTOR_CUR_CH2 = Column(FLOAT)
+    INDUCTOR_CUR_CH3 = Column(FLOAT)
+
+    # group 2
+    OUTPUT_CUR = Column(FLOAT)
+    REF_VOL = Column(FLOAT)
+    DROOP_COEF = Column(FLOAT)
+
+    # group 3
+    CH1_ONOFF_STATUS = Column(INTEGER)
+    CH2_ONOFF_STATUS = Column(INTEGER)
+    CH3_ONOFF_STATUS = Column(INTEGER)
+
+    INPUT_RELAY_STATUS = Column(INTEGER)
+    OUTPUT_RELAY_STATUS = Column(INTEGER)
+
+    BAT_MODE = Column(INTEGER)
+
+    BAT_SOC = Column(INTEGER)
+    HEATSINK_TEMP = Column(FLOAT)
+
+    # group 4
+    REF_POW = Column(FLOAT)
+    BAT_VOL = Column(FLOAT)
+    DC_BUS_VOL = Column(FLOAT)
+
+    OPERATING_POW = Column(FLOAT)
+
+
+class PVDBData(Base):
+    __tablename__ = 'pv_status'
+
+    id = Column(INTEGER, primary_key=True, autoincrement=True)
+
+    name = Column(String(20), default='pv')
+
+    datetime1 = Column(DATETIME(fsp=6), )
+
+    # group 1
+    INDUCTOR_CUR_CH1 = Column(FLOAT)
+    INDUCTOR_CUR_CH2 = Column(FLOAT)
+    INDUCTOR_CUR_CH3 = Column(FLOAT)
+
+    # group 2
+    CH1_VOL = Column(FLOAT)
+    CH2_VOL = Column(FLOAT)
+    CH3_VOL = Column(FLOAT)
+
+    # group 3
+    CH1_MODE = Column(INTEGER)
+    CH1_REF_POW = Column(FLOAT)
+
+    # group 4
+    CH2_MODE = Column(INTEGER)
+    CH2_REF_POW = Column(FLOAT)
+
+    # group 5
+    CH3_MODE = Column(INTEGER)
+    CH3_REF_POW = Column(FLOAT)
+
+    # group 6
+    INPUT_RELAY_STATUS = Column(INTEGER)
+    OUTPUT_RELAY_STATUS = Column(INTEGER)
+    CH1_PRIOR = Column(INTEGER)
+    CH2_PRIOR = Column(INTEGER)
+    CH3_PRIOR = Column(INTEGER)
+
+    OUTPUT_CUR = Column(FLOAT)
+    DC_BUS_VOL = Column(FLOAT)
+
+    CH1_POWER = Column(FLOAT)
+    CH2_POWER = Column(FLOAT)
+    CH3_POWER = Column(FLOAT)
