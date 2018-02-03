@@ -7,7 +7,8 @@ import zmq  # The package for information and communication
 from start_up import start_up_lems
 from modelling.information import static_information_pb2 as static_info
 from copy import deepcopy
-
+from database_management.database_functions import db_session
+from configuration.configuration_database import history_data
 from utils import Logger
 from configuration.configuration_global import default_operation_mode
 
@@ -28,6 +29,7 @@ class Main():
         self.Operation_mode = ems_main.run()
         # database start-up operation
         self.Session = ems_main.database_start_up()
+        self.Session_history_data = db_session(history_data)
         (self.microgrid,self.microgrid_middle,self.microgrid_long) = start_up_lems.start_up() # Generate local ems models
         # self.logger.info("Database has been started up!")
         # operation mode
@@ -52,6 +54,12 @@ class Main():
         session_middle = self.Session()
         session_long = self.Session()
 
+        session_history_data = self.Session_history_data()
+        session_history_data_short = self.Session_history_data()
+        session_history_data_middle = self.Session_history_data()
+        session_history_data_long = self.Session_history_data()
+
+
         # S3: Initialize target functions
         real_time_simulation = RealTimeSimulation()
         short_term_operation = ShortTermOperation()
@@ -59,27 +67,27 @@ class Main():
         long_term_operation = LongTermOperation()
 
         # S4: Functions scheduling
-        # sched = BlockingScheduler()
-        # # 1) real-time simulation
-        # sched.add_job(lambda: real_time_simulation.run(microgrid, session, session),'cron', minute='0-59', second='*/5')
-        # # 2) short-term operation
-        # sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short),'cron', minute='*/1', second='1')
-        # # 3) middle-term operation
-        # sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle),'cron', minute='*/5', second='5')
-        # # 4) long-term operation
-        # sched.add_job(lambda: long_term_operation.run(microgrid_long, session_long),'cron', minute='*/30', second='30')
-        # # 5) start simulation
-        # sched.start()
+        sched = BlockingScheduler()
+        # 1) real-time simulation
+        sched.add_job(lambda: real_time_simulation.run(microgrid, session, session,session_history_data),'cron', minute='0-59', second='*/5')
+        # 2) short-term operation
+        sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short,session_history_data_short),'cron', minute='*/1', second='1')
+        # 3) middle-term operation
+        sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle),'cron', minute='*/5', second='5')
+        # 4) long-term operation
+        sched.add_job(lambda: long_term_operation.run(microgrid_long, session_long,session_history_data_long),'cron', minute='*/30', second='30')
+        # 5) start simulation
+        sched.start()
 
-        for i in range(10):
-            # 1) real-time simulation
-            # real_time_simulation.run(microgrid, session, session_short)# Real-time simulation has pasted test!
-            # 2) short-term operation
-            short_term_operation.run(microgrid_short, session_short)  # Short-term operation has pasted test!
-        #     # 3) middle-term operation
-        #     middle_term_operation.run(microgrid_middle, session_middle) # Middle-term operation has pasted test!
+        # for i in range(10):
+            # # 1) real-time simulation
+            # real_time_simulation.run(microgrid, session, session_short,session_history_data)# Real-time simulation has pasted test!
+            # # 2) short-term operation
+            # short_term_operation.run(microgrid_short, session_short,session_history_data_short)  # Short-term operation has pasted test!
+            # # 3) middle-term operation
+            # middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle) # Middle-term operation has pasted test!
             # 4) long-term operation
-            # long_term_operation.run(microgrid_long, session_long) # Long-term operation needs to be tested!
+            # long_term_operation.run(microgrid_long, session_long,session_history_data_long) # Long-term operation needs to be tested!
 
 
 def run():

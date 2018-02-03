@@ -173,7 +173,7 @@ def long_term_operation(microgrid,session,session_history,logger):
     from long_term_operation.problem_formulation import ProblemFormulation
     from long_term_operation.problem_solving import SolvingThread
     from configuration.configuration_time_line import default_dead_line_time
-
+    # from long_term_operation.problem_solving import solving_procedure
     microgrid = deepcopy(microgrid)  # Local energy management system models
 
     Target_time = time.time()
@@ -192,6 +192,7 @@ def long_term_operation(microgrid,session,session_history,logger):
     mathematical_model = ProblemFormulation.problem_formulation_local(microgrid)
     mathematical_model_recovery = ProblemFormulation.problem_formulation_local_recovery(microgrid)
     # Step 6: Problem solving
+    # res = solving_procedure(mathematical_model)
     res = SolvingThread(mathematical_model)
     res_recovery = SolvingThread(mathematical_model_recovery)
     res.daemon = True
