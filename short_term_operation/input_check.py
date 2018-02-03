@@ -193,7 +193,7 @@ class InputCheckShortTerm():
         if model["ESS"]["SOC"] < model["ESS"]["SOC_MIN"]:
             logger.error("BAT SOC is out of boundary!")
             logger.info("The SOC of BIC has been reset to lower boundary!")
-            model["ESS"]["SOC"] = model["ESS"]["SOC_MIN"]
+            model["ESS"]["SOC"] = (model["ESS"]["SOC_MIN"]+model["ESS"]["SOC_MAX"])/2
 
         if model["ESS"]["SOC"] > model["ESS"]["SOC_MAX"]:
             logger.error("BAT SOC is out of boundary!")
