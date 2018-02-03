@@ -155,28 +155,51 @@ def mixed_integer_linear_programming(c, Aeq=None, beq=None, A=None, b=None, xmin
 			xx = [0.] * nx
 			task.getxx(mosek.soltype.itg, xx)
 			success = 1
+			# if solsta in [mosek.solsta.integer_optimal, mosek.solsta.near_integer_optimal]:
+			# 	print("Optimal solution: %s" % xx)
+			# elif solsta == mosek.solsta.dual_infeas_cer:
+			# 	print("Primal or dual infeasibility.\n")
+			# elif solsta == mosek.solsta.prim_infeas_cer:
+			# 	print("Primal or dual infeasibility.\n")
+			# elif solsta == mosek.solsta.near_dual_infeas_cer:
+			# 	print("Primal or dual infeasibility.\n")
+			# elif solsta == mosek.solsta.near_prim_infeas_cer:
+			# 	print("Primal or dual infeasibility.\n")
+			# elif mosek.solsta.unknown:
+			# 	if prosta == mosek.prosta.prim_infeas_or_unbounded:
+			# 		print("Problem status Infeasible or unbounded.\n")
+			# 	elif prosta == mosek.prosta.prim_infeas:
+			# 		print("Problem status Infeasible.\n")
+			# 	elif prosta == mosek.prosta.unkown:
+			# 		print("Problem status unkown.\n")
+			# 	else:
+			# 		print("Other problem status.\n")
+			# 	success = 0
+			# else:
+			# 	print("Other solution status")
+			# 	success = 0
 			if solsta in [mosek.solsta.integer_optimal, mosek.solsta.near_integer_optimal]:
-				print("Optimal solution: %s" % xx)
+				pass
 			elif solsta == mosek.solsta.dual_infeas_cer:
-				print("Primal or dual infeasibility.\n")
+				pass
 			elif solsta == mosek.solsta.prim_infeas_cer:
-				print("Primal or dual infeasibility.\n")
+				pass
 			elif solsta == mosek.solsta.near_dual_infeas_cer:
-				print("Primal or dual infeasibility.\n")
+				pass
 			elif solsta == mosek.solsta.near_prim_infeas_cer:
-				print("Primal or dual infeasibility.\n")
+				pass
 			elif mosek.solsta.unknown:
 				if prosta == mosek.prosta.prim_infeas_or_unbounded:
-					print("Problem status Infeasible or unbounded.\n")
+					pass
 				elif prosta == mosek.prosta.prim_infeas:
-					print("Problem status Infeasible.\n")
+					pass
 				elif prosta == mosek.prosta.unkown:
-					print("Problem status unkown.\n")
+					pass
 				else:
 					print("Other problem status.\n")
 				success = 0
 			else:
-				print("Other solution status")
+				pass
 				success = 0
 
 		return xx, solsta, success

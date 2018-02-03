@@ -49,6 +49,7 @@ class OutputCheck():
 
             if model["BIC"]["COMMAND_AC2DC"] * model["BIC"]["COMMAND_DC2AC"] != 0:
                 logger.error("There exits bi-directional power flow on BIC!")
+                logger.error(model["BIC"]["COMMAND_AC2DC"] * model["BIC"]["COMMAND_DC2AC"])
         else:
             logger.error("The obtained solution results in load shedding or renewable energy resource shedding!")
 

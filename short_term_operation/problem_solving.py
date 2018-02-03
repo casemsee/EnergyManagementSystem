@@ -1,7 +1,7 @@
 # The main entrance of the optimal power flow in unviersal energy management system
 import threading  # Thread management (timeout and return value)
-from scipy import optimize  # linear programming solver
 from solvers.mixed_integer_solvers_gurobi import mixed_integer_linear_programming
+# from solvers.mixed_integer_solvers_mosek import mixed_integer_linear_programming
 
 class SolvingThread(threading.Thread):
 	# Thread operation with time control and return value
