@@ -9,11 +9,11 @@ from utils import Logger
 from long_term_operation.main import long_term_operation
 
 class LongTermOperation():
-    """
-    Stand alone short term operation process
-    """
-    def __init__(self):
-        self.logger = Logger("Long_term_operation_ems")
+	"""
+	Stand alone short term operation process
+	"""
+	def __init__(self):
+		self.logger = Logger("Long_term_operation_ems")
 
-    def run(self, micorgird, session,session_history):
-        long_term_operation(micorgird,session,session_history,self.logger)
+	def run(self, micorgird, session,session_history):
+		long_term_operation(micorgird,session,session_history,self.logger)

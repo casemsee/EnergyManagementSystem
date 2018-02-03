@@ -21,417 +21,417 @@ from database_management.database_management import database_storage_operation
 from modelling.database.database_format import db_short_term
 
 def middle_term_operation_uems(*args):
-    # Middle term forecasting for the middle term operation in universal energy management system.
-    from middle_term_operation.problem_formulation import ProblemFormulation
-    from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
-    from middle_term_operation.problem_solving import SolvingThread
-    from configuration.configuration_time_line import default_dead_line_time
-    # Short term operation
-    # General procedure for middle-term operation
-    # 1)Information collection
-    # 1.1)local EMS forecasting
-    # 1.2)Information exchange
-    universal_models = deepcopy(args[0])
-    local_models = deepcopy(args[1])
-    socket_upload = args[2]
-    socket_download = args[3]
-    info = args[4]
-    session = args[5]
-    logger = args[6]
+	# Middle term forecasting for the middle term operation in universal energy management system.
+	from middle_term_operation.problem_formulation import ProblemFormulation
+	from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
+	from middle_term_operation.problem_solving import SolvingThread
+	from configuration.configuration_time_line import default_dead_line_time
+	# Short term operation
+	# General procedure for middle-term operation
+	# 1)Information collection
+	# 1.1)local EMS forecasting
+	# 1.2)Information exchange
+	universal_models = deepcopy(args[0])
+	local_models = deepcopy(args[1])
+	socket_upload = args[2]
+	socket_download = args[3]
+	info = args[4]
+	session = args[5]
+	logger = args[6]
 
-    Target_time = time.time()
-    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time[
-        "Time_step_ed"]))
+	Target_time = time.time()
+	Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time[
+		"Time_step_ed"]))
 
-    # Update the universal parameter by using the database engine
-    # Two threads are created to obtain the information simultaneously.
-    thread_forecasting = ForecastingThread(session, Target_time, universal_models)
-    thread_info_ex = MultiplePeriodsInformationUpdateThread(socket_upload, info, local_models)
+	# Update the universal parameter by using the database engine
+	# Two threads are created to obtain the information simultaneously.
+	thread_forecasting = ForecastingThread(session, Target_time, universal_models)
+	thread_info_ex = MultiplePeriodsInformationUpdateThread(socket_upload, info, local_models)
 
-    thread_forecasting.start()
-    thread_info_ex.start()
+	thread_forecasting.start()
+	thread_info_ex.start()
 
-    thread_forecasting.join()
-    thread_info_ex.join()
+	thread_forecasting.join()
+	thread_info_ex.join()
 
-    universal_models = thread_forecasting.models
-    local_models = thread_info_ex.microgrid
+	universal_models = thread_forecasting.models
+	local_models = thread_info_ex.microgrid
 
-    universal_models = SetPointsTracing.set_points_tracing_ed(Target_time, session, universal_models)
+	universal_models = SetPointsTracing.set_points_tracing_ed(Target_time, session, universal_models)
 
-    local_models = InputCheckMiddleTerm.model_local_check(local_models)
-    universal_models = InputCheckMiddleTerm.model_universal_check(universal_models)
+	local_models = InputCheckMiddleTerm.model_local_check(local_models)
+	universal_models = InputCheckMiddleTerm.model_universal_check(universal_models)
 
-    # Solve the optimal power flow problem
-    # Two threads will be created, one for feasible problem, the other for infeasible problem
-    if local_models["COMMAND_TYPE"] == 1 and universal_models["COMMAND_TYPE"] == 1:
-        logger.info("ED is under set-points tracing mode!")
-        mathematical_model = ProblemFormulationTracing.problem_formulation_universal(local_models, universal_models,"Feasible")
-        mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_universal(local_models,universal_models,"Infeasible")
-    else:
-        logger.info("ED is under idle mode!")
-        mathematical_model = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
-                                                                               "Feasible")
-        mathematical_model_recovery = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
-                                                                                        "Infeasible")
-        local_models["COMMAND_TYPE"] = 0
-        universal_models["COMMAND_TYPE"] = 0
+	# Solve the optimal power flow problem
+	# Two threads will be created, one for feasible problem, the other for infeasible problem
+	if local_models["COMMAND_TYPE"] == 1 and universal_models["COMMAND_TYPE"] == 1:
+		logger.info("ED is under set-points tracing mode!")
+		mathematical_model = ProblemFormulationTracing.problem_formulation_universal(local_models, universal_models,"Feasible")
+		mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_universal(local_models,universal_models,"Infeasible")
+	else:
+		logger.info("ED is under idle mode!")
+		mathematical_model = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
+																			   "Feasible")
+		mathematical_model_recovery = ProblemFormulation.problem_formulation_universal(local_models, universal_models,
+																						"Infeasible")
+		local_models["COMMAND_TYPE"] = 0
+		universal_models["COMMAND_TYPE"] = 0
 
-    # Solve the problem
-    res = SolvingThread(mathematical_model)
-    res_recovery = SolvingThread(mathematical_model_recovery)
-    res.daemon = True
-    res_recovery.daemon = True
+	# Solve the problem
+	res = SolvingThread(mathematical_model)
+	res_recovery = SolvingThread(mathematical_model_recovery)
+	res.daemon = True
+	res_recovery.daemon = True
 
-    res.start()
-    res_recovery.start()
+	res.start()
+	res_recovery.start()
 
-    res.join(default_dead_line_time["Gate_closure_ed"])
-    res_recovery.join(default_dead_line_time["Gate_closure_ed"])
+	res.join(default_dead_line_time["Gate_closure_ed"])
+	res_recovery.join(default_dead_line_time["Gate_closure_ed"])
 
-    if res.value["success"] is True:
-        (local_models, universal_models) = result_update(res.value, local_models, universal_models, "Feasible")
-    else:
-        (local_models, universal_models) = result_update(res_recovery.value, local_models, universal_models,
-                                                         "Infeasible")
+	if res.value["success"] is True:
+		(local_models, universal_models) = result_update(res.value, local_models, universal_models, "Feasible")
+	else:
+		(local_models, universal_models) = result_update(res_recovery.value, local_models, universal_models,
+														 "Infeasible")
 
-    local_models = OutputCheck.output_local_check(local_models)
-    universal_models = OutputCheck.output_local_check(universal_models)
-    Middle2Short.run(Target_time, session, universal_models)
-    # Return command to the local ems
-    dynamic_model = MultiplePeriodsInformationFormulationThread(local_models, Target_time, "ED")
-    dynamic_model.TIME_STAMP_COMMAND = round(time.time())
-    information_send_receive = InformationSendReceive()
-    information_send_thread = threading.Thread(target=InformationSendReceive.information_send,
-                                               args=(socket_upload, dynamic_model, 2))
+	local_models = OutputCheck.output_local_check(local_models)
+	universal_models = OutputCheck.output_local_check(universal_models)
+	Middle2Short.run(Target_time, session, universal_models)
+	# Return command to the local ems
+	dynamic_model = MultiplePeriodsInformationFormulationThread(local_models, Target_time, "ED")
+	dynamic_model.TIME_STAMP_COMMAND = round(time.time())
+	information_send_receive = InformationSendReceive()
+	information_send_thread = threading.Thread(target=InformationSendReceive.information_send,
+											   args=(socket_upload, dynamic_model, 2))
 
-    database_operation__uems = threading.Thread(target=database_storage_operation.database_record,
-                                                args=(session, universal_models, Target_time, "ED"))
-    logger.info("The command for UEMS is {}".format(universal_models["PMG"]))
-    information_send_thread.start()
-    database_operation__uems.start()
+	database_operation__uems = threading.Thread(target=database_storage_operation.database_record,
+												args=(session, universal_models, Target_time, "ED"))
+	logger.info("The command for UEMS is {}".format(universal_models["PMG"]))
+	information_send_thread.start()
+	database_operation__uems.start()
 
-    information_send_thread.join()
-    database_operation__uems.join()
+	information_send_thread.join()
+	database_operation__uems.join()
 
 def middle_term_operation_lems(*args):
-    # Middle term operation for local ems
-    # The following operation sequence
-    # 1) Information collection
-    # 2) Short-term forecasting
-    # 3) Information upload and database store
-    # 4) Download command and database operation
-    local_models = deepcopy(args[0])  # Local energy management system models
-    socket_upload = args[1]  # Upload information channel
-    socket_download = args[2]  # Download information channel
-    info = args[3]  # Information structure
-    session = args[4]  # local database
-    logger = args[5]
+	# Middle term operation for local ems
+	# The following operation sequence
+	# 1) Information collection
+	# 2) Short-term forecasting
+	# 3) Information upload and database store
+	# 4) Download command and database operation
+	local_models = deepcopy(args[0])  # Local energy management system models
+	socket_upload = args[1]  # Upload information channel
+	socket_download = args[2]  # Download information channel
+	info = args[3]  # Information structure
+	session = args[4]  # local database
+	logger = args[5]
 
-    Target_time = time.time()
-    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
+	Target_time = time.time()
+	Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
 
-    # Step 1: Short-term forecasting
-    thread_forecasting = ForecastingThread(session, Target_time, local_models)  # The forecasting thread
-    thread_forecasting.start()
-    thread_forecasting.join()
+	# Step 1: Short-term forecasting
+	thread_forecasting = ForecastingThread(session, Target_time, local_models)  # The forecasting thread
+	thread_forecasting.start()
+	thread_forecasting.join()
 
-    local_models = thread_forecasting.models
-    # Update the dynamic model
-    local_models = SetPointsTracing.set_points_tracing_ed(Target_time, session, local_models)
-    InformationFormulationThread = MultiplePeriodsInformationFormulationThread(local_models, info, Target_time, "ED")
-    InformationFormulationThread.start()
-    InformationFormulationThread.join()
-    dynamic_model = InformationFormulationThread.microgrid
-    # Information send
-    logger.info("Sending request from {}".format(dynamic_model.AREA) + " to the serve")
-    logger.info("The local time is {}".format(dynamic_model.TIME_STAMP))
-    information_send_receive=InformationSendReceive(socket_upload, dynamic_model)
-    information_send_receive.send()
-    # Step2: Backup operation, which indicates the universal ems is down
+	local_models = thread_forecasting.models
+	# Update the dynamic model
+	local_models = SetPointsTracing.set_points_tracing_ed(Target_time, session, local_models)
+	InformationFormulationThread = MultiplePeriodsInformationFormulationThread(local_models, info, Target_time, "ED")
+	InformationFormulationThread.start()
+	InformationFormulationThread.join()
+	dynamic_model = InformationFormulationThread.microgrid
+	# Information send
+	logger.info("Sending request from {}".format(dynamic_model.AREA) + " to the serve")
+	logger.info("The local time is {}".format(dynamic_model.TIME_STAMP))
+	information_send_receive=InformationSendReceive(socket_upload, dynamic_model)
+	information_send_receive.send()
+	# Step2: Backup operation, which indicates the universal ems is down
 
-    # Receive information from uems
-    dynamic_model = information_send_receive.receive()
-    # print("The universal time is", dynamic_model.TIME_STAMP_COMMAND)
-    logger.info("The command from UEMS is {}".format(dynamic_model.PMG))
-    # Store the data into the database
+	# Receive information from uems
+	dynamic_model = information_send_receive.receive()
+	# print("The universal time is", dynamic_model.TIME_STAMP_COMMAND)
+	logger.info("The command from UEMS is {}".format(dynamic_model.PMG))
+	# Store the data into the database
 
-    local_models = MultiplePeriodsInformationUpdateThread.info_extraction(local_models, dynamic_model)
+	local_models = MultiplePeriodsInformationUpdateThread.info_extraction(local_models, dynamic_model)
 
-    Middle2Short.run(Target_time, session, local_models)
+	Middle2Short.run(Target_time, session, local_models)
 
-    database_storage_operation.database_record(session, local_models, Target_time, "ED")
+	database_storage_operation.database_record(session, local_models, Target_time, "ED")
 
 def middle_term_operation(microgrid,session,session_history,logger):
-    """
-    Middle-term operation for standalone ems
-    :param local_mg:Middle-term energy management system models
-    :param session:local database
-    :param logger:
-    :return: nothing
-    The following operation sequence
-    1) Middle-term forecasting
-    2) Set-point tracing check
-    3) Status update
-    4) Input check
-    5) Problem formulation
-    6) Problem solving
-    7) Output check
-    8) Database operation
-    """
-    from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
-    from middle_term_operation.problem_formulation import ProblemFormulation
-    from middle_term_operation.problem_solving import SolvingThread
-    from configuration.configuration_time_line import default_dead_line_time
+	"""
+	Middle-term operation for standalone ems
+	:param local_mg:Middle-term energy management system models
+	:param session:local database
+	:param logger:
+	:return: nothing
+	The following operation sequence
+	1) Middle-term forecasting
+	2) Set-point tracing check
+	3) Status update
+	4) Input check
+	5) Problem formulation
+	6) Problem solving
+	7) Output check
+	8) Database operation
+	"""
+	from middle_term_operation.problem_formulation_set_points_tracing import ProblemFormulationTracing
+	from middle_term_operation.problem_formulation import ProblemFormulation
+	from middle_term_operation.problem_solving import SolvingThread
+	from configuration.configuration_time_line import default_dead_line_time
 
-    microgrid = deepcopy(microgrid)  # Local energy management system models
+	microgrid = deepcopy(microgrid)  # Local energy management system models
 
-    Target_time = time.time()
-    Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
+	Target_time = time.time()
+	Target_time = round((Target_time - Target_time % default_time["Time_step_ed"] + default_time["Time_step_ed"]))
 
-    # Step 1: Short-term forecasting
-    thread_forecasting = ForecastingThread(session, session_history, Target_time, microgrid)  # The forecasting thread
-    thread_forecasting.start()
-    thread_forecasting.join()
-    microgrid = thread_forecasting.models
-    # Step 2: Set-point tracing check
-    microgrid = SetPointsTracing.set_points_tracing_ed(Target_time, session, microgrid)
-    # Step 3: Status update
-    microgrid = status_update(microgrid, session, Target_time)
-    # Step 4: Input check
-    microgrid = InputCheckMiddleTerm.model_local_check(microgrid)
-    # Step 5: Problem formulation
-    if microgrid["COMMAND_TYPE"] == 1 :
-        logger.info("ED is under set-points tracing mode!")
-        mathematical_model = ProblemFormulationTracing.problem_formulation_local(microgrid)
-        mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_local_recovery(microgrid)
-    else:
-        logger.info("ED is under idle mode!")
-        mathematical_model = ProblemFormulation.problem_formulation_local(microgrid)
-        mathematical_model_recovery = ProblemFormulation.problem_formulation_local_recovery(microgrid)
-        microgrid["COMMAND_TYPE"] = 0
-        microgrid["COMMAND_TYPE"] = 0
-    # Step 6: Problem solving
-    res = SolvingThread(mathematical_model)
-    res_recovery = SolvingThread(mathematical_model_recovery)
-    res.daemon = True
-    res_recovery.daemon = True
+	# Step 1: Short-term forecasting
+	thread_forecasting = ForecastingThread(session, session_history, Target_time, microgrid)  # The forecasting thread
+	thread_forecasting.start()
+	thread_forecasting.join()
+	microgrid = thread_forecasting.models
+	# Step 2: Set-point tracing check
+	microgrid = SetPointsTracing.set_points_tracing_ed(Target_time, session, microgrid)
+	# Step 3: Status update
+	microgrid = status_update(microgrid, session, Target_time)
+	# Step 4: Input check
+	microgrid = InputCheckMiddleTerm.model_local_check(microgrid)
+	# Step 5: Problem formulation
+	if microgrid["COMMAND_TYPE"] == 1 :
+		logger.info("ED is under set-points tracing mode!")
+		mathematical_model = ProblemFormulationTracing.problem_formulation_local(microgrid)
+		mathematical_model_recovery = ProblemFormulationTracing.problem_formulation_local_recovery(microgrid)
+	else:
+		logger.info("ED is under idle mode!")
+		mathematical_model = ProblemFormulation.problem_formulation_local(microgrid)
+		mathematical_model_recovery = ProblemFormulation.problem_formulation_local_recovery(microgrid)
+		microgrid["COMMAND_TYPE"] = 0
+		microgrid["COMMAND_TYPE"] = 0
+	# Step 6: Problem solving
+	res = SolvingThread(mathematical_model)
+	res_recovery = SolvingThread(mathematical_model_recovery)
+	res.daemon = True
+	res_recovery.daemon = True
 
-    res.start()
-    res_recovery.start()
+	res.start()
+	res_recovery.start()
 
-    res.join(default_dead_line_time["Gate_closure_ed"])
-    res_recovery.join(default_dead_line_time["Gate_closure_ed"])
+	res.join(default_dead_line_time["Gate_closure_ed"])
+	res_recovery.join(default_dead_line_time["Gate_closure_ed"])
 
-    if res.value["success"] is True:
-        microgrid = result_update_local(res.value, microgrid, "Feasible", mathematical_model)
-    else:
-        microgrid = result_update_local(res_recovery.value, microgrid,"Infeasible", mathematical_model_recovery)
+	if res.value["success"] is True:
+		microgrid = result_update_local(res.value, microgrid, "Feasible", mathematical_model)
+	else:
+		microgrid = result_update_local(res_recovery.value, microgrid,"Infeasible", mathematical_model_recovery)
 
-    # Step 7: Output check
-    microgrid = OutputCheck.output_local_check(microgrid)
-    # Step 8: Database operation
-    Middle2Short.run(Target_time, session, microgrid)
-    database_storage_operation.database_record(session, microgrid, Target_time, "ED")
+	# Step 7: Output check
+	microgrid = OutputCheck.output_local_check(microgrid)
+	# Step 8: Database operation
+	Middle2Short.run(Target_time, session, microgrid)
+	database_storage_operation.database_record(session, microgrid, Target_time, "ED")
 
 
 def result_update(*args):
-    ## Result update for local ems and universal ems models
-    res = args[0]
-    local_model = args[1]
-    universal_model = args[2]
-    type = args[3]
-    T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+	## Result update for local ems and universal ems models
+	res = args[0]
+	local_model = args[1]
+	universal_model = args[2]
+	type = args[3]
+	T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
-    if type == "Feasible":
-        if local_model["COMMAND_TYPE"] == 0:
-            from modelling.data.idx_ed_foramt import NX
-        else:
-            from modelling.data.idx_ed_set_points_tracing import NX
-    else:
-        if local_model["COMMAND_TYPE"] == 0:
-            from modelling.data.idx_ed_recovery_format import NX
-        else:
-            from modelling.data.idx_ed_set_points_tracing_recovery import NX
+	if type == "Feasible":
+		if local_model["COMMAND_TYPE"] == 0:
+			from modelling.data.idx_ed_foramt import NX
+		else:
+			from modelling.data.idx_ed_set_points_tracing import NX
+	else:
+		if local_model["COMMAND_TYPE"] == 0:
+			from modelling.data.idx_ed_recovery_format import NX
+		else:
+			from modelling.data.idx_ed_set_points_tracing_recovery import NX
 
-    nx = T * NX
-    x_local = res["x"][0:nx]  # Decouple of the solutions
-    x_universal = res["x"][nx:2 * nx]
+	nx = T * NX
+	x_local = res["x"][0:nx]  # Decouple of the solutions
+	x_universal = res["x"][nx:2 * nx]
 
-    local_model = update(x_local, local_model, type)
-    universal_model = update(x_universal, universal_model, type)
+	local_model = update(x_local, local_model, type)
+	universal_model = update(x_universal, universal_model, type)
 
-    return local_model, universal_model
+	return local_model, universal_model
 
 def result_update_local(*args):
-    """
-    Result update with obtained solution and
-    :param args: the obtained solutions,
-    :return: updated solutions of information models
-    """
-    res = args[0]
-    local_model = args[1]
-    type = args[2]
-    mathematical_model = args[3]
+	"""
+	Result update with obtained solution and
+	:param args: the obtained solutions,
+	:return: updated solutions of information models
+	"""
+	res = args[0]
+	local_model = args[1]
+	type = args[2]
+	mathematical_model = args[3]
 
-    T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+	T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
-    x_local = res["x"]
-    c_local = mathematical_model["c"]
+	x_local = res["x"]
+	c_local = mathematical_model["c"]
 
-    local_model = update(x_local, local_model, type)
+	local_model = update(x_local, local_model, type)
 
-    local_model["COST"] = [0]*T
+	local_model["COST"] = [0]*T
 
-    if type == "Feasible":
-        if local_model["COMMAND_TYPE"] == 0:
-            from modelling.data.idx_ed_foramt import NX
-        else:
-            from modelling.data.idx_ed_set_points_tracing import NX
-    else:
-        if local_model["COMMAND_TYPE"] == 0:
-            from modelling.data.idx_ed_recovery_format import NX
-        else:
-            from modelling.data.idx_ed_set_points_tracing_recovery import NX
+	if type == "Feasible":
+		if local_model["COMMAND_TYPE"] == 0:
+			from modelling.data.idx_ed_foramt import NX
+		else:
+			from modelling.data.idx_ed_set_points_tracing import NX
+	else:
+		if local_model["COMMAND_TYPE"] == 0:
+			from modelling.data.idx_ed_recovery_format import NX
+		else:
+			from modelling.data.idx_ed_set_points_tracing_recovery import NX
 
-    for i in range(T):
-        local_model["COST"][i] = float(sum([c*d for c,d in zip(c_local[i*NX:(i+1)*NX],x_local[i*NX:(i+1)*NX])]))*default_time["Time_step_ed"]/3600 # Update the
+	for i in range(T):
+		local_model["COST"][i] = float(sum([c*d for c,d in zip(c_local[i*NX:(i+1)*NX],x_local[i*NX:(i+1)*NX])]))*default_time["Time_step_ed"]/3600 # Update the
 
-    return local_model
+	return local_model
 
 def update(*args):
-    x = args[0]
-    model = args[1]
-    type = args[2]
+	x = args[0]
+	model = args[1]
+	type = args[2]
 
-    T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+	T = default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
-    if type == "Feasible":
-        if model["COMMAND_TYPE"] == 0:
-            from modelling.data.idx_ed_foramt import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, RESS,EESS,\
-                PMG, NX
-        else:
-            from modelling.data.idx_ed_set_points_tracing import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, \
-                RESS, EESS, PMG, NX
+	if type == "Feasible":
+		if model["COMMAND_TYPE"] == 0:
+			from modelling.data.idx_ed_foramt import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, RESS,EESS,\
+				PMG, NX
+		else:
+			from modelling.data.idx_ed_set_points_tracing import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, PESS_DC, \
+				RESS, EESS, PMG, NX
 
-        model["DG"]["COMMAND_START_UP"] = model["DG"]["COMMAND_START_UP"] # The staus of generators will be not modified
-        model["DG"]["COMMAND_PG"] = [0] * T
-        model["DG"]["COMMAND_RG"] = [0] * T
+		model["DG"]["COMMAND_START_UP"] = model["DG"]["COMMAND_START_UP"] # The staus of generators will be not modified
+		model["DG"]["COMMAND_PG"] = [0] * T
+		model["DG"]["COMMAND_RG"] = [0] * T
 
-        model["UG"]["COMMAND_START_UP"] = model["UG"]["COMMAND_START_UP"] # The staus of generators will be not modified
-        model["UG"]["COMMAND_PG"] = [0] * T
-        model["UG"]["COMMAND_RG"] = [0] * T
+		model["UG"]["COMMAND_START_UP"] = model["UG"]["COMMAND_START_UP"] # The staus of generators will be not modified
+		model["UG"]["COMMAND_PG"] = [0] * T
+		model["UG"]["COMMAND_RG"] = [0] * T
 
-        model["BIC"]["COMMAND_AC2DC"] = [0] * T
-        model["BIC"]["COMMAND_DC2AC"] = [0] * T
-        model["ESS"]["COMMAND_PG"] = [0] * T
-        model["ESS"]["COMMAND_RG"] = [0] * T
-        model["ESS"]["SOC"] = [0]*T
+		model["BIC"]["COMMAND_AC2DC"] = [0] * T
+		model["BIC"]["COMMAND_DC2AC"] = [0] * T
+		model["ESS"]["COMMAND_PG"] = [0] * T
+		model["ESS"]["COMMAND_RG"] = [0] * T
+		model["ESS"]["SOC"] = [0]*T
 
-        model["PV"]["COMMAND_CURT"] = [0] * T
-        model["WP"]["COMMAND_CURT"] = [0] * T
-        model["PMG"] = [0] * T
+		model["PV"]["COMMAND_CURT"] = [0] * T
+		model["WP"]["COMMAND_CURT"] = [0] * T
+		model["PMG"] = [0] * T
 
-        model["Load_ac"]["COMMAND_SHED"] = [0] * T
-        model["Load_nac"]["COMMAND_SHED"] = [0] * T
-        model["Load_dc"]["COMMAND_SHED"] = [0] * T
-        model["Load_ndc"]["COMMAND_SHED"] = [0] * T
+		model["Load_ac"]["COMMAND_SHED"] = [0] * T
+		model["Load_nac"]["COMMAND_SHED"] = [0] * T
+		model["Load_dc"]["COMMAND_SHED"] = [0] * T
+		model["Load_ndc"]["COMMAND_SHED"] = [0] * T
 
-        for i in range(T):
-            model["DG"]["COMMAND_PG"][i] = int(x[i * NX + PG])
-            model["DG"]["COMMAND_RG"][i] = int(x[i * NX + RG])
+		for i in range(T):
+			model["DG"]["COMMAND_PG"][i] = int(x[i * NX + PG])
+			model["DG"]["COMMAND_RG"][i] = int(x[i * NX + RG])
 
-            model["UG"]["COMMAND_PG"][i] = int(x[i * NX + PUG])
-            model["UG"]["COMMAND_RG"][i] = int(x[i * NX + RUG])
+			model["UG"]["COMMAND_PG"][i] = int(x[i * NX + PUG])
+			model["UG"]["COMMAND_RG"][i] = int(x[i * NX + RUG])
 
-            model["BIC"]["COMMAND_AC2DC"][i] = int(x[i * NX + PBIC_AC2DC])
-            model["BIC"]["COMMAND_DC2AC"][i] = int(x[i * NX + PBIC_DC2AC])
+			model["BIC"]["COMMAND_AC2DC"][i] = int(x[i * NX + PBIC_AC2DC])
+			model["BIC"]["COMMAND_DC2AC"][i] = int(x[i * NX + PBIC_DC2AC])
 
-            model["ESS"]["COMMAND_PG"][i] = int(x[i * NX + PESS_DC] - x[i * NX + PESS_C])
-            model["ESS"]["COMMAND_RG"][i] = int(x[i * NX + RESS])
-            model["ESS"]["SOC"][i] = x[i*NX+EESS]/model["ESS"]["CAP"]
-            model["PMG"][i] = int(x[i * NX + PMG])
+			model["ESS"]["COMMAND_PG"][i] = int(x[i * NX + PESS_DC] - x[i * NX + PESS_C])
+			model["ESS"]["COMMAND_RG"][i] = int(x[i * NX + RESS])
+			model["ESS"]["SOC"][i] = x[i*NX+EESS]/model["ESS"]["CAP"]
+			model["PMG"][i] = int(x[i * NX + PMG])
 
-        model["success"] = True
+		model["success"] = True
 
-    else:
-        if model["COMMAND_TYPE"] == 0:
-            from modelling.data.idx_ed_recovery_format import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
-                PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
-        else:
-            from modelling.data.idx_ed_set_points_tracing_recovery import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
-                EESS, PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
-        model["DG"]["COMMAND_START_UP"] = model["DG"]["COMMAND_START_UP"] # The staus of generators will be not modified
-        model["DG"]["COMMAND_PG"] = [0] * T
-        model["DG"]["COMMAND_RG"] = [0] * T
+	else:
+		if model["COMMAND_TYPE"] == 0:
+			from modelling.data.idx_ed_recovery_format import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C,EESS, \
+				PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
+		else:
+			from modelling.data.idx_ed_set_points_tracing_recovery import PG, RG, PUG, RUG, PBIC_AC2DC, PBIC_DC2AC, PESS_C, \
+				EESS, PESS_DC, RESS, PMG, PPV, PWP, PL_AC, PL_UAC, PL_DC, PL_UDC, NX
+		model["DG"]["COMMAND_START_UP"] = model["DG"]["COMMAND_START_UP"] # The staus of generators will be not modified
+		model["DG"]["COMMAND_PG"] = [0] * T
+		model["DG"]["COMMAND_RG"] = [0] * T
 
-        model["UG"]["COMMAND_START_UP"] = model["UG"]["COMMAND_START_UP"] # The staus of generators will be not modified
-        model["UG"]["COMMAND_PG"] = [0] * T
-        model["UG"]["COMMAND_RG"] = [0] * T
+		model["UG"]["COMMAND_START_UP"] = model["UG"]["COMMAND_START_UP"] # The staus of generators will be not modified
+		model["UG"]["COMMAND_PG"] = [0] * T
+		model["UG"]["COMMAND_RG"] = [0] * T
 
-        model["BIC"]["COMMAND_AC2DC"] = [0] * T
-        model["BIC"]["COMMAND_DC2AC"] = [0] * T
+		model["BIC"]["COMMAND_AC2DC"] = [0] * T
+		model["BIC"]["COMMAND_DC2AC"] = [0] * T
 
-        model["ESS"]["COMMAND_PG"] = [0] * T
-        model["ESS"]["COMMAND_RG"] = [0] * T
-        model["ESS"]["SOC"] = [0] * T
+		model["ESS"]["COMMAND_PG"] = [0] * T
+		model["ESS"]["COMMAND_RG"] = [0] * T
+		model["ESS"]["SOC"] = [0] * T
 
-        model["PV"]["COMMAND_CURT"] = [0] * T
-        model["WP"]["COMMAND_CURT"] = [0] * T
-        model["PMG"] = [0] * T
+		model["PV"]["COMMAND_CURT"] = [0] * T
+		model["WP"]["COMMAND_CURT"] = [0] * T
+		model["PMG"] = [0] * T
 
-        model["Load_ac"]["COMMAND_SHED"] = [0] * T
-        model["Load_nac"]["COMMAND_SHED"] = [0] * T
-        model["Load_dc"]["COMMAND_SHED"] = [0] * T
-        model["Load_ndc"]["COMMAND_SHED"] = [0] * T
+		model["Load_ac"]["COMMAND_SHED"] = [0] * T
+		model["Load_nac"]["COMMAND_SHED"] = [0] * T
+		model["Load_dc"]["COMMAND_SHED"] = [0] * T
+		model["Load_ndc"]["COMMAND_SHED"] = [0] * T
 
-        for i in range(T):
-            model["DG"]["COMMAND_PG"][i] = int(x[i * NX + PG])
-            model["DG"]["COMMAND_RG"][i] = int(x[i * NX + RG])
+		for i in range(T):
+			model["DG"]["COMMAND_PG"][i] = int(x[i * NX + PG])
+			model["DG"]["COMMAND_RG"][i] = int(x[i * NX + RG])
 
-            model["UG"]["COMMAND_PG"][i] = int(x[i * NX + PUG])
-            model["UG"]["COMMAND_RG"][i] = int(x[i * NX + RUG])
+			model["UG"]["COMMAND_PG"][i] = int(x[i * NX + PUG])
+			model["UG"]["COMMAND_RG"][i] = int(x[i * NX + RUG])
 
-            model["BIC"]["COMMAND_AC2DC"][i] = int(x[i * NX + PBIC_AC2DC])
-            model["BIC"]["COMMAND_DC2AC"][i] = int(x[i * NX + PBIC_DC2AC])
+			model["BIC"]["COMMAND_AC2DC"][i] = int(x[i * NX + PBIC_AC2DC])
+			model["BIC"]["COMMAND_DC2AC"][i] = int(x[i * NX + PBIC_DC2AC])
 
-            model["ESS"]["COMMAND_PG"][i] = int(x[i * NX + PESS_DC] - x[i * NX + PESS_C])
-            model["ESS"]["COMMAND_RG"][i] = int(x[i * NX + RESS])
-            model["ESS"]["SOC"][i] = x[i * NX + EESS]/model["ESS"]["CAP"]
+			model["ESS"]["COMMAND_PG"][i] = int(x[i * NX + PESS_DC] - x[i * NX + PESS_C])
+			model["ESS"]["COMMAND_RG"][i] = int(x[i * NX + RESS])
+			model["ESS"]["SOC"][i] = x[i * NX + EESS]/model["ESS"]["CAP"]
 
-            model["PMG"][i] = int(x[i * NX + PMG])
+			model["PMG"][i] = int(x[i * NX + PMG])
 
-            model["PV"]["COMMAND_CURT"][i] = int(model["PV"]["PG"][i]- x[i * NX + PPV])
-            model["WP"]["COMMAND_CURT"][i] = int(model["WP"]["PG"][i]- x[i * NX + PWP])
+			model["PV"]["COMMAND_CURT"][i] = int(model["PV"]["PG"][i]- x[i * NX + PPV])
+			model["WP"]["COMMAND_CURT"][i] = int(model["WP"]["PG"][i]- x[i * NX + PWP])
 
-            model["Load_ac"]["COMMAND_SHED"][i] = int(model["Load_ac"]["PD"][i] - x[i * NX + PL_AC])
-            model["Load_nac"]["COMMAND_SHED"][i] = int(model["Load_nac"]["PD"][i] - x[i * NX + PL_UAC])
-            model["Load_dc"]["COMMAND_SHED"][i] = int(model["Load_dc"]["PD"][i] - x[i * NX + PL_DC])
-            model["Load_ndc"]["COMMAND_SHED"][i] = int(model["Load_ndc"]["PD"][i] - x[i * NX + PL_UDC])
+			model["Load_ac"]["COMMAND_SHED"][i] = int(model["Load_ac"]["PD"][i] - x[i * NX + PL_AC])
+			model["Load_nac"]["COMMAND_SHED"][i] = int(model["Load_nac"]["PD"][i] - x[i * NX + PL_UAC])
+			model["Load_dc"]["COMMAND_SHED"][i] = int(model["Load_dc"]["PD"][i] - x[i * NX + PL_DC])
+			model["Load_ndc"]["COMMAND_SHED"][i] = int(model["Load_ndc"]["PD"][i] - x[i * NX + PL_UDC])
 
-        model["success"] = False
+		model["success"] = False
 
-    return model
+	return model
 
 def status_update(microgrid, session, Target_time):
-    """
-    Update Battery SOC, generation status, load status, bic status etc
-    Some kind of SOC estimation for the scheduling
-    :param microgrid: information model of
-    :param session: inquery the short_term operation database
-    :param Target_time: scheduling time of middle time operation
-    :return: microgrid model
-    1) check the database of resource manager, if not exist, 2); if exist, update the soc, available information, go to 3)
-    2) check the short term operation database, if not exist, go to 3); if exist, update the soc and available information.
-    3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
-    Note: This function serves as the closed loop between the scheduling and information.
-    """
+	"""
+	Update Battery SOC, generation status, load status, bic status etc
+	Some kind of SOC estimation for the scheduling
+	:param microgrid: information model of
+	:param session: inquery the short_term operation database
+	:param Target_time: scheduling time of middle time operation
+	:return: microgrid model
+	1) check the database of resource manager, if not exist, 2); if exist, update the soc, available information, go to 3)
+	2) check the short term operation database, if not exist, go to 3); if exist, update the soc and available information.
+	3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
+	Note: This function serves as the closed loop between the scheduling and information.
+	"""
 
-    if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() !=0:
-        row = session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).first()
+	if session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).count() !=0:
+		row = session.query(db_short_term).filter(db_short_term.TIME_STAMP == Target_time).first()
 
-        microgrid["ESS"]["SOC"] = row.BAT_SOC
-        # microgrid["DG"]["STATUS"] = [row.DG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
-        # microgrid["UG"]["STATUS"] = [row.UG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+		microgrid["ESS"]["SOC"] = row.BAT_SOC
+		# microgrid["DG"]["STATUS"] = [row.DG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
+		# microgrid["UG"]["STATUS"] = [row.UG_STATUS] * default_look_ahead_time_step["Look_ahead_time_ed_time_step"]
 
-    return microgrid
+	return microgrid

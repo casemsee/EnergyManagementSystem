@@ -2,94 +2,94 @@ syntax = "proto3";
 //Information model for the information sharing among MGs
 
 message microgrid {
-    int32 AREA = 1; // The area information
-    int32 TIME_STAMP = 2; //The model generated time
+	int32 AREA = 1; // The area information
+	int32 TIME_STAMP = 2; //The model generated time
 
-    //The defination of diesel generators
-    message DgType {
-        int32 ID = 1;
-        repeated int32 STATUS = 2;//Measurement information
-        int32 PG = 3;//Measurement information
-        int32 QG = 4;//Measurement information
-        float VG = 5;//Measurement information
-        int32 APF = 6;//Measurement information
-        repeated int32 COMMAND_START_UP = 7;//Scheduling information
-        repeated float COMMAND_VG = 8;//Scheduling information
-        repeated int32 COMMAND_PG = 9;//Scheduling information
-        repeated int32 COMMAND_QG = 10;//Scheduling information
-        repeated int32 COMMAND_RG = 11;//Scheduling information
-    }
+	//The defination of diesel generators
+	message DgType {
+		int32 ID = 1;
+		repeated int32 STATUS = 2;//Measurement information
+		int32 PG = 3;//Measurement information
+		int32 QG = 4;//Measurement information
+		float VG = 5;//Measurement information
+		int32 APF = 6;//Measurement information
+		repeated int32 COMMAND_START_UP = 7;//Scheduling information
+		repeated float COMMAND_VG = 8;//Scheduling information
+		repeated int32 COMMAND_PG = 9;//Scheduling information
+		repeated int32 COMMAND_QG = 10;//Scheduling information
+		repeated int32 COMMAND_RG = 11;//Scheduling information
+	}
 
-    //The defination of energy storage systems
-    message EssType {
-        int32 ID = 1;
-        repeated int32 STATUS = 2;//Measurement information
-        repeated float SOC = 3;//Measurement information
-        int32 PG = 4;
-        int32 RG = 5;
-        repeated int32 COMMAND_PG = 6;//Scheduling information
-        repeated int32 COMMAND_RG = 7;//Scheduling information
-    }
+	//The defination of energy storage systems
+	message EssType {
+		int32 ID = 1;
+		repeated int32 STATUS = 2;//Measurement information
+		repeated float SOC = 3;//Measurement information
+		int32 PG = 4;
+		int32 RG = 5;
+		repeated int32 COMMAND_PG = 6;//Scheduling information
+		repeated int32 COMMAND_RG = 7;//Scheduling information
+	}
 
-    //The defination of pv
-    message PvType {
-        repeated int32 N = 1;//Measurement information
-        repeated int32 PG = 2;//Forecasting information
-        repeated int32 QG = 3;//Forecasting information
-        repeated int32 COMMAND_CURT = 4;//Scheduling information
-        repeated int32 COMMAND_PG = 5;//Scheduling information
-    }
-    //The defination of wind turbine
-    message WpType {
-        repeated int32 N = 1;//Measurement information
-        repeated float PG = 2;//Forecasting information
-        repeated int32 QG = 3;//Forecasting information
-        repeated int32 COMMAND_CURT = 4;//Scheduling information
-        repeated int32 COMMAND_PG = 5;//Scheduling information
-    }
-    //The defination of ac load
-    message Load_AC_Type {
-        int32 ID = 1;
-        repeated int32 STATUS = 2;//Measurement information
-        repeated int32 PD = 3;//Forecasting information
-        repeated int32 QD = 4;//Forecasting information
-        repeated float PF = 5;
-        repeated float APF = 6;
-        repeated float COMMAND_PD = 7;//Scheduling information
-        repeated float COMMAND_RD = 8;//Scheduling information
-    }
+	//The defination of pv
+	message PvType {
+		repeated int32 N = 1;//Measurement information
+		repeated int32 PG = 2;//Forecasting information
+		repeated int32 QG = 3;//Forecasting information
+		repeated int32 COMMAND_CURT = 4;//Scheduling information
+		repeated int32 COMMAND_PG = 5;//Scheduling information
+	}
+	//The defination of wind turbine
+	message WpType {
+		repeated int32 N = 1;//Measurement information
+		repeated float PG = 2;//Forecasting information
+		repeated int32 QG = 3;//Forecasting information
+		repeated int32 COMMAND_CURT = 4;//Scheduling information
+		repeated int32 COMMAND_PG = 5;//Scheduling information
+	}
+	//The defination of ac load
+	message Load_AC_Type {
+		int32 ID = 1;
+		repeated int32 STATUS = 2;//Measurement information
+		repeated int32 PD = 3;//Forecasting information
+		repeated int32 QD = 4;//Forecasting information
+		repeated float PF = 5;
+		repeated float APF = 6;
+		repeated float COMMAND_PD = 7;//Scheduling information
+		repeated float COMMAND_RD = 8;//Scheduling information
+	}
 
-    //The defination of dc load
-    message Load_DC_Type {
-        int32 ID = 1;
-        repeated int32 STATUS = 2;//Measurement information
-        repeated int32 PD = 3;//Forecasting information
-        repeated float APF = 4;
-        repeated float COMMAND_PD = 5;//Scheduling information
-        repeated float COMMAND_RD = 6;//Scheduling information
-    }
+	//The defination of dc load
+	message Load_DC_Type {
+		int32 ID = 1;
+		repeated int32 STATUS = 2;//Measurement information
+		repeated int32 PD = 3;//Forecasting information
+		repeated float APF = 4;
+		repeated float COMMAND_PD = 5;//Scheduling information
+		repeated float COMMAND_RD = 6;//Scheduling information
+	}
 
-    //The defination of convertor
-    message Convertor_Type {
-        int32 ID = 1;
-        repeated int32 STATUS = 2;//Measurement information
-        repeated int32 P_AC2DC = 3;
-        repeated int32 P_DC2AC = 4;
-        repeated int32 Q_AC = 5;
-        repeated float COMMAND_AC2DC = 6;//Scheduling information
-        repeated float COMMAND_DC2AC = 7;//Scheduling information
-        repeated int32 COMMAND_Q = 8;
-    }
+	//The defination of convertor
+	message Convertor_Type {
+		int32 ID = 1;
+		repeated int32 STATUS = 2;//Measurement information
+		repeated int32 P_AC2DC = 3;
+		repeated int32 P_DC2AC = 4;
+		repeated int32 Q_AC = 5;
+		repeated float COMMAND_AC2DC = 6;//Scheduling information
+		repeated float COMMAND_DC2AC = 7;//Scheduling information
+		repeated int32 COMMAND_Q = 8;
+	}
 
-    repeated DgType dg = 3;
-    repeated EssType ess = 4;
-    repeated PvType pv = 5;
-    repeated WpType wp = 6;
-    repeated Load_AC_Type load_ac = 7;
-    repeated Load_DC_Type load_dc = 8;
-    repeated Convertor_Type bic = 9;
-    repeated float PMG = 10;
-    repeated float V_DC = 11;
-    int32 COMMAND_TYPE = 12;
-    int32 COMMAND_TIME_STAMP = 13;
+	repeated DgType dg = 3;
+	repeated EssType ess = 4;
+	repeated PvType pv = 5;
+	repeated WpType wp = 6;
+	repeated Load_AC_Type load_ac = 7;
+	repeated Load_DC_Type load_dc = 8;
+	repeated Convertor_Type bic = 9;
+	repeated float PMG = 10;
+	repeated float V_DC = 11;
+	int32 COMMAND_TYPE = 12;
+	int32 COMMAND_TIME_STAMP = 13;
 }

@@ -1,6 +1,6 @@
 updated_attributes_static_ac_generator = ["ID", "PMIN", "PMAX", "QMIN", "QMAX", "SMAX", "RAMP_AGC", "RAMP_10",
-                                                  "COST_START_UP",
-                                                  "COST_SHUT_DOWN", "COST_MODEL", "NCOST", "PF_LIMIT", "COST"]
+												  "COST_START_UP",
+												  "COST_SHUT_DOWN", "COST_MODEL", "NCOST", "PF_LIMIT", "COST"]
 
 updated_attributes_static_res_generator = ["N", "TYPE", "PMAX", "PMIN", "QMIN", "QMAX", "SMAX", "COST"]
 
@@ -9,7 +9,7 @@ updated_attributes_static_ac_load = ["ID", "PMAX", "PMIN", "FLEX", "MODEL", "COS
 updated_attributes_static_dc_load = ["ID", "PMAX", "PMIN", "FLEX", "MODEL", "COST_MODEL", "NCOST", "COST"]
 
 updated_attributes_static_ess = ["ID", "CAP", "PMAX_DIS", "PMAX_CH", "EFF_DIS", "EFF_CH", "SOC_MAX", "SOC_MIN",
-                                 "COST_MODEL", "NCOST_DIS", "COST_DIS", "NCOST_CH", "COST_CH"]
+								 "COST_MODEL", "NCOST_DIS", "COST_DIS", "NCOST_CH", "COST_CH"]
 
 updated_attributes_static_bic = ["ID", "SMAX", "EFF_AC2DC", "EFF_DC2AC"]
 
