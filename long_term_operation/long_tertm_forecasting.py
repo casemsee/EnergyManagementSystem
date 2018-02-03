@@ -6,45 +6,49 @@ This part of work follows LiSong's work.
 
 """
 from forecasting.long_term_forecasting import long_term_forecasting_pv_history, long_term_forecasting_wp_history, \
-    long_term_forecasting_load_ac_history, long_term_forecasting_load_dc_history, long_term_forecasting_load_nac_history, \
+    long_term_forecasting_load_ac_history, long_term_forecasting_load_dc_history, \
+    long_term_forecasting_load_nac_history, \
     long_term_forecasting_load_ndc_history
 from configuration.configuration_time_line import default_look_ahead_time_step
 
 import threading
 from utils import Logger
 from copy import deepcopy
+
 logger = Logger("Long_term_forecasting")
 
 
 class ForecastingThread(threading.Thread):
     # Thread operation with time control and return value
-    def __init__(self, session, Target_time, models):
+    def __init__(self, session, session_history, Target_time, models):
         threading.Thread.__init__(self)
         self.session = session
         self.Target_time = Target_time
         self.models = models
+        self.session_history = session_history
 
     def run(self):
-        self.models = long_term_forecasting(self.session, self.Target_time, self.models)
+        self.models = long_term_forecasting(self.session, self.session_history, self.Target_time, self.models)
 
 
 def long_term_forecasting(*args):
     session = args[0]
-    Target_time = args[1]
-    models = deepcopy(args[2])
-    T = default_look_ahead_time_step["Look_ahead_time_uc_time_step"] # The look ahead horizon of unit commitment
+    session_history = args[1]
+    Target_time = args[2]
+    models = deepcopy(args[3])
+    T = default_look_ahead_time_step["Look_ahead_time_uc_time_step"]  # The look ahead horizon of unit commitment
     models["PV"]["PG"] = []
     models["WP"]["PG"] = []
     models["Load_ac"]["PD"] = []
     models["Load_nac"]["PD"] = []
     models["Load_dc"]["PD"] = []
     models["Load_ndc"]["PD"] = []
-    pv_profile = long_term_forecasting_pv_history(session, Target_time)
-    wp_profile = long_term_forecasting_wp_history(session, Target_time)
-    load_ac = long_term_forecasting_load_ac_history(session, Target_time)
-    load_uac = long_term_forecasting_load_nac_history(session, Target_time)
-    load_dc = long_term_forecasting_load_dc_history(session, Target_time)
-    load_udc = long_term_forecasting_load_ndc_history(session, Target_time)
+    pv_profile = long_term_forecasting_pv_history(session, session_history, Target_time)
+    wp_profile = long_term_forecasting_wp_history(session, session_history, Target_time)
+    load_ac = long_term_forecasting_load_ac_history(session, session_history, Target_time)
+    load_uac = long_term_forecasting_load_nac_history(session, session_history, Target_time)
+    load_dc = long_term_forecasting_load_dc_history(session, session_history, Target_time)
+    load_udc = long_term_forecasting_load_ndc_history(session, session_history, Target_time)
 
     for i in range(T):
         # Update the forecasting result of PV

@@ -154,7 +154,7 @@ def long_term_operation_lems(*args):
     database_operation_lems.join()
 
 
-def long_term_operation(microgrid,session,logger):
+def long_term_operation(microgrid,session,session_history,logger):
     """
     Long-term operation for standalone ems
     :param local_mg:Long-term energy management system models
@@ -180,7 +180,7 @@ def long_term_operation(microgrid,session,logger):
     Target_time = round((Target_time - Target_time % default_time["Time_step_uc"] + default_time["Time_step_uc"]))
 
     # Step 1: Short-term forecasting
-    thread_forecasting = ForecastingThread(session, Target_time, microgrid)  # The forecasting thread
+    thread_forecasting = ForecastingThread(session, session_history, Target_time, microgrid)  # The forecasting thread
     thread_forecasting.start()
     thread_forecasting.join()
     microgrid = thread_forecasting.models

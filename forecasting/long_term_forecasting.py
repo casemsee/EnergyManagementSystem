@@ -4,15 +4,6 @@
 from modelling.database.database_format import db_long_term_forecasting,half_hourly_history_data
 from configuration.configuration_time_line import default_look_ahead_time_step, default_time
 import random
-from configuration.configuration_database import history_data
-from sqlalchemy import create_engine, and_  # Import database
-from sqlalchemy.orm import sessionmaker
-
-
-db_str = 'mysql+pymysql://' + history_data["user_name"] + ':' + history_data["password"]+ '@' + history_data["ip_address"] + '/' + history_data["db_name"]
-engine = create_engine(db_str, echo=False)
-Session = sessionmaker(bind=engine)
-session_source = Session()
 
 def blank_forecasting_result(*args):
     Target_time = args[0]
@@ -234,7 +225,8 @@ def long_term_forecasting_load_udc(*args):
 def long_term_forecasting_pv_history(*args):
     # Short term forecasting for photovoltaic
     session = args[0]
-    Target_Time = args[1]
+    session_source = args[1]
+    Target_Time = args[2]
 
     if session.query(db_long_term_forecasting).filter(
                     db_long_term_forecasting.TIME_STAMP == Target_Time).count() == 0:
@@ -270,7 +262,8 @@ def long_term_forecasting_pv_history(*args):
 def long_term_forecasting_wp_history(*args):
     # Short term forecasting for wind power
     session = args[0]
-    Target_Time = args[1]
+    session_source = args[1]
+    Target_Time = args[2]
 
     if session.query(db_long_term_forecasting).filter(
                     db_long_term_forecasting.TIME_STAMP == Target_Time).count() == 0:
@@ -304,7 +297,8 @@ def long_term_forecasting_wp_history(*args):
 def long_term_forecasting_load_ac_history(*args):
     # Short term forecasting for critical AC load
     session = args[0]
-    Target_Time = args[1]
+    session_source = args[1]
+    Target_Time = args[2]
 
     if session.query(db_long_term_forecasting).filter(
                     db_long_term_forecasting.TIME_STAMP == Target_Time).count() == 0:
@@ -340,7 +334,8 @@ def long_term_forecasting_load_ac_history(*args):
 def long_term_forecasting_load_nac_history(*args):
     # Short term forecasting for non-critical AC load
     session = args[0]
-    Target_Time = args[1]
+    session_source = args[1]
+    Target_Time = args[2]
 
     if session.query(db_long_term_forecasting).filter(
                     db_long_term_forecasting.TIME_STAMP == Target_Time).count() == 0:
@@ -377,7 +372,8 @@ def long_term_forecasting_load_nac_history(*args):
 def long_term_forecasting_load_dc_history(*args):
     # Short term forecasting for critical DC load
     session = args[0]
-    Target_Time = args[1]
+    session_source = args[1]
+    Target_Time = args[2]
 
     if session.query(db_long_term_forecasting).filter(
                     db_long_term_forecasting.TIME_STAMP == Target_Time).count() == 0:
@@ -415,7 +411,8 @@ def long_term_forecasting_load_dc_history(*args):
 def long_term_forecasting_load_ndc_history(*args):
     # Short term forecasting for non-critical DC load
     session = args[0]
-    Target_Time = args[1]
+    session_source = args[1]
+    Target_Time = args[2]
 
     if session.query(db_long_term_forecasting).filter(
                     db_long_term_forecasting.TIME_STAMP == Target_Time).count() == 0:

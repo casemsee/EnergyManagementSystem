@@ -36,7 +36,7 @@ class ForecastingThread(threading.Thread):
 
 def mid_term_forecasting(*args):
     session = args[0]
-    session_history_data = args[2]
+    session_history_data = args[1]
     Target_time = args[2]
     models = deepcopy(args[3])
 

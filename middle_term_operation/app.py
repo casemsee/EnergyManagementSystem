@@ -15,5 +15,5 @@ class MiddleTermOperation():
     def __init__(self):
         self.logger = Logger("Middle_term_operation_ems")
 
-    def run(self, micorgird, session):
+    def run(self, micorgird, session, session_history):
         middle_term_operation(micorgird,session,session_history,self.logger)
