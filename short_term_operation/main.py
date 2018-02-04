@@ -18,7 +18,7 @@ from database_management.database_management import database_storage_operation
 from information_management.informulation_formulation_update import single_period_information_update
 from configuration.configuration_global import default_operation_mode
 from modelling.database.database_format import db_real_time
-
+from modelling.database.database_format import RMDBData
 def short_term_operation_uems(universal_mg, local_mg, socket_upload, socket_download, info, session, logger):
 	"""
 	Short term operation for universal energy management system
@@ -189,7 +189,8 @@ def short_term_operation(local_mg,session,session_history, logger):
 	thread_forecasting.join()
 	local_mg = thread_forecasting.microgrid
 	# Step 2: update resource status
-	local_mg = status_update(local_mg, session, Target_time)
+	# local_mg = status_update(local_mg, session, Target_time)
+	local_mg = status_update(local_mg, session)
 	# Update the dynamic model
 	local_mg = InputCheckShortTerm.model_local_check(local_mg) # Check the data format of local ems
 
@@ -366,5 +367,52 @@ def status_update(microgrid,session,Target_time):
 	microgrid["ESS"]["SOC"] = row[len(row)-1].BAT_SOC
 	# microgrid["DG"]["STATUS"] = row.DG_STATUS
 	# microgrid["UG"]["STATUS"] = row.UG_STATUS
+
+	return microgrid
+
+def real_time_information_update(microgrid,session):
+	"""
+    Update Battery SOC, PV output, load profile and so on
+    :param microgrid: information model of
+    :param session: inquery the real time operation database
+    :param Target_time: scheduling time of short time operation
+    :return: microgrid model
+    1) check the database of resource manager, if not exist, 2); if exist, update the soc, available information, go to 3)
+    2) check the short term operation database, if not exist, go to 3); if exist, update the soc and available information.
+    3) update the scheduling information from middle term operation database, if not exist, do nothing, if exist, update the status of gen,load,bic,battery
+    Note: This function serves as the closed loop between the scheduling and information.
+    """
+	Target_time = time.time()
+	Target_time = Target_time - Target_time % 5
+	Target_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(Target_time))
+	row = session.query(RMDBData).filter_by(datetime1=Target_time).first()
+	if row != None:
+		microgrid["Load_dc"]["PD"] = row.LOAD_DC_CT_POW
+		microgrid["Load_ndc"]["PD"] = row.LOAD_DC_NCT_POW
+
+		microgrid["Load_ac"]["PD"] = row.LOAD_AC3P_CT_ACTPOW
+		microgrid["Load_ac"]["QD"] = row.LOAD_AC3P_CT_REACTPOW
+
+		microgrid["Load_nac"]["PD"] = row.LOAD_AC3P_NCT_ACTPOW
+		microgrid["Load_nac"]["QD"] = row.LOAD_AC3P_NCT_REACTPOW
+		if row.PV0_1_POW != None:
+			PV_PG = row.PV0_1_POW
+		else:
+			PV_PG = 0
+		if row.PV0_2_POW != None:
+			PV_PG += row.PV0_2_POW
+		if row.PV0_3_POW != None:
+			PV_PG += row.PV0_3_POW
+
+		if row.PV1_1_POW != None:
+			PV_PG += row.PV1_1_POW
+		if row.PV1_2_POW != None:
+			PV_PG += row.PV1_2_POW
+		if row.PV1_3_POW != None:
+			PV_PG += row.PV1_3_POW
+		microgrid["PV"]["PG"] = PV_PG
+		microgrid["WP"]["PG"] = row.WT_POW
+	else:
+		return microgrid
 
 	return microgrid
