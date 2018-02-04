@@ -10,57 +10,65 @@ Five databases which are required for the energy management system
 """
 
 energy_trading_plan = \
-	{
-		"user_name":'uems',
-		"password":'2',
-		"ip_address":'localhost',
-		"db_name":'microgrid_db'
-	}
+    {
+        "user_name": 'uems',
+        "password": '2',
+        "ip_address": 'localhost',
+        "db_name": 'microgrid_db'
+    }
 
 scheduling_plan = \
-	{
-		"user_name":'uems',
-		"password":'2',
-		"ip_address":'localhost',
-		"db_name":'microgrid_db'
-	}
+    {
+        "user_name": 'uems',
+        "password": '2',
+        "ip_address": 'localhost',
+        "db_name": 'microgrid_db'
+    }
 
 forecasting_result = \
-	{
-		"user_name":'lems',
-		"password":'3',
-		"ip_address":'localhost',
-		"db_name":'load_profile'
-	}
+    {
+        "user_name": 'lems',
+        "password": '3',
+        "ip_address": 'localhost',
+        "db_name": 'load_profile'
+    }
 
 history_data = \
-	{
-		"user_name":'lems',
-		"password":'3',
-		"ip_address":'localhost',
-		"db_name":'history_data'
-	}
+    {
+        "user_name": 'lems',
+        "password": '3',
+        "ip_address": 'localhost',
+        "db_name": 'history_data'
+    }
 
 weather_station = \
-	{
-		"user_name":'lems',
-		"password":'3',
-		"ip_address":'localhost',
-		"db_name":'weather_station'
-	}
+    {
+        "user_name": 'lems',
+        "password": '3',
+        "ip_address": 'localhost',
+        "db_name": 'weather_station'
+    }
 
 resource_manager = \
-	{
-		"user_name":'lems',
-		"password":'3',
-		"ip_address":'localhost',
-		"db_name":'microgrid_db'
-	}
+    {
+        "user_name": 'lems',
+        "password": '3',
+        "ip_address": 'localhost',
+        "db_name": 'microgrid_db'
+    }
 
 scheduling_plan_local = \
-	{
-		"user_name":'root',
-		"password":'1',
-		"ip_address":'localhost',
-		"db_name":'microgrid_db_local'
-	}
+    {
+        "user_name": 'root',
+        "password": '1',
+        "ip_address": 'localhost',
+        "db_name": 'microgrid_db_local'
+    }
+# The resource manager
+rtc_local = \
+    {
+        "user_name": 'root',
+        "password": '1',
+        "ip_address": 'localhost',
+        "db_name": 'Module2'
+    }
