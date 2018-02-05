@@ -83,6 +83,7 @@ class ProblemFormulationSetPointsTracing():
 		Aeq[PG] = 1
 		Aeq[PUG] = 1
 		Aeq[PBIC_AC2DC] = -1
+		Aeq[PBIC_DC2AC] = model["BIC"]["EFF_DC2AC"]
 		beq.append(model["Load_ac"]["PD"] + model["Load_nac"]["PD"])
 		# 2) DC power balance equation
 		Aeq_temp = zeros(NX)

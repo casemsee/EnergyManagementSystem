@@ -117,6 +117,9 @@ class InputCheckShortTerm():
         if model["PV"]["PMIN"] > model["PV"]["PMAX"]:
             logger.error("The maximal capacity of PV is smaller than the minimal capacity!")
             model["PV"]["PMIN"] = model["PV"]["PMAX"]
+        if model["PV"]["PG"] > model["PV"]["PMAX"]:
+            logger.error("The output of PV is out of boundary!")
+            model["PV"]["PG"] = model["PV"]["PMAX"]
         if model["PV"]["QMIN"] > model["PV"]["QMAX"]:
             logger.error("The maximal reactive power capacity of PV is smaller than the minimal capacity!")
             model["PV"]["QMIN"] = model["PV"]["QMAX"]
@@ -148,6 +151,9 @@ class InputCheckShortTerm():
         if model["WP"]["QMIN"] > model["WP"]["QMAX"]:
             logger.error("The maximal reactive power capacity of WP is smaller than the minimal capacity!")
             model["WP"]["QMIN"] = model["WP"]["QMAX"]
+        if model["WP"]["PG"] > model["WP"]["PMAX"]:
+            logger.error("The output of WP is out of boundary!")
+            model["WP"]["PG"] = model["WP"]["PMAX"]
 
         # 5) The input check of critical AC load
         if type(model["Load_ac"]["STATUS"]) is not float and type(model["Load_ac"]["STATUS"]) is not int and type(
@@ -159,6 +165,10 @@ class InputCheckShortTerm():
             logger.error("The size of critical AC load profile is incorrect!")
             logger.info("The profile of critical AC load has been reset to default value!")
             model["Load_ac"]["PD"] = configuration_default_load.default_Load_AC["PD"]
+        if model["Load_ac"]["PD"]>model["Load_ac"]["PMAX"]:
+            logger.error("The critical AC load profile is overcurrent!")
+            model["Load_ac"]["PD"] = model["Load_ac"]["PMAX"]
+
 
         # 6) The input check of non-critical AC load
         if type(model["Load_nac"]["STATUS"]) is not int and type(model["Load_nac"]["STATUS"]) is not float and type(
@@ -170,6 +180,9 @@ class InputCheckShortTerm():
             logger.error("The size of non-critical AC load profile is incorrect!")
             logger.info("The profile of non-critical AC load has been reset to online!")
             model["Load_nac"]["PD"] = configuration_default_load.default_Load_AC["PD"]
+        if model["Load_nac"]["PD"]>model["Load_nac"]["PMAX"]:
+            logger.error("The non-critical AC load profile is overcurrent!")
+            model["Load_nac"]["PD"] = model["Load_nac"]["PMAX"]
 
         # 7) The input check of critical AC load
         if type(model["Load_dc"]["STATUS"]) is not int and type(model["Load_dc"]["STATUS"]) is not float and type(
@@ -181,7 +194,9 @@ class InputCheckShortTerm():
             logger.error("The size of critical DC load profile is incorrect!")
             logger.info("The profile of critical DC load has been reset to default value!")
             model["Load_dc"]["PD"] = configuration_default_load.default_Load_DC["PD"]
-
+        if model["Load_dc"]["PD"]>model["Load_dc"]["PMAX"]:
+            logger.error("The critical DC load profile is overcurrent!")
+            model["Load_dc"]["PD"] = model["Load_dc"]["PMAX"]
         # 8) The input check of non-critical AC load
         if type(model["Load_ndc"]["STATUS"]) is not int and type(model["Load_ndc"]["STATUS"]) is not float and type(
                 model["Load_ndc"]["STATUS"]) is not bool:
@@ -192,6 +207,9 @@ class InputCheckShortTerm():
             logger.error("The size of non-critical DC load profile is incorrect!")
             logger.info("The profile of non-critical DC load has been reset to online!")
             model["Load_ndc"]["PD"] = configuration_default_load.default_Load_DC["PD"]
+        if model["Load_ndc"]["PD"]>model["Load_ndc"]["PMAX"]:
+            logger.error("The non-critical DC load profile is overcurrent!")
+            model["Load_ndc"]["PD"] = model["Load_ndc"]["PMAX"]
 
         # 9) The input check for BIC convertors
         if type(model["BIC"]["STATUS"]) is not float and type(model["BIC"]["STATUS"]) is not int:

@@ -60,7 +60,7 @@ class Main():
 		session_history_data_middle = self.Session_history_data()
 		session_history_data_long = self.Session_history_data()
 
-		session_real_time = self.Session_real_time()
+		session_real_time = self.Session_real_time
 	# S3: Initialize target functions
 		real_time_simulation = RealTimeSimulation()
 		short_term_operation = ShortTermOperation()
