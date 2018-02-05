@@ -123,6 +123,9 @@ class InputCheckShortTerm():
         if model["PV"]["QMIN"] > model["PV"]["QMAX"]:
             logger.error("The maximal reactive power capacity of PV is smaller than the minimal capacity!")
             model["PV"]["QMIN"] = model["PV"]["QMAX"]
+        if model["PV"]["PD"] > model["PV"]["SMAX"] or model["PV"]["PD"] <- model["PV"]["SMAX"]:
+            logger.error("The reactive output of PV is out of boundary!")
+            model["PV"]["QG"] = 0
 
         # 4) The input check of wind turbine generators
         if type(model["WP"]["N"]) is not int and type(model["WP"]["N"]) is not float:
@@ -154,6 +157,9 @@ class InputCheckShortTerm():
         if model["WP"]["PG"] > model["WP"]["PMAX"]:
             logger.error("The output of WP is out of boundary!")
             model["WP"]["PG"] = model["WP"]["PMAX"]
+        if model["WP"]["QG"] > model["WP"]["SMAX"] or model["WP"]["QG"] < -model["WP"]["SMAX"]:
+            logger.error("The reactive output of WP is out of boundary!")
+            model["WP"]["QG"] = 0
 
         # 5) The input check of critical AC load
         if type(model["Load_ac"]["STATUS"]) is not float and type(model["Load_ac"]["STATUS"]) is not int and type(
@@ -168,7 +174,9 @@ class InputCheckShortTerm():
         if model["Load_ac"]["PD"]>model["Load_ac"]["PMAX"]:
             logger.error("The critical AC load profile is overcurrent!")
             model["Load_ac"]["PD"] = model["Load_ac"]["PMAX"]
-
+        if model["Load_ac"]["QD"]>model["Load_ac"]["PMAX"] or model["Load_ac"]["QD"]<-model["Load_ac"]["PMAX"]:
+            logger.error("The reactive critical AC load is overcurrent!")
+            model["Load_ac"]["QD"] = 0
 
         # 6) The input check of non-critical AC load
         if type(model["Load_nac"]["STATUS"]) is not int and type(model["Load_nac"]["STATUS"]) is not float and type(
@@ -183,8 +191,11 @@ class InputCheckShortTerm():
         if model["Load_nac"]["PD"]>model["Load_nac"]["PMAX"]:
             logger.error("The non-critical AC load profile is overcurrent!")
             model["Load_nac"]["PD"] = model["Load_nac"]["PMAX"]
+        if model["Load_nac"]["QD"]>model["Load_nac"]["PMAX"] or model["Load_nac"]["QD"]<-model["Load_nac"]["PMAX"]:
+            logger.error("The reactive non-critical AC load is overcurrent!")
+            model["Load_nac"]["QD"] = 0
 
-        # 7) The input check of critical AC load
+        # 7) The input check of critical DC load
         if type(model["Load_dc"]["STATUS"]) is not int and type(model["Load_dc"]["STATUS"]) is not float and type(
                 model["Load_dc"]["STATUS"]) is not bool:
             logger.error("The size of critical DC load status is incorrect!")
@@ -197,7 +208,8 @@ class InputCheckShortTerm():
         if model["Load_dc"]["PD"]>model["Load_dc"]["PMAX"]:
             logger.error("The critical DC load profile is overcurrent!")
             model["Load_dc"]["PD"] = model["Load_dc"]["PMAX"]
-        # 8) The input check of non-critical AC load
+
+        # 8) The input check of non-critical DC load
         if type(model["Load_ndc"]["STATUS"]) is not int and type(model["Load_ndc"]["STATUS"]) is not float and type(
                 model["Load_ndc"]["STATUS"]) is not bool:
             logger.error("The size of non-critical DC load status is incorrect!")
