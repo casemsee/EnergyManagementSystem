@@ -21,13 +21,13 @@ class ProblemFormulation():
 		lb = zeros(NX)
 		ub = zeros(NX)
 		## Update lower boundary
-		lb[PG] = model["DG"]["PMIN"]
+		lb[PG] = model["DG"]["PMIN"]*model["DG"]["STATUS"]
 		lb[QG] = model["DG"]["QMIN"]*model["DG"]["STATUS"]
-		lb[RG] = model["DG"]["PMIN"]
+		lb[RG] = model["DG"]["PMIN"]*model["DG"]["STATUS"]
 
-		lb[PUG] = model["UG"]["PMIN"]
+		lb[PUG] = model["UG"]["PMIN"]*model["UG"]["STATUS"]
 		lb[QUG] = model["UG"]["QMIN"]*model["UG"]["STATUS"]
-		lb[RUG] = model["UG"]["PMIN"]
+		lb[RUG] = model["UG"]["PMIN"]*model["UG"]["STATUS"]
 
 		lb[PBIC_AC2DC] = 0
 		lb[PBIC_DC2AC] = 0
@@ -41,13 +41,13 @@ class ProblemFormulation():
 		lb[PMG] = 0  # The line flow limitation, the predefined status is, the transmission line is off-line
 
 		## Update lower boundary
-		ub[PG] = model["DG"]["PMAX"]
+		ub[PG] = model["DG"]["PMAX"]*model["DG"]["STATUS"]
 		ub[QG] = model["DG"]["QMAX"]*model["DG"]["STATUS"]
-		ub[RG] = model["DG"]["PMAX"]
+		ub[RG] = model["DG"]["PMAX"]*model["DG"]["STATUS"]
 
-		ub[PUG] = model["UG"]["PMAX"]
+		ub[PUG] = model["UG"]["PMAX"]*model["UG"]["STATUS"]
 		ub[QUG] = model["UG"]["QMAX"]*model["UG"]["STATUS"]
-		ub[RUG] = model["UG"]["PMAX"]
+		ub[RUG] = model["UG"]["PMAX"]*model["UG"]["STATUS"]
 
 		ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
 		ub[PBIC_DC2AC] = model["BIC"]["SMAX"]
@@ -181,13 +181,13 @@ class ProblemFormulation():
 		lb = zeros(NX)
 		ub = zeros(NX)
 		## Update lower boundary
-		lb[PG] = model["DG"]["PMIN"]
+		lb[PG] = model["DG"]["PMIN"]*model["DG"]["STATUS"]
 		lb[QG] = model["DG"]["QMIN"]*model["DG"]["STATUS"]
-		lb[RG] = model["DG"]["PMIN"]
+		lb[RG] = model["DG"]["PMIN"]*model["DG"]["STATUS"]
 
-		lb[PUG] = model["UG"]["PMIN"]
+		lb[PUG] = model["UG"]["PMIN"]*model["UG"]["STATUS"]
 		lb[QUG] = model["UG"]["QMIN"]*model["UG"]["STATUS"]
-		lb[RUG] = model["UG"]["PMIN"]
+		lb[RUG] = model["UG"]["PMIN"]*model["UG"]["STATUS"]
 
 		lb[PBIC_AC2DC] = 0
 		lb[PBIC_DC2AC] = 0
@@ -207,13 +207,13 @@ class ProblemFormulation():
 		lb[PL_UDC] = 0
 
 		## Update lower boundary
-		ub[PG] = model["DG"]["PMAX"]
+		ub[PG] = model["DG"]["PMAX"]*model["DG"]["STATUS"]
 		ub[QG] = model["DG"]["QMAX"]*model["DG"]["STATUS"]
-		ub[RG] = model["DG"]["PMAX"]
+		ub[RG] = model["DG"]["PMAX"]*model["DG"]["STATUS"]
 
-		ub[PUG] = model["UG"]["PMAX"]
+		ub[PUG] = model["UG"]["PMAX"]*model["UG"]["STATUS"]
 		ub[QUG] = model["UG"]["QMAX"]*model["UG"]["STATUS"]
-		ub[RUG] = model["UG"]["PMAX"]
+		ub[RUG] = model["UG"]["PMAX"]*model["UG"]["STATUS"]
 
 		ub[PBIC_AC2DC] = model["BIC"]["SMAX"]
 		ub[PBIC_DC2AC] = model["BIC"]["SMAX"]
