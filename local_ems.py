@@ -11,7 +11,7 @@ from database_management.database_functions import db_session
 from configuration.configuration_database import history_data
 from utils import Logger
 from configuration.configuration_global import default_operation_mode
-
+from configuration.configuration_database import rtc_local
 logger = Logger("Local_ems")
 
 class Main():
@@ -30,6 +30,7 @@ class Main():
 		# database start-up operation
 		self.Session = ems_main.database_start_up()
 		self.Session_history_data = db_session(history_data)
+		self.Session_real_time = db_session(rtc_local)
 		(self.microgrid,self.microgrid_middle,self.microgrid_long) = start_up_lems.start_up() # Generate local ems models
 		# self.logger.info("Database has been started up!")
 		# operation mode
@@ -59,7 +60,7 @@ class Main():
 		session_history_data_middle = self.Session_history_data()
 		session_history_data_long = self.Session_history_data()
 
-
+		session_real_time = self.Session_real_time()
 	# S3: Initialize target functions
 		real_time_simulation = RealTimeSimulation()
 		short_term_operation = ShortTermOperation()
@@ -69,9 +70,9 @@ class Main():
 		# S4: Functions scheduling
 		sched = BlockingScheduler()
 		# 1) real-time simulation
-		sched.add_job(lambda: real_time_simulation.run(microgrid, session, session,session_history_data),'cron', minute='0-59', second='*/5')
+		# sched.add_job(lambda: real_time_simulation.run(microgrid, session, session,session_history_data),'cron', minute='0-59', second='*/5')
 		# 2) short-term operation
-		sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short,session_history_data_short),'cron', minute='*/1', second='1')
+		sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short,session_history_data_short,session_real_time),'cron', minute='*/1', second='1')
 		# 3) middle-term operation
 		sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle),'cron', minute='*/5', second='5')
 		# 4) long-term operation
@@ -80,10 +81,10 @@ class Main():
 		sched.start()
 
 		# for i in range(10):
-			# # 1) real-time simulation
-			# real_time_simulation.run(microgrid, session, session_short,session_history_data)# Real-time simulation has pasted test!
-			# # 2) short-term operation
-			# short_term_operation.run(microgrid_short, session_short,session_history_data_short)  # Short-term operation has pasted test!
+		# 	# 1) real-time simulation
+		# 	real_time_simulation.run(microgrid, session, session_short,session_history_data)# Real-time simulation has pasted test!
+		# 	# 2) short-term operation
+		# 	short_term_operation.run(microgrid_short, session_short,session_history_data_short,session_real_time)  # Short-term operation has pasted test!
 			# # 3) middle-term operation
 			# middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle) # Middle-term operation has pasted test!
 			# 4) long-term operation

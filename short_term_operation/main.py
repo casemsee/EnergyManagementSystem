@@ -170,7 +170,7 @@ def short_term_operation_lems(local_mg, socket_upload, socket_download, info, se
     database_storage_operation.database_record(session, local_mg, Target_time, "OPF")
 
 
-def short_term_operation(local_mg, session, session_history, logger):
+def short_term_operation(local_mg, session, session_history, session_real_time, logger):
     """
     Short term operation for stand alone microgrid
     The following operation sequence
@@ -201,7 +201,7 @@ def short_term_operation(local_mg, session, session_history, logger):
     local_mg = thread_forecasting.microgrid
     # Step 2: update resource status
     # local_mg = status_update(local_mg, session, Target_time)
-    local_mg = real_time_information_update(local_mg, session)
+    local_mg = real_time_information_update(local_mg, session_real_time, logger)
     # Update the dynamic model
     local_mg = InputCheckShortTerm.model_local_check(local_mg)  # Check the data format of local ems
 
@@ -387,7 +387,7 @@ def status_update(microgrid, session, Target_time):
     return microgrid
 
 
-def real_time_information_update(microgrid, session):
+def real_time_information_update(microgrid, session, logger):
     """
     Update Battery SOC, PV output, load profile and so on
     :param microgrid: information model of
@@ -400,7 +400,7 @@ def real_time_information_update(microgrid, session):
     Note: This function serves as the closed loop between the scheduling and information.
     """
     Target_time = time.time()
-    Target_time = Target_time - Target_time % 5
+    Target_time = Target_time - Target_time % 60
     Target_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(Target_time))
     row = session.query(RMDBData).filter_by(datetime1=Target_time).first()
     if row != None:
@@ -429,7 +429,9 @@ def real_time_information_update(microgrid, session):
             PV_PG += row.PV1_3_POW
         microgrid["PV"]["PG"] = PV_PG
         microgrid["WP"]["PG"] = row.WT_POW
+        logger.info("The information model has been updated according to the information at {0}".format(Target_time))
     else:
+        logger.warning("The information model at {0} does not exist!".format(Target_time))
         return microgrid
 
     return microgrid
