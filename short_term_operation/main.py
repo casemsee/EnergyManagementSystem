@@ -400,11 +400,10 @@ def real_time_information_update(microgrid, session, logger):
     Note: This function serves as the closed loop between the scheduling and information.
     """
     Target_time = time.time()
-    Target_time = Target_time - Target_time % 60 - 20
+    Target_time = Target_time - Target_time % 60
     Target_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(Target_time))
     session_temp = session()
     row = session_temp.query(RMDBData).filter_by(datetime1=Target_time).first()
-    logger.info(row)
     if row != None:
         microgrid["Load_dc"]["PD"] = row.LOAD_DC_CT_POW
         microgrid["Load_ndc"]["PD"] = row.LOAD_DC_NCT_POW

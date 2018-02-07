@@ -123,7 +123,7 @@ class InputCheckShortTerm():
         if model["PV"]["QMIN"] > model["PV"]["QMAX"]:
             logger.error("The maximal reactive power capacity of PV is smaller than the minimal capacity!")
             model["PV"]["QMIN"] = model["PV"]["QMAX"]
-        if model["PV"]["PD"] > model["PV"]["SMAX"] or model["PV"]["PD"] <- model["PV"]["SMAX"]:
+        if model["PV"]["PG"] > model["PV"]["SMAX"] or model["PV"]["PG"] <- model["PV"]["SMAX"]:
             logger.error("The reactive output of PV is out of boundary!")
             model["PV"]["QG"] = 0
 
