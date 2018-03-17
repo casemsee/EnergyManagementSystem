@@ -61,35 +61,36 @@ class Main():
 		session_history_data_long = self.Session_history_data()
 
 		session_real_time = self.Session_real_time
-	# S3: Initialize target functions
+
+		# S3: Initialize target functions
 		real_time_simulation = RealTimeSimulation()
 		short_term_operation = ShortTermOperation()
 		middle_term_operation = MiddleTermOperation()
 		long_term_operation = LongTermOperation()
+
+		# Start-up the test
+		for i in range(1):
+			# 1) real-time simulation
+			real_time_simulation.run(microgrid, session, session_short,session_history_data)# Real-time simulation has pasted test!
+			# 2) short-term operation
+			short_term_operation.run(microgrid_short, session_short,session_history_data_short,session_real_time)  # Short-term operation has pasted test!
+			# 3) middle-term operation
+			middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle) # Middle-term operation has pasted test!
+			# 4) long-term operation
+			long_term_operation.run(microgrid_long, session_long,session_history_data_long)
 
 		# S4: Functions scheduling
 		sched = BlockingScheduler()
 		# 1) real-time simulation
 		# sched.add_job(lambda: real_time_simulation.run(microgrid, session, session,session_history_data),'cron', minute='0-59', second='*/5')
 		# 2) short-term operation
-		sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short,session_history_data_short,session_real_time),'cron', minute='*/1', second='1')
+		sched.add_job(lambda: short_term_operation.run(microgrid_short, session_short,session_history_data_short,session_real_time),'cron', minute='*/1', second='30')
 		# 3) middle-term operation
-		sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle),'cron', minute='*/5', second='5')
+		sched.add_job(lambda: middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle),'cron', minute='*/5', second='10')
 		# 4) long-term operation
 		sched.add_job(lambda: long_term_operation.run(microgrid_long, session_long,session_history_data_long),'cron', minute='*/30', second='30')
 		# 5) start simulation
 		sched.start()
-
-		# for i in range(10):
-		# 	# 1) real-time simulation
-		# 	real_time_simulation.run(microgrid, session, session_short,session_history_data)# Real-time simulation has pasted test!
-		# 	# 2) short-term operation
-		# 	short_term_operation.run(microgrid_short, session_short,session_history_data_short,session_real_time)  # Short-term operation has pasted test!
-			# # 3) middle-term operation
-			# middle_term_operation.run(microgrid_middle, session_middle,session_history_data_middle) # Middle-term operation has pasted test!
-			# 4) long-term operation
-			# long_term_operation.run(microgrid_long, session_long,session_history_data_long) # Long-term operation needs to be tested!
-
 
 def run():
 	# Define the local models

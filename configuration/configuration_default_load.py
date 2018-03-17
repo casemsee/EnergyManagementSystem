@@ -8,7 +8,7 @@ default_Load_AC = \
 		"PD": 0,
 		"QD": 0,
 		"PF":1,
-		"PDMAX": 3000,
+		"PDMAX": 2000,
 		"PDMIN": 0,
 		"FLEX": 0,# 0, load is undispatchable;1, load is dispatchable
 		"APF":0,
@@ -29,7 +29,7 @@ default_Load_DC = \
 		"STATUS": 1,  # The generation status, >0 means avalible, otherwise, unavaliable
 		"PD": 0,
 		"PF":1,
-		"PDMAX": 3000,
+		"PDMAX": 2000,
 		"PDMIN": 0,
 		"FLEX": 0,# 0, load is undispatchable;1, load is dispatchable
 		"APF":0,
