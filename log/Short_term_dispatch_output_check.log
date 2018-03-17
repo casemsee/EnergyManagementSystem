@@ -1,0 +1,927 @@
+2018-02-01 13:22:01,256; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:23:01,080; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:24:01,089; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:25:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:27:01,223; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:28:01,059; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:30:01,240; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:39:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:40:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:41:01,062; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:42:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:43:01,060; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:44:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:45:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:46:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:47:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:48:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:49:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:50:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:51:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:52:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:53:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:54:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:55:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:56:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 13:59:01,243; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:00:01,078; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:01:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:08:01,284; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:09:01,088; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:10:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:11:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:12:01,254; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:17:01,254; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:19:01,088; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:20:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:21:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:26:01,283; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:27:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:28:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:29:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:30:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:31:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:32:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 14:33:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-01 16:46:01,304; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:47:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:48:01,061; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:49:01,059; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:50:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:51:01,064; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:52:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:53:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:54:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:55:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:56:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:57:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 16:58:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:17:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:18:01,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:19:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:20:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:21:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:22:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:23:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:24:01,064; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:25:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:26:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:27:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:28:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:29:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:30:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:31:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:32:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:33:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:34:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:35:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:36:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:37:01,078; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:38:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:39:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:40:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:41:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:44:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:45:01,091; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:46:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:47:01,086; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:48:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:49:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:50:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:51:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:52:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:53:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:56:01,095; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:57:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:58:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 18:59:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:00:01,118; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:01:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:02:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:03:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:04:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:06:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:07:01,121; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:08:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:09:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:10:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:11:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:14:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:15:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:16:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:17:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:18:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:19:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:20:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:21:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:22:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:23:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:24:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:25:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-01 19:26:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 10:40:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:41:01,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:42:01,080; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:43:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:44:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:45:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:46:01,086; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:47:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 10:48:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:32:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:33:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:34:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:35:01,064; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:36:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:37:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:38:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:39:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:40:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:41:01,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:42:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:43:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:44:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:45:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:46:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:47:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:48:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 12:59:01,360; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:00:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:42:01,321; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:43:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:47:01,458; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:50:01,322; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:51:01,284; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:54:01,676; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:55:01,608; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:56:01,623; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:57:36,516; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:57:53,122; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 13:59:01,281; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:00:01,056; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:01:01,060; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:02:01,058; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:03:01,059; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:04:01,063; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:05:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:06:01,060; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:07:01,059; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:08:01,060; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:09:01,062; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:10:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:11:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:12:01,064; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:13:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:14:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:15:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:16:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:17:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:18:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:19:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:20:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:21:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:22:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:23:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:24:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:25:01,080; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:26:01,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:27:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:28:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:29:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:30:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:31:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:32:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 14:33:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-02 18:54:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 18:55:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 18:56:01,080; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 18:57:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 18:58:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 18:59:01,086; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:00:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:01:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:02:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:03:01,090; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:04:01,090; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:05:01,090; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:06:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:07:01,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:08:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:09:01,091; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:10:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:11:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:12:01,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:13:01,116; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:14:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:15:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:16:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:17:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:18:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:19:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:20:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:21:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 19:52:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 20:28:01,054; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:02:01,055; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:03:01,057; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:04:01,052; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:05:01,057; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:06:01,055; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:07:01,062; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:08:01,056; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:09:01,060; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:10:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:11:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:12:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:13:01,063; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:14:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:15:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:16:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:17:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:18:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:19:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:20:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:21:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:22:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:23:01,074; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:24:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:25:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:26:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:27:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:28:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:29:01,078; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:30:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:31:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:32:01,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:33:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:34:01,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:35:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:36:01,080; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 21:37:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:08:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:19:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:20:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:21:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:22:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:23:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:24:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:25:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:26:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:27:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:28:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:29:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:30:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:31:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:32:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:33:01,074; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:34:01,072; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:35:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:36:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:37:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:38:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:39:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:40:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:41:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:42:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:43:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:44:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:45:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:46:01,074; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:47:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:48:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-02 22:49:01,081; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:54,525; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:54,610; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:54,719; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:54,815; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:54,899; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:54,994; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,175; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,275; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,369; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,460; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,554; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,646; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,731; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,847; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:55,936; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,022; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,112; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,201; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,290; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,381; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,474; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,557; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,648; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,742; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,842; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:56,937; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,025; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,203; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,297; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,381; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,478; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,568; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,652; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,749; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,862; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:57,947; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,046; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,132; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,226; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,322; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,415; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,522; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,613; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,700; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,795; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:58,910; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,001; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,180; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,275; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,365; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,450; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,544; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,633; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,718; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,813; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:13:59,926; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,016; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,115; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,204; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,298; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,384; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,470; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,563; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,653; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,739; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,831; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:00,945; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,037; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,129; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,220; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,312; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,405; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,496; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,591; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,683; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,769; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,863; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:01,979; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,163; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,249; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,343; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,437; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,530; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,621; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,708; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,793; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:02,885; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,008; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,192; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,279; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,375; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,469; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,553; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,651; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,750; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,844; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:03,947; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,161; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,262; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,346; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,444; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,543; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,628; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,726; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,823; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:04,908; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,008; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,126; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,209; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,306; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,393; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,485; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,581; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,671; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,772; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,862; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:05,944; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,039; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,155; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,241; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,341; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,426; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,522; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,611; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,696; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,788; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,881; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:06,966; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,062; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,183; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,276; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,375; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,459; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,560; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,652; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,739; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,840; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:07,928; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,020; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,118; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,240; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,334; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,433; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,522; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,622; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,708; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,803; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,898; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:08,990; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,172; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,273; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,357; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,443; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,533; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,620; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,714; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,804; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,887; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:09,978; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,161; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,275; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,359; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,453; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,545; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,639; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,737; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,837; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:10,936; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,033; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,131; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,223; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,344; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,432; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,529; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,631; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,727; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,822; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:11,925; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:12,023; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:12,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:12,208; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:25,514; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:25,606; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:25,692; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:25,805; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:25,890; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:25,973; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:26,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:26,172; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:26,262; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:14:26,361; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 09:24:02,923; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 15:59:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 16:01:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 16:20:01,555; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:20:01,556; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:24:03,661; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:24:03,661; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:25:01,465; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:25:01,465; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:27:01,231; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:27:01,231; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:28:01,310; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:28:01,310; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:29:01,207; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:29:01,208; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:30:01,178; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:30:01,178; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:31:01,174; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:31:01,175; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:32:01,297; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:32:01,297; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:33:01,179; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:33:01,179; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:34:01,371; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:34:01,372; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet DC bus power requirement![0m
+2018-02-03 16:34:01,372; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:34:01,372; EMS.Short_term_dispatch_output_check - [91m897[0m
+2018-02-03 16:35:01,200; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:35:01,200; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:35:01,200; EMS.Short_term_dispatch_output_check - [91m3887[0m
+2018-02-03 16:36:01,524; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:36:01,524; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:36:01,524; EMS.Short_term_dispatch_output_check - [91m2072[0m
+2018-02-03 16:37:01,715; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:37:01,716; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:37:01,716; EMS.Short_term_dispatch_output_check - [91m2240[0m
+2018-02-03 16:38:01,703; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:38:01,703; EMS.Short_term_dispatch_output_check - [91m260[0m
+2018-02-03 16:39:01,397; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:39:01,397; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:39:01,397; EMS.Short_term_dispatch_output_check - [91m1395[0m
+2018-02-03 16:40:01,438; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:40:01,439; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:40:01,439; EMS.Short_term_dispatch_output_check - [91m2700[0m
+2018-02-03 16:41:01,529; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-03 16:41:01,529; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-03 16:41:01,529; EMS.Short_term_dispatch_output_check - [91m5382[0m
+2018-02-03 18:16:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:17:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:18:01,130; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:31:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:32:01,131; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:33:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:34:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:35:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:36:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:37:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:38:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:39:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:40:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:41:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:42:01,130; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:43:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:44:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:45:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:46:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:47:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:48:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:49:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:50:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:51:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:52:01,116; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:53:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:54:01,123; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:55:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:56:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:57:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:58:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 18:59:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:00:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:01:01,119; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:02:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:03:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:04:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:05:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:06:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:07:01,120; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:08:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:09:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:10:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:11:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:12:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:13:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:14:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:15:01,114; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:16:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:17:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:18:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:19:01,116; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:20:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:21:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:22:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:23:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:24:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:25:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:26:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:27:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:28:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:29:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:30:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:31:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:32:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:33:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:34:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:35:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:36:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:37:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:38:01,123; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:39:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:40:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:41:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:42:01,126; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:43:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:44:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:45:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:46:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:47:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:48:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:49:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:50:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:51:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:52:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:53:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:54:01,129; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:55:01,113; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:56:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:57:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:58:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 19:59:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:00:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:01:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:02:01,135; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:03:01,112; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:04:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:05:01,095; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:06:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:07:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:08:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-03 20:09:01,168; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 13:14:01,059; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:15:01,059; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:16:01,063; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:17:01,074; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:18:01,062; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:19:01,063; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:20:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:21:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:22:01,063; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:23:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:24:01,066; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:25:01,068; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:26:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:27:01,070; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:28:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:29:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:30:01,076; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:31:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:32:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:33:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:34:01,088; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:35:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:36:01,078; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:37:01,077; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:38:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:39:01,095; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:40:01,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:41:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:42:01,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:43:01,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:44:01,088; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:45:01,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:46:01,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:47:01,086; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:48:01,086; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:49:01,091; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:50:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:51:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:52:01,130; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:53:01,095; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:54:01,115; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:55:01,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:56:01,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:57:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:58:01,120; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 13:59:01,149; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:00:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:01:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:02:01,123; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:03:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:04:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:05:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:06:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:07:01,116; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:08:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:09:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:10:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:11:01,145; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:14:01,131; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:15:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:16:01,145; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:17:01,128; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:18:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:19:01,124; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:20:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:21:01,135; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:22:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:23:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:24:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:25:01,123; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:26:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:27:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:28:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:29:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:30:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:31:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:32:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:33:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:34:01,118; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:35:01,113; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:36:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:37:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:38:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:39:01,112; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:40:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:41:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:42:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:43:01,126; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:44:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:45:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:46:01,130; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:47:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:48:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:49:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:50:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:51:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:56:01,125; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:57:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:58:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 14:59:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:00:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:01:01,112; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:02:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:03:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:15:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:16:01,119; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:17:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:18:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:19:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:20:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 15:21:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-04 16:00:01,112; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:01:01,119; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:02:01,122; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:03:01,119; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:04:01,121; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:05:01,116; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:06:01,122; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:09:01,155; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:10:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:11:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:12:01,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:13:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:14:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:15:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:16:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:17:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 16:18:01,118; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 17:21:01,124; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:34:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:35:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:36:01,113; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:37:01,124; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:38:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:39:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:40:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:41:01,138; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:42:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:43:01,112; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:44:01,128; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:45:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:46:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:47:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:48:01,124; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:49:01,113; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:50:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:51:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:52:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:53:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:54:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:55:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:56:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:57:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:58:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 18:59:01,096; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:00:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:01:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:02:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:03:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:04:01,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:05:01,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:06:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:07:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:08:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:09:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:10:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:11:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:12:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:13:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:14:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:15:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:16:01,124; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:17:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:18:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:19:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:20:01,099; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:21:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:22:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:23:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:24:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:25:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:26:01,125; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:27:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:28:01,108; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:29:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:30:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:31:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:32:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:33:01,124; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:34:01,101; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:35:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:36:01,126; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:37:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:38:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:39:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:40:01,113; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:41:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:42:01,113; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:43:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:44:01,107; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:45:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:46:01,136; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:47:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:48:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:49:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:50:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:51:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:52:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:53:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:54:01,106; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:55:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:56:01,133; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:57:01,105; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:58:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 19:59:01,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:00:01,102; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:01:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:02:01,109; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:03:01,130; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:04:01,110; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:05:01,104; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:06:01,126; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:07:01,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-04 20:08:01,111; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-05 10:23:01,200; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:29:01,206; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:32:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:33:01,065; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:34:01,073; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:35:01,064; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:36:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 10:37:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 11:26:01,072; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-05 11:26:01,072; EMS.Short_term_dispatch_output_check - [91m121[0m
+2018-02-05 11:47:01,063; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-05 11:47:01,063; EMS.Short_term_dispatch_output_check - [91m237500[0m
+2018-02-05 11:56:01,067; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 11:58:01,071; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 12:02:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 12:03:01,083; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-05 12:03:01,083; EMS.Short_term_dispatch_output_check - [91m34200[0m
+2018-02-05 12:04:01,067; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-05 12:04:01,067; EMS.Short_term_dispatch_output_check - [91m132[0m
+2018-02-05 12:05:01,078; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-05 12:05:01,078; EMS.Short_term_dispatch_output_check - [91m600[0m
+2018-02-05 12:06:01,071; EMS.Short_term_dispatch_output_check - [91mThere exits bi-directional power flow on BIC![0m
+2018-02-05 12:06:01,071; EMS.Short_term_dispatch_output_check - [91m600[0m
+2018-02-05 13:39:01,075; EMS.Short_term_dispatch_output_check - [91mThe obtained solution results in load shedding or renewable energy resource shedding![0m
+2018-02-05 13:40:01,069; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 15:07:01,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 15:14:01,080; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-05 15:42:01,094; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:37:30,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:38:30,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:44:30,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:45:30,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:47:30,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:48:30,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:50:30,078; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:52:30,079; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:53:30,084; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 14:54:30,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:09:30,083; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:12:30,082; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:21:30,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:24:30,091; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:27:30,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:32:30,089; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:33:30,085; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:40:30,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:43:30,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 15:44:30,087; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:01:30,098; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:14:30,103; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:15:30,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:16:30,091; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:17:30,095; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:18:30,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:19:30,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:20:30,089; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:21:30,089; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:24:30,100; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:25:30,097; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:26:30,093; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:29:30,091; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-07 16:31:30,092; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
+2018-02-08 11:09:30,120; EMS.Short_term_dispatch_output_check - [91mThe obtained solution can not meet AC bus power requirement![0m
